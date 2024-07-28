@@ -39,10 +39,23 @@ class Circuit:
         self.particles = []
 
     def gen_circuit_paths(self):
+        rng = np.random.default_rng()
+
         # Generate first, necessary path
         self.path_find(self.entry_nodes[0].pos, self.repos[0].pos)
 
-        #
+        # Select number of nodes to be attached to first branch binomially
+        available = self.repos[1:]
+        no_available = len(available)
+        no_selected = rng.binomial(no_available, 1/no_available)
+        selected = rng.choice(available, no_selected)
+
+        pointer_pos = self.entry_nodes[0].pos
+        for repo in selected:
+            pointer_pos = self.path_space[self.path_space[pointer_pos][0]]
+            self.path_find(pointer_pos, repo.pos)
+
+
 
 
     def path_find(self, start, target):

@@ -44,8 +44,6 @@ def wipe_circuit():
     for i in range(len(circuit.exit_nodes)):
         dpg.delete_item("exit_node" + str(i))
 
-    for i in range(path_rec_count)
-
     dpg.delete_item("circuit_wiper_button")
     gen_button = dpg.add_button(label="Generate circuit", width=150, height=20,
                                 callback=gen_circuit, tag="gen_circuit_button", parent="control")
