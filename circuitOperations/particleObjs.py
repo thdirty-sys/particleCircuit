@@ -48,19 +48,23 @@ class Circuit:
         available = self.repos[1:]
         no_available = len(available)
         no_selected = rng.binomial(no_available, 1/2)
-        print(no_selected)
         selected = rng.choice(available, no_selected, replace=False)
 
         pointer_pos = self.entry_nodes[0].pos
         for repo in selected:
             pointer_pos = self.path_space[self.path_space[pointer_pos][0]][0]
-            if pointer_pos == repo.pos or pointer_pos[0] > repo.pos[0]:
+            if self.in_repo(pointer_pos) or pointer_pos == []:
                 break
             else:
                 self.path_find(pointer_pos, repo.pos)
 
 
+        print(self.path_space)
 
+    def in_repo(self, pos):
+        for repo in self.repos:
+            if pos == repo.pos:
+            return True
 
     def path_find(self, start, target):
         target_x, target_y = target
