@@ -64,7 +64,7 @@ class Circuit:
     def in_repo(self, pos):
         for repo in self.repos:
             if pos == repo.pos:
-            return True
+                return True
 
     def path_find(self, start, target):
         target_x, target_y = target
