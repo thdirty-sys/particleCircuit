@@ -51,9 +51,14 @@ class Circuit:
         selected = rng.choice(available, no_selected)
 
         pointer_pos = self.entry_nodes[0].pos
+        print(self.path_space[pointer_pos])
         for repo in selected:
             pointer_pos = self.path_space[self.path_space[pointer_pos][0]]
-            self.path_find(pointer_pos, repo.pos)
+            print(pointer_pos, repo.pos)
+            if pointer_pos == repo.pos or pointer_pos[0] > repo.pos[0]:
+                break
+            else:
+                self.path_find(pointer_pos, repo.pos)
 
 
 
@@ -114,10 +119,12 @@ class Circuit:
                 for x in range(prev_x, next_x):
                     self.path_space[(x, prev_y)].append((x+1, prev_y))
             else:
-                # Range function only works from lower to higher
-                beg = min(next_y, prev_y)
-                end = max(next_y, prev_y)
-                for y in range(beg, end):
+                # Range function only works from lower to higher. Hence reverse if prev above next.
+                if prev_y >= next_y:
+                    seq = reversed(range(next_y, prev_y))
+                else:
+                    seq = range(next_y, prev_y)
+                for y in seq:
                     self.path_space[(prev_x, y)].append((prev_x, y+1))
 
 
