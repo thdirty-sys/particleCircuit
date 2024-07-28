@@ -47,14 +47,13 @@ class Circuit:
         # Select number of nodes to be attached to first branch binomially
         available = self.repos[1:]
         no_available = len(available)
-        no_selected = rng.binomial(no_available, 1/no_available)
-        selected = rng.choice(available, no_selected)
+        no_selected = rng.binomial(no_available, 1/2)
+        print(no_selected)
+        selected = rng.choice(available, no_selected, replace=False)
 
         pointer_pos = self.entry_nodes[0].pos
-        print(self.path_space[pointer_pos])
         for repo in selected:
-            pointer_pos = self.path_space[self.path_space[pointer_pos][0]]
-            print(pointer_pos, repo.pos)
+            pointer_pos = self.path_space[self.path_space[pointer_pos][0]][0]
             if pointer_pos == repo.pos or pointer_pos[0] > repo.pos[0]:
                 break
             else:
@@ -121,15 +120,13 @@ class Circuit:
             else:
                 # Range function only works from lower to higher. Hence reverse if prev above next.
                 if prev_y >= next_y:
-                    seq = reversed(range(next_y, prev_y))
+                    for y in reversed(range(next_y+1, prev_y+1)):
+                        self.path_space[(prev_x, y)].append((prev_x, y - 1))
                 else:
-                    seq = range(next_y, prev_y)
-                for y in seq:
-                    self.path_space[(prev_x, y)].append((prev_x, y+1))
-
+                    for y in range(prev_y, next_y):
+                        self.path_space[(prev_x, y)].append((prev_x, y+1))
 
     def path_check(self, path_sketch):
-        print(path_sketch)
         for i in range(1, len(path_sketch)):
             prev_x, prev_y = path_sketch[i-1]
             next_x, next_y = path_sketch[i]
