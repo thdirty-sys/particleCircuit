@@ -10,45 +10,6 @@ class Particle:
     def __init__(self, start_pos):
         self.pos = start_pos
 
-    def path_find(self, target, path_space):
-        path_sketch = [self.pos]
-        target_x, target_y = target
-        start_x, start_y = self.pos
-
-        x_diff = target_x - start_x
-        y_diff = target_y - start_y
-
-        # If target and start are on the same row
-        if y_diff == 0:
-            if self.path_check([], path_space):
-                return []
-        elif target_y > start_y:
-            supplement = 0
-            while target_y+supplement < 26 or start_y-supplement > -1:
-                pos_sketch_lower = [(start_y-supplement, start_x), (start_x-supplement, target_x)]
-                if self.path_check(pos_sketch_lower, path_space):
-                    return pos_sketch_lower
-
-                pos_sketch_higher = [(target_y+supplement, start_x), (target_x+supplement, target_x)]
-                if self.path_check(pos_sketch_higher, path_space):
-                    return pos_sketch_higher
-
-                supplement += 1
-        else:
-            supplement = 0
-            while target_y - supplement > -1 or start_y + supplement < 26:
-                pos_sketch_lower = [(target_y - supplement, start_x), (target_y - supplement, target_x)]
-                if self.path_check(pos_sketch_lower, path_space):
-                    return pos_sketch_lower
-
-                pos_sketch_higher = [(start_y + supplement, start_x), (start_x + supplement, target_x)]
-                if self.path_check(pos_sketch_higher, path_space):
-                    return pos_sketch_higher
-
-                supplement += 1
-
-    def path_check(self, path_sketch, path_space):
-        return True
 
 class Repository:
     """Repository object; fed particles."""
