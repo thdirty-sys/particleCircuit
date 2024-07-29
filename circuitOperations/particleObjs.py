@@ -50,14 +50,23 @@ class Circuit:
         no_selected = rng.binomial(no_available, 1/2)
         selected = rng.choice(available, no_selected, replace=False)
 
+        # First branch
         pointer_pos = self.entry_nodes[0].pos
         for repo in selected:
+            # Select the second block along in current branch after the pointer_pos
             pointer_pos = self.path_space[self.path_space[pointer_pos][0]][0]
             if self.in_repo(pointer_pos) or pointer_pos == []:
                 break
             else:
                 self.path_find(pointer_pos, repo.pos)
+                # Begin recursive branch out path generation
+                self.branch_path_construct(self.path_space[pointer_pos][0])
 
+        # Other entry node connections
+        available = self.repos[1:]
+        no_available = len(available)
+        no_selected = rng.binomial(no_available, 1 / 2)
+        selected = rng.choice(available, no_selected, replace=False)
 
         print(self.path_space)
 
@@ -65,6 +74,38 @@ class Circuit:
         for repo in self.repos:
             if pos == repo.pos:
                 return True
+
+    def branch_path_construct(self, pointer):
+        """Recursively called to generate path space"""
+        rng = np.random.default_rng()
+        pointer_pos = pointer
+
+        # Only consider repos and exit nodes with a higher x value than pointer, since whole process is left to right
+        for i, repo in enumerate(self.repos):
+            if pointer_pos[0] < repo.pos[0]:
+                available = self.repos[i:] + self.exit_nodes
+                break
+
+        # Make random selection from available
+        no_available = len(available)
+        no_selected = rng.binomial(no_available, 1 / 2)
+        selected = rng.choice(available, no_selected, replace=False)
+
+        for node in selected:
+            # Select the second block along in current branch after the pointer_pos
+            pointer_pos = self.path_space[self.path_space[pointer_pos][0]][0]
+            # Test if we are still along the branch path
+            if self.in_repo(pointer_pos) or pointer_pos == []:
+                break
+            # If so generate new path and call recursion
+            else:
+                self.path_find(pointer_pos, repo.pos)
+                # Begin recursive branch out path generation
+                self.branch_path_construct(self.path_space[pointer_pos][0])
+
+
+
+
 
     def path_find(self, start, target):
         target_x, target_y = target
