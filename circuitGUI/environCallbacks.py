@@ -34,6 +34,12 @@ def gen_circuit():
 
 
 def wipe_circuit():
+    dpg.add_text("Loading...", parent="control", tag="loading_text")
+
+    #Wipe buttons
+    dpg.delete_item("gen_paths_button")
+    dpg.delete_item("circuit_wiper_button")
+
     # Wipe features
     for i in range(len(circuit.repos)):
         dpg.delete_item("rep_" + str(i))
@@ -44,7 +50,18 @@ def wipe_circuit():
     for i in range(len(circuit.exit_nodes)):
         dpg.delete_item("exit_node" + str(i))
 
-    dpg.delete_item("circuit_wiper_button")
+    for i in range(path_rec_count):
+        dpg.delete_item("path_block" + str(i))
+
+    """count = 0
+    for pos in circuit.path_space:
+        if circuit.path_space[pos] != []:
+            dpg.delete_item("path_block" + str(count))
+            count += 1"""
+
+
+    # Finish wipe
+    dpg.delete_item("loading_text")
     gen_button = dpg.add_button(label="Generate circuit", width=150, height=20,
                                 callback=gen_circuit, tag="gen_circuit_button", parent="control")
 
