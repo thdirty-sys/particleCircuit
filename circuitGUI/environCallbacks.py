@@ -65,6 +65,8 @@ def wipe_circuit():
     gen_button = dpg.add_button(label="Generate circuit", width=150, height=20,
                                 callback=gen_circuit, tag="gen_circuit_button", parent="control")
 
+    circuit.branches = 0
+
 def paths_gen():
     global path_rec_count
 
@@ -77,3 +79,5 @@ def paths_gen():
             dpg.draw_rectangle(pmin=pos, pmax=pos, parent="main_grid",
                                color=(255, 255, 255), tag="path_block" + str(path_rec_count))
             path_rec_count += 1
+
+    print(circuit.branches)

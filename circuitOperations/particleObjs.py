@@ -1,6 +1,7 @@
 import numpy as np
 class Node:
     def __init__(self, start_pos, rate):
+        self.name = "node"
         self.pos = start_pos
         self.rate = rate
 
@@ -9,11 +10,13 @@ class Particle:
     """General element of the Circuit"""
     def __init__(self, start_pos):
         self.pos = start_pos
+        self.name = "particle"
 
 
 class Repository:
     """Repository object; fed particles."""
     def __init__(self, start_pos, capacity):
+        self.name = "repo"
         self.capacity = capacity
         self.pos = start_pos
         self.count = 0
@@ -29,6 +32,7 @@ class Circuit:
     """The circuit, with all its received features. Must have/generate paths to be functional.
     Given entry/exit nodes necessary, as well as repositories."""
     def __init__(self, repos, ingress, egress):
+        self.branches = 0
         self.repos = repos
         self.entry_nodes = ingress
         self.exit_nodes = egress
@@ -39,7 +43,7 @@ class Circuit:
         for y in range(26):
             for x in range(50):
                 self.path_space[(x,y)] = []
-                self.path_space[(x,y)] = "-"
+                self.path_orientation[(x,y)] = "-"
 
         self.particles = []
 
@@ -70,14 +74,10 @@ class Circuit:
             else:
                 self.current_obj = str(self.repos.index(repo))
                 self.path_find(pointer_pos, repo.pos)
+                print(pointer_pos, self.path_space[pointer_pos])
                 # Begin recursive branch out path generation
-                self.branch_path_construct(self.path_space[pointer_pos][0])
+                self.branch_path_construct(self.path_space[pointer_pos][0], 1/2)
 
-        # Other entry node connections
-        available = self.repos[1:]
-        no_available = len(available)
-        no_selected = rng.binomial(no_available, 1 / 2)
-        selected = rng.choice(available, no_selected, replace=False)
 
 
     def in_repo_or_exit(self, pos):
@@ -89,8 +89,10 @@ class Circuit:
             if node.pos == pos:
                 return True
 
-    def branch_path_construct(self, pointer):
+    def branch_path_construct(self, pointer, p):
         """Recursively called to generate path space"""
+
+        self.branches += 1
         rng = np.random.default_rng()
         pointer_pos = pointer
 
@@ -105,7 +107,7 @@ class Circuit:
         # Make random selection from available
         print(available)
         no_available = len(available)
-        no_selected = rng.binomial(no_available, 1 / 2)
+        no_selected = rng.binomial(no_available, p)
         selected = rng.choice(available, no_selected, replace=False)
 
         for node in selected:
@@ -125,7 +127,7 @@ class Circuit:
                     self.current_obj = "a"+str(self.exit_nodes.index(node))
                 self.path_find(pointer_pos, node.pos)
                 # Begin recursive branch-out path generation
-                self.branch_path_construct(self.path_space[pointer_pos][0])
+                self.branch_path_construct(self.path_space[pointer_pos][0], p*2/3)
 
 
 
@@ -140,7 +142,7 @@ class Circuit:
         l_supplement = 0
         u_supplement = 0
 
-        for elbow_room in range(max(26-start_y, start_y+1)):
+        for elbow_room in range(0, max(26-start_y, start_y+1), 2):
             if start_y - elbow_room < 0:
                 pass
             else:
