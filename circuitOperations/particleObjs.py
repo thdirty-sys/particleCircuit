@@ -58,12 +58,13 @@ class Circuit:
         # Generate first, necessary path
         complete = True
         self.current_obj = "0"
-        self.path_find(self.entry_nodes[0].pos, self.repos[0].pos)
+        self.path_find(self.entry_nodes[0].pos, self.repos[0])
+        print(self.path_space[self.entry_nodes[0].pos])
 
         # Select number of nodes to be attached to first branch binomially
         available = self.repos[1:]
         no_available = len(available)
-        no_selected = rng.binomial(no_available, 2 / no_available)
+        no_selected = rng.binomial(no_available, min(2/no_available, 1))
         selected = rng.choice(available, no_selected, replace=False)
 
         # First branch
@@ -75,11 +76,11 @@ class Circuit:
                 if self.path_space[pointer_pos] != []:
                     pointer_pos = self.path_space[pointer_pos][0]
             # Check it is not a repo position, or invalid position.
-            if self.in_repo_or_exit(pointer_pos) or pointer_pos == []:
+            if self.in_repo_or_node(pointer_pos) or pointer_pos == []:
                 break
             else:
                 self.current_obj = str(self.repos.index(repo))
-                self.path_find(pointer_pos, repo.pos)
+                self.path_find(pointer_pos, repo)
                 print(pointer_pos, self.path_space[pointer_pos])
                 # Begin recursive branch out path generation
                 self.branch_path_construct(self.path_space[pointer_pos][0], 3/8)
@@ -93,34 +94,38 @@ class Circuit:
             attempts = 2
             while not self.path_space[repo.pos]:
                 start_pos = (repo.pos[0]+attempts, repo.pos[1])
-                if self.pos_is_pointed_towards(start_pos):
+                if self.pos_is_pointed_towards(start_pos) and self.path_orientation[start_pos] != self.current_obj:
                     complete = False
                     break
                 else:
-                    found = self.path_find(start_pos, selected[0].pos)
-                    if found and attempts != 0:
+                    found = self.path_find(start_pos, selected[0])
+                    if found:
                         self.gen_path([repo.pos, start_pos])
                         self.branch_path_construct(start_pos, 1/3)
                         attempts = 2
                     else:
-                        attempts += 1
+                        if attempts + repo.pos[0] < 49:
+                            attempts += 1
+                        else:
+                            break
 
 
 
     def pos_is_pointed_towards(self, pos):
         x, y = pos
         set = self.path_space
-        collected_array = set[(x+1 % 50, y)] + set[(x-1, y)] + set[(x, y+1)] + set[(x, y-1)]
-        return pos in collected_array
+        if (x, y) in self.path_space:
+            collected_array = set[((x+1)%50, y)] + set[(x-1, y)] + set[(x, y+1)] + set[(x, y-1)]
+        else:
+            return False
+        return (pos in collected_array)
 
-    def in_repo_or_exit(self, pos):
-        for repo in self.repos:
-            if pos == repo.pos:
+    def in_repo_or_node(self, pos):
+        for node in self.repos + self.exit_nodes + self.entry_nodes:
+            if pos == node.pos:
                 return True
-
-        for node in self.exit_nodes:
-            if node.pos == pos:
-                return True
+        else:
+            return False
 
     def branch_path_construct(self, pointer, p):
         """Recursively called to generate path space"""
@@ -149,26 +154,27 @@ class Circuit:
                 if self.path_space[pointer_pos] != []:
                     pointer_pos = self.path_space[pointer_pos][0]
             # Test if we are still along the branch path
-            if self.in_repo_or_exit(pointer_pos) or pointer_pos == []:
+            if self.in_repo_or_node(pointer_pos) or pointer_pos == []:
                 break
             # If so generate new path and call recursion
             else:
-                if node.name == "repo":
-                    self.current_obj = str(self.repos.index(node))
-                else:
-                    self.current_obj = "a" + str(self.exit_nodes.index(node))
-                self.path_find(pointer_pos, node.pos)
+                self.path_find(pointer_pos, node)
                 # Begin recursive branch-out path generation
-                if self.in_repo_or_exit(pointer_pos):
+                if self.in_repo_or_node(pointer_pos):
                     self.branch_path_construct(self.path_space[pointer_pos][0], p/2)
                 else:
                     self.branch_path_construct(self.path_space[pointer_pos][0], p/4)
 
 
     def path_find(self, start, target):
-        target_x, target_y = target
+        target_x, target_y = target.pos
         start_x, start_y = start
         found = False
+
+        if target.name == "repo":
+            self.current_obj = str(self.repos.index(target))
+        else:
+            self.current_obj = "a" + str(self.exit_nodes.index(target))
 
         # Construct path
         l_supplement = 0
@@ -178,7 +184,7 @@ class Circuit:
             if start_y - elbow_room < 0:
                 pass
             else:
-                pos_sketch_lower = [start, (start_x, start_y - elbow_room), (target_x, start_y - elbow_room), target]
+                pos_sketch_lower = [start, (start_x, start_y - elbow_room), (target_x, start_y - elbow_room), target.pos]
                 if self.path_check(pos_sketch_lower):
                     self.gen_path(pos_sketch_lower)
                     found = True
@@ -188,7 +194,7 @@ class Circuit:
                 pass
             else:
                 pos_sketch_higher = [start, (start_x, start_y + elbow_room), (target_x, start_y + elbow_room),
-                                     target]
+                                     target.pos]
                 if self.path_check(pos_sketch_higher):
                     self.gen_path(pos_sketch_higher)
                     found = True
@@ -197,6 +203,7 @@ class Circuit:
         return found
 
     def gen_path(self, path_sketch):
+
         # Draws paths between each corner and adds it to path space
         for i in range(1, len(path_sketch)):
             prev_x, prev_y = path_sketch[i - 1]

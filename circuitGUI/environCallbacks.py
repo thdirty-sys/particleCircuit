@@ -75,9 +75,9 @@ def paths_gen():
     path_elements = circuit.path_space
     path_rec_count = 0
     for pos in path_elements:
-        if path_elements[pos] != []:
+        if (not path_elements[pos]):
             dpg.draw_rectangle(pmin=pos, pmax=pos, parent="main_grid",
-                               color=(255, 255, 255), tag="path_block" + str(path_rec_count))
+                               color=(0, 0, 0), tag="path_block" + str(path_rec_count))
             path_rec_count += 1
 
     print(circuit.branches)

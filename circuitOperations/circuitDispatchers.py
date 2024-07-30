@@ -22,7 +22,7 @@ class CircuitDispatcher:
             en_nodes.append(new_node)
 
         # Generate exit nodes w/ random positions and rates
-        for n in range(rng.integers(1,2)): #high was 4
+        for n in range(rng.integers(2,3)): #high was 4
             new_node = Node((49, rng.integers(1,25)), -rng.random())
             ex_nodes.append(new_node)
 
