@@ -71,13 +71,19 @@ def paths_gen():
     global path_rec_count
 
     # Generate and draw paths
-    circuit.gen_circuit_paths()
-    path_elements = circuit.path_space
-    path_rec_count = 0
-    for pos in path_elements:
-        if (not path_elements[pos]):
-            dpg.draw_rectangle(pmin=pos, pmax=pos, parent="main_grid",
-                               color=(0, 0, 0), tag="path_block" + str(path_rec_count))
-            path_rec_count += 1
+    res = circuit.gen_circuit_paths()
+    if res:
+        path_elements = circuit.path_space
+        path_rec_count = 0
+        for pos in path_elements:
+            if path_elements[pos] != [] and (not circuit.in_repo(pos)) and (not circuit.in_node(pos)):
+                if int(circuit.path_orientation[pos]) > 60:
+                    col = (3,40,255)
+                else:
+                    col = (min(255, int(circuit.path_orientation[pos])*255/(len(circuit.repos)-1)), 50, 0)
+                dpg.draw_rectangle(pmin=pos, pmax=pos, parent="main_grid", color=col, tag="path_block" + str(path_rec_count))
+                path_rec_count += 1
 
-    print(circuit.branches)
+        print(circuit.branches)
+    else:
+        wipe_circuit()

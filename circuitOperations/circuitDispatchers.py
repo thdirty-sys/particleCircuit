@@ -22,12 +22,12 @@ class CircuitDispatcher:
             en_nodes.append(new_node)
 
         # Generate exit nodes w/ random positions and rates
-        for n in range(rng.integers(2,3)): #high was 4
+        for n in range(rng.integers(1,2)): #high was 4
             new_node = Node((49, rng.integers(1,25)), -rng.random())
             ex_nodes.append(new_node)
 
         # Generate randomly placed repositories w/ random capacities
-        for n in range(rng.integers(2,6)):
+        for n in range(rng.integers(3,6)):
             chosen_x = rng.choice(valid_repo_x)
             new_repo = Repository((chosen_x, rng.integers(1,25)), rng.integers(100, 1001))
             # For convenience later, repos is ordered by x pos
