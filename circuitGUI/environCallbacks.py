@@ -10,6 +10,7 @@ def gen_circuit():
     dpg.add_text("Loading...", parent="control", tag="loading_text")
 
     # Create an instance of the TASEP circuit dispatcher object
+    global tcd
     tcd = circuitOperations.TasepCircuitDispatcher()
     # Method returns skeleton of generated circuit (skeleton because no paths yet generated)
     global circuit
@@ -86,4 +87,25 @@ def paths_gen():
                                tag="path_block" + str(path_rec_count))
             path_rec_count += 1
 
-    print(path_elements)
+    # Deletes path gen button
+    dpg.delete_item("gen_paths_button")
+    # Adds path wipe button
+    dpg.add_button(label="Wipe paths", width=150, height=20,
+                    callback=wipe_paths, tag="wipe_paths_button",
+                    parent="control", before="circuit_wiper_button")
+    # Button to start process
+    dpg.add_button(label="Start process", width=150, height=20,
+                   callback=intiate_process, tag="start_process_button",
+                   parent="control", before="wipe_paths_button")
+
+def wipe_paths():
+    dpg.delete_item("wipe_paths_button")
+    circuit.wipe_paths()
+    for i in range(path_rec_count):
+        dpg.delete_item("path_block" + str(i))
+    dpg.add_button(label="Generate paths", width=200, height=30, parent="control",
+                   tag="gen_paths_button", callback=paths_gen, before="circuit_wiper_button")
+    dpg.delete_item("start_process_button")
+
+def intiate_process():
+    tcd.run_tasep()
