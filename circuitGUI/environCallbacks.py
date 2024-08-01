@@ -2,6 +2,8 @@ import dearpygui.dearpygui as dpg
 import circuitOperations
 
 path_rec_count = 0
+
+
 def gen_circuit():
     """Callback function for 'Generate circuit' button. TASEP dispatcher specifically in this case."""
     dpg.delete_item("gen_circuit_button")
@@ -36,7 +38,7 @@ def gen_circuit():
 def wipe_circuit():
     dpg.add_text("Loading...", parent="control", tag="loading_text")
 
-    #Wipe buttons
+    # Wipe buttons
     dpg.delete_item("gen_paths_button")
     dpg.delete_item("circuit_wiper_button")
 
@@ -59,7 +61,6 @@ def wipe_circuit():
             dpg.delete_item("path_block" + str(count))
             count += 1"""
 
-
     # Finish wipe
     dpg.delete_item("loading_text")
     gen_button = dpg.add_button(label="Generate circuit", width=150, height=20,
@@ -67,23 +68,22 @@ def wipe_circuit():
 
     circuit.branches = 0
 
+
 def paths_gen():
     global path_rec_count
 
     # Generate and draw paths
     res = circuit.gen_circuit_paths()
-    if res:
-        path_elements = circuit.path_space
-        path_rec_count = 0
-        for pos in path_elements:
-            if path_elements[pos] != [] and (not circuit.in_repo(pos)) and (not circuit.in_node(pos)):
-                if int(circuit.path_orientation[pos]) > 60:
-                    col = (3,40,255)
-                else:
-                    col = (min(255, int(circuit.path_orientation[pos])*255/(len(circuit.repos)-1)), 50, 0)
-                dpg.draw_rectangle(pmin=pos, pmax=pos, parent="main_grid", color=col, tag="path_block" + str(path_rec_count))
-                path_rec_count += 1
+    path_elements = circuit.path_space
+    path_rec_count = 0
+    for pos in path_elements:
+        if path_elements[pos] != [] and (not circuit.in_repo(pos)) and (not circuit.in_node(pos)):
+            if int(circuit.path_orientation[pos]) > 60:
+                col = ((int(circuit.path_orientation[pos])-250)*100, 40, 255)
+            else:
+                col = (min(255, int(circuit.path_orientation[pos]) * 255 / (len(circuit.repos) - 1)), 50, 0)
+            dpg.draw_rectangle(pmin=pos, pmax=pos, parent="main_grid", color=col,
+                               tag="path_block" + str(path_rec_count))
+            path_rec_count += 1
 
-        print(circuit.branches)
-    else:
-        wipe_circuit()
+    print(path_elements)

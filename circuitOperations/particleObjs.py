@@ -57,69 +57,56 @@ class Circuit:
 
         # Generate first, necessary path
         complete = True
-        self.path_find(self.entry_nodes[0].pos, self.repos[0])
-
-        # Select number of nodes to be attached to first branch binomially
+        place = 2
         available = self.repos[1:]
-        no_available = len(available)
-        no_selected = rng.binomial(no_available, min(2 / no_available, 1))
-        selected = rng.choice(available, no_selected, replace=False)
-        print(selected)
-
-        # First branch
+        connection = self.repos[0]
         pointer_pos = self.entry_nodes[0].pos
-        for repo in selected:
-            # Select the second block along in current branch after the pointer_pos. It has to be valid though.
-            if self.path_space[pointer_pos] != []:
-                pointer_pos = self.path_space[pointer_pos][0]
+        for node in self.entry_nodes + self.repos:
+            pointer_pos = node.pos
+            print()
+            self.path_find(pointer_pos, connection)
+
+            # Select number of nodes to be attached to first branch binomially
+            no_available = len(available)
+            no_selected = rng.binomial(no_available, min(2 / no_available, 1))
+            selected = rng.choice(available, no_selected, replace=False)
+            if place == 2:
+                print(no_selected)
+
+            # First branch
+            for repo in selected:
+                # Select the second block along in current branch after the pointer_pos. It has to be valid though.
                 if self.path_space[pointer_pos] != []:
                     pointer_pos = self.path_space[pointer_pos][0]
-            # Check it is not a repo position, or invalid position.
-            if self.in_repo(pointer_pos) or pointer_pos == []:
-                break
-            else:
-                self.path_find(pointer_pos, repo)
-                # Begin recursive branch out path generation
-                for pos in self.path_space[pointer_pos]:
-                    if self.path_orientation[pos] != "0":
-                        next_branch_pos = pos
-                        break
-
-                self.branch_path_construct(next_branch_pos, 3 / 8)
-
-                """NOTE make it here so that we generate a branch from a repo no matter what."""
-
-        for i, repo in enumerate(self.repos):
-            available = self.repos[i + 1:] + self.exit_nodes
-            selected = rng.choice(available, len(available), replace=False)
-            attempts = 2
-            while not self.path_space[repo.pos]:
-                start_pos = (repo.pos[0] + attempts, repo.pos[1])
-                if self.pos_is_pointed_towards(start_pos) and self.path_orientation[start_pos] != self.current_obj:
-                    complete = False
+                    if self.path_space[pointer_pos] != []:
+                        pointer_pos = self.path_space[pointer_pos][0]
+                # Check it is not a repo position, or invalid position.
+                if self.in_repo(pointer_pos) or pointer_pos == []:
                     break
                 else:
-                    found = self.path_find(start_pos, selected[0])
-                    if found:
-                        self.gen_path([repo.pos, start_pos])
-                        self.branch_path_construct(start_pos, 1 / 3)
-                        attempts = 2
-                    else:
-                        if attempts + repo.pos[0] < 49:
-                            attempts += 1
+                    self.path_find(pointer_pos, repo)
+                    # Begin recursive branch out path generation
+                    for pos in self.path_space[pointer_pos]:
+                        if connection.name == "node":
+                            if self.path_orientation[pos] != "25" + str(self.exit_nodes.index(connection)):
+                                next_branch_pos = pos
+                                break
                         else:
-                            break
+                            if self.path_orientation[pos] != self.repos.index(connection):
+                                next_branch_pos = pos
+                                break
 
-        for i, repo in enumerate(self.repos):
-            if not self.pos_is_pointed_towards(repo.pos):
-                for prev in self.repos[:i]:
-                    found = self.path_find(prev.pos, repo)
-                    if found:
-                        break
-                else:
-                    complete = False
-                    break
-        return complete
+                    self.branch_path_construct(next_branch_pos, 3 / 8)
+
+            if place >= len(self.repos):
+                available = self.exit_nodes
+            else:
+                available = (self.repos + self.exit_nodes)[place:]
+            connection = rng.choice(available, 1)[0]
+            place += 1
+
+            """NOTE make it here so that we generate a branch from a repo no matter what."""
+
 
     def pos_is_pointed_towards(self, pos):
         x, y = pos
@@ -180,7 +167,7 @@ class Circuit:
                 if self.in_repo(pointer_pos):
                     self.branch_path_construct(self.path_space[pointer_pos][0], p / 2)
                 else:
-                    self.branch_path_construct(self.path_space[pointer_pos][0], p / 4)
+                    self.branch_path_construct(self.path_space[pointer_pos][0], p / 2)
 
     def path_find(self, start, target):
         target_x, target_y = target.pos
@@ -193,8 +180,6 @@ class Circuit:
             self.current_obj = "25" + str(self.exit_nodes.index(target))
 
         # Construct path
-        l_supplement = 0
-        u_supplement = 0
 
         for elbow_room in range(0, max(26 - start_y, start_y + 1), 2):
             if start_y - elbow_room < 0:
@@ -216,7 +201,6 @@ class Circuit:
                     self.gen_path(pos_sketch_higher)
                     found = True
                     break
-
         return found
 
     def gen_path(self, path_sketch):
@@ -227,20 +211,23 @@ class Circuit:
             next_x, next_y = path_sketch[i]
             if next_x != prev_x:
                 for x in range(prev_x, next_x):
-                    self.path_space[(x, prev_y)].append((x + 1, prev_y))
+                    if self.path_orientation[(x, prev_y)] != self.current_obj:
+                        self.path_space[(x, prev_y)].append((x + 1, prev_y))
                     if self.path_orientation[(x, prev_y)] == "-":
                         self.path_orientation[(x, prev_y)] = self.current_obj
             else:
                 # Range function only works from lower to higher. Hence reverse if prev above next.
                 if prev_y >= next_y:
                     for y in reversed(range(next_y + 1, prev_y + 1)):
-                        self.path_space[(prev_x, y)].append((prev_x, y - 1))
+                        if self.path_orientation[(prev_x, y)] != self.current_obj:
+                            self.path_space[(prev_x, y)].append((prev_x, y - 1))
                         if self.path_orientation[(prev_x, y)] == "-":
                             self.path_orientation[(prev_x, y)] = self.current_obj
 
                 else:
                     for y in range(prev_y, next_y):
-                        self.path_space[(prev_x, y)].append((prev_x, y + 1))
+                        if self.path_orientation[(prev_x, y)] != self.current_obj:
+                            self.path_space[(prev_x, y)].append((prev_x, y + 1))
                         if self.path_orientation[(prev_x, y)] == "-":
                             self.path_orientation[(prev_x, y)] = self.current_obj
 
@@ -255,19 +242,19 @@ class Circuit:
                     if orientation != self.current_obj and orientation != "-":
                         if not self.is_crossable_x(x, prev_y):
                             return False
-                    if self.in_repo((x, prev_y)):
+                    if self.in_repo((x, prev_y)) and (x, prev_y) != path_sketch[0]:
                         return False
             else:
                 # Range function only works from lower to higher. Hence reverse if prev above next.
                 if prev_y >= next_y:
                     for y in reversed(range(next_y + 1, prev_y + 1)):
-                        orientation = self.path_orientation[(prev_x, y - 1)]
+                        orientation = self.path_orientation[(prev_x, y)]
                         if orientation != "-" and orientation != self.current_obj:
                             if not self.is_crossable_y(prev_x, y):
                                 return False
                 else:
                     for y in range(prev_y, next_y):
-                        orientation = self.path_orientation[(prev_x, y + 1)]
+                        orientation = self.path_orientation[(prev_x, y)]
                         if orientation != "-" and orientation != self.current_obj:
                             if not self.is_crossable_y(prev_x, y, down=False):
                                 return False
@@ -286,3 +273,5 @@ class Circuit:
         else:
             traversable = (prev_x, y + 1) not in self.path_space[(prev_x, y)]
             continuable = self.path_orientation[(prev_x, y + 1)] == "-"
+
+        return traversable and continuable
