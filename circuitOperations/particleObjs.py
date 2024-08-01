@@ -52,6 +52,12 @@ class Circuit:
 
         self.particles = []
 
+    def wipe_paths(self):
+        for y in range(26):
+            for x in range(50):
+                self.path_space[(x, y)] = []
+                self.path_orientation[(x, y)] = "-"
+
     def gen_circuit_paths(self):
         rng = np.random.default_rng()
 
@@ -275,3 +281,9 @@ class Circuit:
             continuable = self.path_orientation[(prev_x, y + 1)] == "-"
 
         return traversable and continuable
+
+    def complete(self):
+        if len(self.particles) < 10:
+            return False
+        else:
+            return True

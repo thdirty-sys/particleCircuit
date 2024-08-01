@@ -56,4 +56,22 @@ class TasepCircuitDispatcher(CircuitDispatcher):
     """Specialised dispatcher for a circuit under TASEP (Totally Asymmetric Simple Exclusion Process)"""
 
     def run_tasep(self):
-        pass
+        rng = np.random.default_rng()
+
+        if self.circuit is None:
+            print("No circuit has been generated")
+            return None
+
+        # Shorthand
+        c = self.circuit
+
+        while not c.complete():
+            # Pick entry node or active particle randomly
+            chosen = rng.choice(c.entry_nodes + c.particles, 1)[0]
+
+            # Deals with case of entry node
+            if chosen.name == "node":
+                c.particles.append(Particle(chosen.pos))
+
+
+
