@@ -42,6 +42,8 @@ def wipe_circuit():
     # Wipe buttons
     dpg.delete_item("gen_paths_button")
     dpg.delete_item("circuit_wiper_button")
+    dpg.delete_item("wipe_paths_button")
+    dpg.delete_item("start_process_button")
 
     # Wipe features
     for i in range(len(circuit.repos)):
