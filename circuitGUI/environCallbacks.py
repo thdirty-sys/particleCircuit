@@ -139,6 +139,14 @@ def paths_gen():
                                 draw_sep_line(pos, a)
                                 sep_line_count += 1
 
+    # Deal with sep lines for nodes
+    for node in circuit.entry_nodes + circuit.body:
+        adjacent = valid_adjacents(node.pos)
+        for a in adjacent:
+            if node.pos in path_elements[a] or a in path_elements[node.pos]:
+                draw_sep_line(node.pos, a)
+                sep_line_count += 1
+
 
 
 
