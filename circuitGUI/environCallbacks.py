@@ -83,7 +83,7 @@ def paths_gen():
         if path_elements[pos] != [] and (not circuit.in_repo(pos)) and (not circuit.in_node(pos)):
             l = len(circuit.body)
             o = int(circuit.path_orientation[pos])
-            col = (50, (o+1)*255/(l), 100)
+            col = ((o+1)*255/(l), 50, 100)
             dpg.draw_rectangle(pmin=pos, pmax=pos, parent="main_grid", color=col,
                                tag="path_block" + str(path_rec_count))
             path_rec_count += 1

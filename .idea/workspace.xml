@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="Fixed button blocking.">
+    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="Fixed button blocking on gui. Finally reached an iteration of path branching I am comfortable with, without bugs.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/circuitGUI/environCallbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitGUI/environCallbacks.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/circuitOperations/circuitDispatchers.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitOperations/circuitDispatchers.py" afterDir="false" />
@@ -196,7 +196,8 @@
       <workItem from="1722568618417" duration="76000" />
       <workItem from="1722610198454" duration="2382000" />
       <workItem from="1722618326454" duration="4692000" />
-      <workItem from="1722648331186" duration="1244000" />
+      <workItem from="1722648331186" duration="2363000" />
+      <workItem from="1722683807792" duration="4065000" />
     </task>
     <task id="LOCAL-00001" summary="first?">
       <option name="closed" value="true" />
@@ -382,7 +383,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722611122063</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Fixed button blocking on gui. Finally reached an iteration of path branching I am comfortable with, without bugs.">
+      <option name="closed" value="true" />
+      <created>1722649879693</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1722649879693</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -415,7 +424,8 @@
     <MESSAGE value="Added extra button functionality for resetting paths, as well as a button trigger for TASEP process on the path." />
     <MESSAGE value="Begun work on TASEP process across the circuit" />
     <MESSAGE value="Fixed button blocking" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed button blocking" />
+    <MESSAGE value="Fixed button blocking on gui. Finally reached an iteration of path branching I am comfortable with, without bugs." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed button blocking on gui. Finally reached an iteration of path branching I am comfortable with, without bugs." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -432,6 +442,6 @@
     <SUITE FILE_PATH="coverage/particleCircuit$circuitMotor.coverage" NAME="circuitMotor Coverage Results" MODIFIED="1721777459192" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/circuitObjects" />
     <SUITE FILE_PATH="coverage/particleCircuit$repositoryObj.coverage" NAME="repositoryObj Coverage Results" MODIFIED="1721698686405" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/particleCircuit$main.coverage" NAME="main Coverage Results" MODIFIED="1721701372082" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/particleCircuit$dpgEnviron.coverage" NAME="dpgEnviron Coverage Results" MODIFIED="1722649575654" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/particleCircuit$dpgEnviron.coverage" NAME="dpgEnviron Coverage Results" MODIFIED="1722687879474" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

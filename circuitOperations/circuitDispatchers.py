@@ -28,7 +28,7 @@ class CircuitDispatcher:
             ex_nodes.append(new_node)
 
         # Generate randomly placed repositories w/ random capacities
-        for n in range(rng.integers(3, 6)):
+        for n in range(rng.integers(3, 7)):
             chosen_x = rng.choice(valid_repo_x)
             new_repo = Repository((chosen_x, rng.integers(1, 25)), rng.integers(100, 1001))
             # For convenience later, repos is ordered by x pos
