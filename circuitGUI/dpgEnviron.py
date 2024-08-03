@@ -1,10 +1,11 @@
 import dearpygui.dearpygui as dpg
 import environCallbacks as callbacks
 
+dim_x, dim_y = 1880, 900
 
 dpg.create_context()
-dpg.create_viewport(title="Particle Circuit")
-dpg.configure_viewport(0, x_pos=0, y_pos=0, width=1920, height=900)
+dpg.create_viewport(title="Particle Circuit", resizable=False)
+dpg.configure_viewport(0, x_pos=0, y_pos=0, width=dim_x, height=dim_y)
 
 with dpg.window(tag="primary_window"):
     with dpg.group(horizontal=True):

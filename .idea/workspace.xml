@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="Draw sep lines for nodes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/circuitGUI/environCallbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitGUI/environCallbacks.py" afterDir="false" />
+    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="Added node annotations">
+      <change beforePath="$PROJECT_DIR$/circuitGUI/dpgEnviron.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitGUI/dpgEnviron.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,7 +195,7 @@
       <workItem from="1722618326454" duration="4692000" />
       <workItem from="1722648331186" duration="2363000" />
       <workItem from="1722683807792" duration="10890000" />
-      <workItem from="1722695231535" duration="1746000" />
+      <workItem from="1722695231535" duration="2555000" />
     </task>
     <task id="LOCAL-00001" summary="first?">
       <option name="closed" value="true" />
@@ -422,7 +421,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722695598140</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Added node annotations">
+      <option name="closed" value="true" />
+      <created>1722697509137</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1722697509137</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -460,7 +467,8 @@
     <MESSAGE value="Added seperation lines for better visibility" />
     <MESSAGE value="Two-step attempt for path_find" />
     <MESSAGE value="Draw sep lines for nodes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Draw sep lines for nodes" />
+    <MESSAGE value="Added node annotations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added node annotations" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
