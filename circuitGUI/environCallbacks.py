@@ -1,7 +1,8 @@
 import dearpygui.dearpygui as dpg
 import circuitOperations
 
-
+path_rec_count = 0
+sep_line_count = 0
 
 def gen_circuit():
     """Callback function for 'Generate circuit' button. TASEP dispatcher specifically in this case."""
@@ -18,15 +19,20 @@ def gen_circuit():
     # Draw each feature
     for i, repo in enumerate(circuit.repos):
         dpg.draw_rectangle(pmin=repo.pos, pmax=repo.pos, parent="main_grid",
-                           color=(233, 12, 50), tag="rep_" + str(i), label=repo.count)
+                           color=(233, 12, 50), tag="repo" + str(i), label=repo.count)
+        dpg.draw_text(repo.pos, repo.capacity, parent="main_grid", tag="repo_text" + str(i), size=0.5)
 
     for i, en_node in enumerate(circuit.entry_nodes):
         dpg.draw_rectangle(pmin=en_node.pos, pmax=en_node.pos, parent="main_grid",
                            color=(233, 240, 50), tag="entry_node" + str(i), label=str(en_node.rate))
+        dpg.draw_text((en_node.pos[0]-0.5, en_node.pos[1]+0.5), round(en_node.rate, 2), parent="main_grid",
+                      tag="en_node_text" + str(i), size=0.35, color=(0,1,0))
 
     for i, ex_node in enumerate(circuit.exit_nodes):
         dpg.draw_rectangle(pmin=ex_node.pos, pmax=ex_node.pos, parent="main_grid",
                            color=(23, 240, 250), tag="exit_node" + str(i), label=str(ex_node.rate))
+        dpg.draw_text((ex_node.pos[0] - 0.5, ex_node.pos[1] + 0.5), round(-ex_node.rate, 2), parent="main_grid",
+                      tag="ex_node_text" + str(i), size=0.35, color=(0,1,0))
 
     dpg.delete_item("loading_text")
     dpg.add_button(label="Generate paths", width=200, height=30, parent="control",
@@ -46,25 +52,22 @@ def wipe_circuit():
 
     # Wipe features
     for i in range(len(circuit.repos)):
-        dpg.delete_item("rep_" + str(i))
+        dpg.delete_item("repo" + str(i))
+        dpg.delete_item("repo_text" + str(i))
 
     for i in range(len(circuit.entry_nodes)):
         dpg.delete_item("entry_node" + str(i))
+        dpg.delete_item("en_node_text" + str(i))
 
     for i in range(len(circuit.exit_nodes)):
         dpg.delete_item("exit_node" + str(i))
+        dpg.delete_item("ex_node_text" + str(i))
 
     for i in range(path_rec_count):
         dpg.delete_item("path_block" + str(i))
 
     for i in range(sep_line_count):
         dpg.delete_item("sep_line" + str(i))
-
-    """count = 0
-    for pos in circuit.path_space:
-        if circuit.path_space[pos] != []:
-            dpg.delete_item("path_block" + str(count))
-            count += 1"""
 
     # Finish wipe
     dpg.delete_item("loading_text")
@@ -116,7 +119,7 @@ def paths_gen():
 
             # Draw rectangle
             dpg.draw_rectangle(pmin=pos, pmax=pos, parent="main_grid", color=col,
-                               tag="path_block" + str(path_rec_count))
+                               tag="path_block" + str(path_rec_count), before="repo_text0")
             path_rec_count += 1
 
             adjacent = valid_adjacents(pos)
@@ -143,7 +146,7 @@ def paths_gen():
     for node in circuit.entry_nodes + circuit.body:
         adjacent = valid_adjacents(node.pos)
         for a in adjacent:
-            if node.pos in path_elements[a] or a in path_elements[node.pos]:
+            if node.pos not in path_elements[a] and a not in path_elements[node.pos]:
                 draw_sep_line(node.pos, a)
                 sep_line_count += 1
 
@@ -164,8 +167,15 @@ def paths_gen():
 def wipe_paths():
     dpg.delete_item("wipe_paths_button")
     circuit.wipe_paths()
+
+    # Wipe rectangles
     for i in range(path_rec_count):
         dpg.delete_item("path_block" + str(i))
+
+    # Wipe sep lines
+    for i in range(sep_line_count):
+        dpg.delete_item("sep_line" + str(i))
+
     dpg.add_button(label="Generate paths", width=200, height=30, parent="control",
                    tag="gen_paths_button", callback=paths_gen, before="circuit_wiper_button")
     dpg.delete_item("start_process_button")
