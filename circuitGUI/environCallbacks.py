@@ -90,12 +90,12 @@ def draw_sep_line(w ,v):
 
     if w_x - v_x == 0:
         line_y = min(v_y, w_y) + 0.5
-        dpg.draw_line((v_x-0.5, line_y), (v_x+0.5, line_y), color=(0,0,0, 255), parent="main_grid",
-                      tag="sep_line" + str(sep_line_count), thickness=0.05)
+        dpg.draw_line((v_x-0.55, line_y), (v_x+0.55, line_y), color=(0,0,0, 255), parent="main_grid",
+                      tag="sep_line" + str(sep_line_count), thickness=0.08)
     else:
         line_x = min(v_x, w_x) + 0.5
-        dpg.draw_line((line_x, v_y-0.5), (line_x, v_y+0.5), color=(0, 0, 0, 255), parent="main_grid",
-                      tag="sep_line" + str(sep_line_count), thickness=0.05)
+        dpg.draw_line((line_x, v_y-0.55), (line_x, v_y+0.55), color=(0, 0, 0, 255), parent="main_grid",
+                      tag="sep_line" + str(sep_line_count), thickness=0.08)
 
 
 def paths_gen():
@@ -121,7 +121,7 @@ def paths_gen():
 
             adjacent = valid_adjacents(pos)
             for a in adjacent:
-                if not circuit.in_repo(a):
+                if not circuit.in_repo(a) and not circuit.in_node(a):
                     if a not in path_elements[pos] and pos not in path_elements[a]:
                         draw_sep_line(pos, a)
                         sep_line_count += 1

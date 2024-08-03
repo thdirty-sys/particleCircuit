@@ -186,7 +186,6 @@ class Circuit:
 
 
         # Construct path
-
         for elbow_room in range(0, max(26 - start_y, start_y + 1), 2):
             if start_y - elbow_room < 0:
                 pass
@@ -207,6 +206,29 @@ class Circuit:
                     self.gen_path(pos_sketch_higher)
                     found = True
                     break
+
+        # If not found, try again but by steps of 1
+        if not found:
+            for elbow_room in range(0, max(26 - start_y, start_y + 1), 2):
+                if start_y - elbow_room < 0:
+                    pass
+                else:
+                    pos_sketch_lower = [start, (start_x, start_y - elbow_room), (target_x, start_y - elbow_room),
+                                        target.pos]
+                    if self.path_check(pos_sketch_lower):
+                        self.gen_path(pos_sketch_lower)
+                        found = True
+                        break
+
+                if start_y + elbow_room > 25:
+                    pass
+                else:
+                    pos_sketch_higher = [start, (start_x, start_y + elbow_room), (target_x, start_y + elbow_room),
+                                         target.pos]
+                    if self.path_check(pos_sketch_higher):
+                        self.gen_path(pos_sketch_higher)
+                        found = True
+                        break
         return found
 
     def gen_path(self, path_sketch):
