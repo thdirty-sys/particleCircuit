@@ -289,9 +289,13 @@ class Circuit:
                     orientation = self.path_orientation[(x, prev_y)]
                     # Laterally, check there are no crossing paths heading in the same direction
                     if orientation != self.current_obj and orientation != "-":
+                        if self.path_orientation[(x + 1, prev_y)] == self.current_obj:
+                            return False
                         if not self.is_crossable_x(x, prev_y):
                             return False
                     if self.in_repo((x, prev_y)) and (x, prev_y) != path_sketch[0]:
+                        return False
+                    if orientation == self.current_obj and (x + 1, prev_y) not in self.path_space[(x, prev_y)]:
                         return False
             else:
                 # Range function only works from lower to higher. Hence reverse if prev above next.
@@ -299,14 +303,22 @@ class Circuit:
                     for y in reversed(range(next_y + 1, prev_y + 1)):
                         orientation = self.path_orientation[(prev_x, y)]
                         if orientation != "-" and orientation != self.current_obj:
+                            if self.path_orientation[(prev_x, y - 1)] == self.current_obj:
+                                return False
                             if not self.is_crossable_y(prev_x, y):
                                 return False
+                        if orientation == self.current_obj and (prev_x, y - 1) not in self.path_space[(prev_x, y)]:
+                            return False
                 else:
                     for y in range(prev_y, next_y):
                         orientation = self.path_orientation[(prev_x, y)]
                         if orientation != "-" and orientation != self.current_obj:
+                            if self.path_orientation[(prev_x, y + 1)] == self.current_obj:
+                                return False
                             if not self.is_crossable_y(prev_x, y, down=False):
                                 return False
+                        if orientation == self.current_obj and (prev_x, y + 1) not in self.path_space[(prev_x, y)]:
+                            return False
         return True
 
     def is_crossable_x(self, x, prev_y):
