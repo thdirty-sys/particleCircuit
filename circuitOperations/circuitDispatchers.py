@@ -79,13 +79,69 @@ class TasepCircuitDispatcher(CircuitDispatcher):
                         c.particles.append(Particle(chosen.pos))
 
             if chosen.name == "particle":
-                pass
+                if c.in_exit_node(chosen.pos):
+                    c.particles.remove(chosen)
+                else:
+                    beginning = c.in_repo(chosen.pos) or c.in_entry_node(chosen.pos)
+                    if chosen.orientation == c.path_orientation[chosen.pos] or beginning:
+                        next_pos = rng.choice(c.path_space[chosen.pos], 1)[0]
+                        if chosen.pos in c.splits:
+                            if next_pos in c.splits[chosen.pos]:
+                                chosen.orientation = c.path_orientation[next_pos]
+                    else:
+                        next_pos = c.undercurrent_space[chosen.orientation][chosen.pos]
+                    if self.pos_empty(next_pos, chosen.orientation):
+                        chosen.pos = next_pos
 
-
-
-    def pos_empty(self, pos, particle_list):
-        for p in particle_list:
-            if p.pos == pos:
+    def pos_empty(self, pos, ori):
+        for p in self.circuit.particles:
+            if p.pos == pos and ori == self.circuit.path_orientation[pos]:
                 return False
         else:
             return True
+
+
+class TasepCircuitDispatcherGUI(TasepCircuitDispatcher):
+
+    def run_tasep(self):
+        """"TASEP dispatcher modified for dearpygui"""
+
+        rng = np.random.default_rng()
+
+        if self.circuit is None:
+            print("No circuit has been generated")
+            return None
+
+        # Shorthand
+        c = self.circuit
+
+        while not c.complete():
+            no = len(c.entry_nodes + c.particles)
+            # Pick entry node or active particle randomly
+            chosen = rng.choice(c.entry_nodes + c.particles, 1)[0]
+
+            # Deals with case of entry node
+            if chosen.name == "node":
+                # Creates particle if empty with probability according to rate of node
+                if self.pos_empty(chosen.pos, c.particles):
+                    # With probability of node rate
+                    if rng.random() <= chosen.rate:
+                        c.particles.append(Particle(chosen.pos))
+
+            if chosen.name == "particle":
+                #If in exit node we take off the circuit with p. rate
+                if c.in_exit_node(chosen.pos):
+                    c.particles.remove(chosen)
+                else:
+                    # Find next site to hop to
+                    beginning = c.in_repo(chosen.pos) or c.in_entry_node(chosen.pos)
+                    if chosen.orientation == c.path_orientation[chosen.pos] or beginning:
+                        next_pos = rng.choice(c.path_space[chosen.pos], 1)[0]
+                        if chosen.pos in c.splits:
+                            if next_pos in c.splits[chosen.pos]:
+                                chosen.orientation = c.path_orientation[next_pos]
+                    else:
+                        next_pos = c.undercurrent_space[chosen.orientation][chosen.pos]
+                    # Hop to site if unoccupied
+                    if self.pos_empty(next_pos, chosen.orientation):
+                        chosen.pos = next_pos

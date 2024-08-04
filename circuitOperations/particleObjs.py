@@ -14,6 +14,7 @@ class Particle:
     def __init__(self, start_pos):
         self.pos = start_pos
         self.name = "particle"
+        self.orientation = "-"
 
 
 class Repository:
@@ -54,6 +55,10 @@ class Circuit:
         self.particles = []
         self.body = self.repos + self.exit_nodes
 
+        self.undercurrent_space = {}
+        for i, n in enumerate(self.body):
+            self.undercurrent_space[str(i)] = {}
+
     def wipe_paths(self):
         for y in range(26):
             for x in range(50):
@@ -89,7 +94,9 @@ class Circuit:
             connection = rng.choice(available, 1)[0]
 
         # For any repo without a path to it, generate that path
-        for repo in self.repos:
+        # Switch up order of repos first however
+        mixed = rng.choice(self.repos, len(self.repos), replace=False)
+        for repo in mixed:
             current_ind = self.repos.index(repo)
             possible_connections = self.entry_nodes + self.repos[:current_ind]
             connection_queue = rng.choice(possible_connections, len(possible_connections), replace=False)
@@ -97,7 +104,10 @@ class Circuit:
                 path = self.path_find(node.pos, repo)
                 if path:
                     break
-        print(self.splits)
+
+        # Make sure our splits dictionary is up-to-date with splits at repos/entry nodes
+        for node in self.entry_nodes + self.repos:
+            self.splits[node.pos] = self.path_space[node.pos]
 
     def branch_path_construct(self, pointer, p, prev="-"):
         """Recursively called to generate path space"""
@@ -167,14 +177,22 @@ class Circuit:
         else:
             return False
 
-    def in_node(self, pos):
-        for node in self.exit_nodes + self.entry_nodes:
+    def in_exit_node(self, pos):
+        for node in self.exit_nodes:
             if pos == node.pos:
                 return True
         else:
             return False
 
+    def in_entry_node(self, pos):
+        for node in self.entry_nodes:
+            if pos == node.pos:
+                return True
+        else:
+            return False
 
+    def in_node(self, pos):
+        return self.in_entry_node(pos) or self.in_exit_node(pos)
 
     def path_find(self, start, target):
         target_x, target_y = target.pos
@@ -241,6 +259,7 @@ class Circuit:
                 for x in range(prev_x, next_x):
                     if self.path_orientation[(x, prev_y)] != self.current_obj:
                         self.path_space[(x, prev_y)].append((x + 1, prev_y))
+                        self.undercurrent_space[self.current_obj][(x, prev_y)] = (x + 1, prev_y)
                     if self.path_orientation[(x, prev_y)] == "-":
                         self.path_orientation[(x, prev_y)] = self.current_obj
             else:
@@ -249,6 +268,7 @@ class Circuit:
                     for y in reversed(range(next_y + 1, prev_y + 1)):
                         if self.path_orientation[(prev_x, y)] != self.current_obj:
                             self.path_space[(prev_x, y)].append((prev_x, y - 1))
+                            self.undercurrent_space[self.current_obj][(prev_x, y)] = (prev_x, y - 1)
                         if self.path_orientation[(prev_x, y)] == "-":
                             self.path_orientation[(prev_x, y)] = self.current_obj
 
@@ -256,6 +276,7 @@ class Circuit:
                     for y in range(prev_y, next_y):
                         if self.path_orientation[(prev_x, y)] != self.current_obj:
                             self.path_space[(prev_x, y)].append((prev_x, y + 1))
+                            self.undercurrent_space[self.current_obj][(prev_x, y)] = (prev_x, y + 1)
                         if self.path_orientation[(prev_x, y)] == "-":
                             self.path_orientation[(prev_x, y)] = self.current_obj
 
