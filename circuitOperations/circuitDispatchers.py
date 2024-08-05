@@ -154,13 +154,17 @@ class TasepCircuitDispatcherGUI(TasepCircuitDispatcher):
                     next_orientation = chosen.orientation
                     if chosen.orientation == c.path_orientation[chosen.pos]:
                         next_pos = tuple(rng.choice(c.path_space[chosen.pos]))
+                        # Changing path at split
                         if chosen.pos in c.splits:
                             if next_pos in c.splits[chosen.pos]:
                                 next_orientation = c.path_orientation[next_pos]
+
                     else:
                         next_pos = c.undercurrent_space[chosen.orientation][chosen.pos]
                     if c.in_repo(next_pos):
-                        next_orientation = c.path_orientation[next_pos]
+                        # Repo could lead to undercurrent, in which case path_space empty
+                        if c.path_space[next_pos] != []:
+                            next_orientation = c.path_orientation[next_pos]
                     # Hop to site if unoccupied
                     if self.pos_empty(next_pos, next_orientation):
                         chosen.pos = next_pos

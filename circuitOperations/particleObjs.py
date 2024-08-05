@@ -110,20 +110,21 @@ class Circuit:
         for node in self.entry_nodes + self.repos:
             self.splits[node.pos] = self.path_space[node.pos]
 
-        # Clean out unnescesary routing covered by undercurrent dictionary
+        # Clean out unnecessary routing covered by undercurrent dictionary
         for pos in self.path_space:
             for p in self.path_space[pos]:
                 if self.path_orientation[p] != self.path_orientation[pos]:
                     if not self.in_repo(p) and not self.in_exit_node(p):
                         if pos in self.splits:
                             if p not in self.splits[pos]:
-                                if p not in self.undercurrent_space:
+                                if p not in self.undercurrent_space[self.path_orientation[pos]]:
                                     self.path_space[pos].remove(p)
                         else:
                             if p not in self.undercurrent_space[self.path_orientation[pos]]:
                                 self.path_space[pos].remove(p)
         self.path_orientation[self.entry_nodes[0].pos] = "-"
         print(self.path_space)
+        print(self.undercurrent_space)
 
     def branch_path_construct(self, pointer, p, prev="-"):
         """Recursively called to generate path space"""
@@ -167,13 +168,16 @@ class Circuit:
                     if path:
                         print("hey")
                         for pos in self.path_space[pointer_pos]:
+                            # Select path newly created
                             if self.path_orientation[pos] == node_orientation:
-                                if pointer_pos in self.splits:
-                                    self.splits[pointer_pos].append(pos)
-                                else:
-                                    self.splits[pointer_pos] = [pos]
-                                self.branch_path_construct(pos, p / 2, prev=pointer_orientation)
-                                break
+                                # Extra condition for fixing undercurrent bug
+                                if pos not in self.undercurrent_space[self.path_orientation[pointer_pos]]:
+                                    if pointer_pos in self.splits:
+                                        self.splits[pointer_pos].append(pos)
+                                    else:
+                                        self.splits[pointer_pos] = [pos]
+                                    self.branch_path_construct(pos, p / 2, prev=pointer_orientation)
+                                    break
 
 
 
@@ -274,27 +278,60 @@ class Circuit:
             if next_x != prev_x:
                 for x in range(prev_x, next_x):
                     if self.path_orientation[(x, prev_y)] != self.current_obj:
+                        if self.path_orientation[(x, prev_y)] != "-":
+                            if x == prev_x and (prev_x, prev_y) == path_sketch[0]:
+                                self.path_space[(x, prev_y)].append((x + 1, prev_y))
+                            else:
+                                self.undercurrent_space[self.current_obj][(x, prev_y)] = (x + 1, prev_y)
+                        else:
+                            self.path_orientation[(x, prev_y)] = self.current_obj
+                            self.path_space[(x, prev_y)].append((x + 1, prev_y))
+
+                    """if self.path_orientation[(x, prev_y)] != self.current_obj:
                         self.path_space[(x, prev_y)].append((x + 1, prev_y))
-                        self.undercurrent_space[self.current_obj][(x, prev_y)] = (x + 1, prev_y)
+                        if self.path_orientation[(x, prev_y)] != "-" and not self.in_repo((x, prev_y)):
+                            self.undercurrent_space[self.current_obj][(x, prev_y)] = (x + 1, prev_y)
                     if self.path_orientation[(x, prev_y)] == "-":
-                        self.path_orientation[(x, prev_y)] = self.current_obj
+                        self.path_orientation[(x, prev_y)] = self.current_obj"""
             else:
                 # Range function only works from lower to higher. Hence reverse if prev above next.
                 if prev_y >= next_y:
                     for y in reversed(range(next_y + 1, prev_y + 1)):
                         if self.path_orientation[(prev_x, y)] != self.current_obj:
+                            if self.path_orientation[(prev_x, y)] != "-":
+                                if y == prev_y and (prev_x, prev_y) == path_sketch[0]:
+                                    self.path_space[(prev_x, y)].append((prev_x, y - 1))
+                                else:
+                                    self.undercurrent_space[self.current_obj][(prev_x, y)] = (prev_x, y - 1)
+                            else:
+                                self.path_orientation[(prev_x, y)] = self.current_obj
+                                self.path_space[(prev_x, y)].append((prev_x, y - 1))
+
+                        """if self.path_orientation[(prev_x, y)] != self.current_obj:
                             self.path_space[(prev_x, y)].append((prev_x, y - 1))
-                            self.undercurrent_space[self.current_obj][(prev_x, y)] = (prev_x, y - 1)
+                            if self.path_orientation[(prev_x, y)] != "-" and not self.in_repo((prev_x, y)):
+                                self.undercurrent_space[self.current_obj][(prev_x, y)] = (prev_x, y - 1)
                         if self.path_orientation[(prev_x, y)] == "-":
-                            self.path_orientation[(prev_x, y)] = self.current_obj
+                            self.path_orientation[(prev_x, y)] = self.current_obj"""
 
                 else:
                     for y in range(prev_y, next_y):
                         if self.path_orientation[(prev_x, y)] != self.current_obj:
+                            if self.path_orientation[(prev_x, y)] != "-":
+                                if y == prev_y and (prev_x, prev_y) == path_sketch[0]:
+                                    self.path_space[(prev_x, y)].append((prev_x, y + 1))
+                                else:
+                                    self.undercurrent_space[self.current_obj][(prev_x, y)] = (prev_x, y + 1)
+                            else:
+                                self.path_orientation[(prev_x, y)] = self.current_obj
+                                self.path_space[(prev_x, y)].append((prev_x, y + 1))
+
+                        """if self.path_orientation[(prev_x, y)] != self.current_obj:
                             self.path_space[(prev_x, y)].append((prev_x, y + 1))
-                            self.undercurrent_space[self.current_obj][(prev_x, y)] = (prev_x, y + 1)
+                            if self.path_orientation[(prev_x, y)] != "-" and not self.in_repo((prev_x, y)):
+                                self.undercurrent_space[self.current_obj][(prev_x, y)] = (prev_x, y + 1)
                         if self.path_orientation[(prev_x, y)] == "-":
-                            self.path_orientation[(prev_x, y)] = self.current_obj
+                            self.path_orientation[(prev_x, y)] = self.current_obj"""
 
     def path_check(self, path_sketch):
         for i in range(1, len(path_sketch)):
@@ -309,6 +346,11 @@ class Circuit:
                             return False
                         if not self.is_crossable_x(x, prev_y):
                             return False
+                        if (x, prev_y) == (prev_x + 1, prev_y):
+                            return False
+                    elif orientation == self.current_obj:
+                        if (x + 1, prev_y) not in self.path_space[(x, prev_y)]:
+                            return False
                     if self.in_repo((x, prev_y)) and (x, prev_y) != path_sketch[0]:
                         return False
             else:
@@ -321,6 +363,11 @@ class Circuit:
                                 return False
                             if not self.is_crossable_y(prev_x, y):
                                 return False
+                            if (prev_x, prev_y) == (prev_x, prev_y - 1):
+                                return False
+                        elif orientation == self.current_obj:
+                            if (prev_x, y - 1) not in self.path_space[(prev_x, y)]:
+                                return False
                 else:
                     for y in range(prev_y, next_y):
                         orientation = self.path_orientation[(prev_x, y)]
@@ -328,6 +375,11 @@ class Circuit:
                             if self.path_orientation[(prev_x, y + 1)] == self.current_obj:
                                 return False
                             if not self.is_crossable_y(prev_x, y, down=False):
+                                return False
+                            if (prev_x, prev_y) == (prev_x, prev_y + 1):
+                                return False
+                        elif orientation == self.current_obj:
+                            if (prev_x, y + 1) not in self.path_space[(prev_x, y)]:
                                 return False
         return True
 
