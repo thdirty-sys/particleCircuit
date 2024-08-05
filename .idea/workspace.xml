@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="Made viewport un-resizable">
+    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="debugging">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/circuitGUI/environCallbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitGUI/environCallbacks.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/circuitOperations/circuitDispatchers.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitOperations/circuitDispatchers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/circuitOperations/particleObjs.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitOperations/particleObjs.py" afterDir="false" />
     </list>
@@ -200,6 +201,9 @@
       <workItem from="1722695231535" duration="6992000" />
       <workItem from="1722711326183" duration="7807000" />
       <workItem from="1722728603848" duration="515000" />
+      <workItem from="1722770148838" duration="6547000" />
+      <workItem from="1722799600711" duration="23629000" />
+      <workItem from="1722866177129" duration="1587000" />
     </task>
     <task id="LOCAL-00001" summary="first?">
       <option name="closed" value="true" />
@@ -441,7 +445,23 @@
       <option name="project" value="LOCAL" />
       <updated>1722698185507</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Added tasep pathing for particles + GUI version">
+      <option name="closed" value="true" />
+      <created>1722770229760</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1722770229760</updated>
+    </task>
+    <task id="LOCAL-00032" summary="debugging">
+      <option name="closed" value="true" />
+      <created>1722774429647</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1722774429647</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -481,7 +501,9 @@
     <MESSAGE value="Draw sep lines for nodes" />
     <MESSAGE value="Added node annotations" />
     <MESSAGE value="Made viewport un-resizable" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made viewport un-resizable" />
+    <MESSAGE value="Added tasep pathing for particles + GUI version" />
+    <MESSAGE value="debugging" />
+    <option name="LAST_COMMIT_MESSAGE" value="debugging" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -498,6 +520,6 @@
     <SUITE FILE_PATH="coverage/particleCircuit$circuitMotor.coverage" NAME="circuitMotor Coverage Results" MODIFIED="1721777459192" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/circuitObjects" />
     <SUITE FILE_PATH="coverage/particleCircuit$repositoryObj.coverage" NAME="repositoryObj Coverage Results" MODIFIED="1721698686405" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/particleCircuit$main.coverage" NAME="main Coverage Results" MODIFIED="1721701372082" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/particleCircuit$dpgEnviron.coverage" NAME="dpgEnviron Coverage Results" MODIFIED="1722728605548" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/particleCircuit$dpgEnviron.coverage" NAME="dpgEnviron Coverage Results" MODIFIED="1722867766504" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

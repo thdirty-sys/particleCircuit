@@ -11,10 +11,11 @@ class Node:
 class Particle:
     """General element of the Circuit"""
 
-    def __init__(self, start_pos):
+    def __init__(self, start_pos, number):
         self.pos = start_pos
         self.name = "particle"
         self.orientation = "-"
+        self.no = number
 
 
 class Repository:
@@ -108,6 +109,21 @@ class Circuit:
         # Make sure our splits dictionary is up-to-date with splits at repos/entry nodes
         for node in self.entry_nodes + self.repos:
             self.splits[node.pos] = self.path_space[node.pos]
+
+        # Clean out unnescesary routing covered by undercurrent dictionary
+        for pos in self.path_space:
+            for p in self.path_space[pos]:
+                if self.path_orientation[p] != self.path_orientation[pos]:
+                    if not self.in_repo(p) and not self.in_exit_node(p):
+                        if pos in self.splits:
+                            if p not in self.splits[pos]:
+                                if p not in self.undercurrent_space:
+                                    self.path_space[pos].remove(p)
+                        else:
+                            if p not in self.undercurrent_space[self.path_orientation[pos]]:
+                                self.path_space[pos].remove(p)
+        self.path_orientation[self.entry_nodes[0].pos] = "-"
+        print(self.path_space)
 
     def branch_path_construct(self, pointer, p, prev="-"):
         """Recursively called to generate path space"""
@@ -295,8 +311,6 @@ class Circuit:
                             return False
                     if self.in_repo((x, prev_y)) and (x, prev_y) != path_sketch[0]:
                         return False
-                    if orientation == self.current_obj and (x + 1, prev_y) not in self.path_space[(x, prev_y)]:
-                        return False
             else:
                 # Range function only works from lower to higher. Hence reverse if prev above next.
                 if prev_y >= next_y:
@@ -307,8 +321,6 @@ class Circuit:
                                 return False
                             if not self.is_crossable_y(prev_x, y):
                                 return False
-                        if orientation == self.current_obj and (prev_x, y - 1) not in self.path_space[(prev_x, y)]:
-                            return False
                 else:
                     for y in range(prev_y, next_y):
                         orientation = self.path_orientation[(prev_x, y)]
@@ -317,8 +329,6 @@ class Circuit:
                                 return False
                             if not self.is_crossable_y(prev_x, y, down=False):
                                 return False
-                        if orientation == self.current_obj and (prev_x, y + 1) not in self.path_space[(prev_x, y)]:
-                            return False
         return True
 
     def is_crossable_x(self, x, prev_y):
@@ -338,7 +348,7 @@ class Circuit:
         return traversable and continuable
 
     def complete(self):
-        if len(self.particles) < 10:
+        if len(self.particles) < 200:
             return False
         else:
             return True

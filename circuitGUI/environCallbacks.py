@@ -11,7 +11,7 @@ def gen_circuit():
 
     # Create an instance of the TASEP circuit dispatcher object
     global tcd
-    tcd = circuitOperations.TasepCircuitDispatcher()
+    tcd = circuitOperations.TasepCircuitDispatcherGUI()
     # Method returns skeleton of generated circuit (skeleton because no paths yet generated)
     global circuit
     circuit = tcd.gen_circuit()
@@ -80,11 +80,12 @@ def valid_adjacents(pos):
     """Given a position value, return adjacent positions which are in the valid range"""
     x, y = pos
     adjacent_pos = [(x+1, y), (x, y-1), (x, y+1), (x-1, y)]
+    valid = []
     for p in adjacent_pos:
         a, b = p
-        if a < 0 or b < 0 or a > 49 or b > 25:
-            adjacent_pos.remove(p)
-    return adjacent_pos
+        if -1 < a < 50 and -1 < b < 26:
+                valid.append(p)
+    return valid
 
 
 def draw_sep_line(w ,v):
@@ -141,6 +142,16 @@ def paths_gen():
                             else:
                                 draw_sep_line(pos, a)
                                 sep_line_count += 1
+                # Fix case where undercurrent path feeds into repo but no line drawn
+                elif a in circuit.path_space[pos]:
+                    for i, n in enumerate(circuit.body):
+                        if a == n.pos:
+                            target_ori = str(i)
+                            break
+                    if circuit.path_orientation[pos] != target_ori:
+                        draw_sep_line(pos, a)
+                        sep_line_count += 1
+
 
     # Deal with sep lines for nodes
     for node in circuit.entry_nodes + circuit.body:
