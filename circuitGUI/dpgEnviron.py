@@ -25,9 +25,6 @@ with dpg.window(tag="primary_window"):
             dpg.add_vline_series(x=[n-1.5 for n in range(51)], parent=def_x)
             dpg.add_hline_series(x=[f-1.5 for f in range(27)], parent=def_y)
 
-            """dpg.draw_polyline(points=[[0,0],[4,0],[4,5]], thickness=1, color=[220, 220, 220])
-            dpg.draw_circle(center=[1,0], radius=0.35, color=[0,0,0], fill=[0,0,0], segments=120)"""
-
 
 
         with dpg.child_window(tag="control", border=True):
