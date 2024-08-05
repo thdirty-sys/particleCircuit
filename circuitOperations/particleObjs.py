@@ -123,8 +123,6 @@ class Circuit:
                             if p not in self.undercurrent_space[self.path_orientation[pos]]:
                                 self.path_space[pos].remove(p)
         self.path_orientation[self.entry_nodes[0].pos] = "-"
-        print(self.path_space)
-        print(self.undercurrent_space)
 
     def branch_path_construct(self, pointer, p, prev="-"):
         """Recursively called to generate path space"""
@@ -166,7 +164,6 @@ class Circuit:
                 else:
                     path = self.path_find(pointer_pos, node)
                     if path:
-                        print("hey")
                         for pos in self.path_space[pointer_pos]:
                             # Select path newly created
                             if self.path_orientation[pos] == node_orientation:

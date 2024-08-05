@@ -177,5 +177,3 @@ class TasepCircuitDispatcherGUI(TasepCircuitDispatcher):
                                 col = (255, 255, 255)
                             dpg.draw_circle(next_pos, 0.3, fill=col, parent="main_grid",
                                             tag="particle" + str(chosen.no))
-            #if c.particles != []:
-            #    print(c.particles[0].orientation)
