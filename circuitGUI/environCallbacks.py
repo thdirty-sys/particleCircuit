@@ -1,19 +1,19 @@
 import dearpygui.dearpygui as dpg
 import circuitOperations
+import threading
 
 path_rec_count = 0
 sep_line_count = 0
 
 def gen_circuit():
     """Callback function for 'Generate circuit' button. TASEP dispatcher specifically in this case."""
+    global tcd, circuit
     dpg.delete_item("gen_circuit_button")
     dpg.add_text("Loading...", parent="control", tag="loading_text")
 
     # Create an instance of the TASEP circuit dispatcher object
-    global tcd
     tcd = circuitOperations.TasepCircuitDispatcherGUI()
     # Method returns skeleton of generated circuit (skeleton because no paths yet generated)
-    global circuit
     circuit = tcd.gen_circuit()
 
     # Draw each feature
@@ -195,4 +195,46 @@ def intiate_process():
     dpg.delete_item("start_process_button")
     dpg.delete_item("circuit_wiper_button")
     dpg.delete_item("wipe_paths_button")
-    tcd.run_tasep()
+    tasep_process = threading.Thread(name="tasep process", target=tcd.run_tasep, daemon=True)
+    tasep_process.start()
+    dpg.add_button(label="Pause process", width=150, height=20,
+                   callback=pause_process, tag="pause_process_button",
+                   parent="control")
+
+def pause_process():
+    tcd.run = False
+    dpg.delete_item("pause_process_button")
+    dpg.add_button(label="Play process", width=150, height=20,
+                   callback=play_process, tag="play_process_button",
+                   parent="control")
+    dpg.add_button(label="Reset process", width=150, height=20,
+                   callback=reset_process, tag="reset_process_button",
+                   parent="control")
+
+def play_process():
+    tcd.run = True
+    dpg.delete_item("play_process_button")
+    dpg.delete_item("reset_process_button")
+    dpg.add_button(label="Pause process", width=150, height=20,
+                   callback=pause_process, tag="pause_process_button",
+                   parent="control")
+
+def reset_process():
+    dpg.delete_item("play_process_button")
+    dpg.delete_item("reset_process_button")
+    tcd.alive = False
+    for p in circuit.particles:
+        dpg.delete_item("particle" + str(p.no))
+    circuit.particles = []
+
+    # Adds wipe circuit button
+    dpg.add_button(label="WIPE CIRCUIT", width=200, height=30, parent="control",
+                   tag="circuit_wiper_button", callback=wipe_circuit)
+    # Adds path wipe button
+    dpg.add_button(label="Wipe paths", width=150, height=20,
+                   callback=wipe_paths, tag="wipe_paths_button",
+                   parent="control", before="circuit_wiper_button")
+    # Button to start process
+    dpg.add_button(label="Start process", width=150, height=20,
+                   callback=intiate_process, tag="start_process_button",
+                   parent="control", before="wipe_paths_button")

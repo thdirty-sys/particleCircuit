@@ -110,6 +110,8 @@ class TasepCircuitDispatcherGUI(TasepCircuitDispatcher):
         """"TASEP dispatcher modified for dearpygui"""
 
         rng = np.random.default_rng()
+        self.run = True
+        self.alive = True
 
         if self.circuit is None:
             print("No circuit has been generated")
@@ -118,62 +120,63 @@ class TasepCircuitDispatcherGUI(TasepCircuitDispatcher):
         # Shorthand
         c = self.circuit
         particle_count = 0
-        while not c.complete():
-            option_size = len(c.entry_nodes) + len(c.particles)
-            wait_factor = rng.exponential(1/(2*option_size))
-            time.sleep(wait_factor)
-            # Pick entry node or active particle randomly
-            chosen = rng.choice(c.entry_nodes + c.particles, 1)[0]
+        while not c.complete() and self.alive:
+            while self.run:
+                option_size = len(c.entry_nodes) + len(c.particles)
+                wait_factor = rng.exponential(1/(2*option_size))
+                time.sleep(wait_factor)
+                # Pick entry node or active particle randomly
+                chosen = rng.choice(c.entry_nodes + c.particles, 1)[0]
 
-            # Deals with case of entry node
-            if chosen.name == "node":
-                # Creates particle if empty with probability according to rate of node
-                if self.pos_empty(chosen.pos, c.particles):
-                    # With probability of node rate
-                    if self.pos_empty(chosen.pos, "-"):
-                        if rng.random() <= chosen.rate:
-                            new_particle = Particle(chosen.pos, particle_count)
-                            new_particle.orientation = "-"
-                            c.particles.append(new_particle)
-                            if particle_count % 10 == 0:
-                                col = (255, 100, 0)
-                            else:
-                                col = (255, 255, 255)
-                            dpg.draw_circle(chosen.pos, 0.3, fill=col, parent="main_grid",
-                                            tag="particle" + str(new_particle.no))
-                            particle_count += 1
+                # Deals with case of entry node
+                if chosen.name == "node":
+                    # Creates particle if empty with probability according to rate of node
+                    if self.pos_empty(chosen.pos, c.particles):
+                        # With probability of node rate
+                        if self.pos_empty(chosen.pos, "-"):
+                            if rng.random() <= chosen.rate:
+                                new_particle = Particle(chosen.pos, particle_count)
+                                new_particle.orientation = "-"
+                                c.particles.append(new_particle)
+                                if particle_count % 10 == 0:
+                                    col = (255, 100, 0)
+                                else:
+                                    col = (255, 255, 255)
+                                dpg.draw_circle(chosen.pos, 0.3, fill=col, parent="main_grid",
+                                                tag="particle" + str(new_particle.no))
+                                particle_count += 1
 
-            if chosen.name == "particle":
-                #If in exit node we take off the circuit with p. rate
-                if c.in_exit_node(chosen.pos):
-                    if rng.random() <= -c.exit_nodes[0].rate:
-                        c.particles.remove(chosen)
-                        dpg.delete_item("particle" + str(chosen.no))
-                else:
-                    # Find next site to hop to
-                    next_orientation = chosen.orientation
-                    if chosen.orientation == c.path_orientation[chosen.pos]:
-                        next_pos = tuple(rng.choice(c.path_space[chosen.pos]))
-                        # Changing path at split
-                        if chosen.pos in c.splits:
-                            if next_pos in c.splits[chosen.pos]:
-                                next_orientation = c.path_orientation[next_pos]
-
+                if chosen.name == "particle":
+                    #If in exit node we take off the circuit with p. rate
+                    if c.in_exit_node(chosen.pos):
+                        if rng.random() <= -c.exit_nodes[0].rate:
+                            c.particles.remove(chosen)
+                            dpg.delete_item("particle" + str(chosen.no))
                     else:
-                        next_pos = c.undercurrent_space[chosen.orientation][chosen.pos]
-                    if c.in_repo(next_pos):
-                        # Repo could lead to undercurrent, in which case path_space empty
-                        if c.path_space[next_pos] != []:
-                            next_orientation = c.path_orientation[next_pos]
-                    # Hop to site if unoccupied
-                    if self.pos_empty(next_pos, next_orientation):
-                        chosen.pos = next_pos
-                        chosen.orientation = next_orientation
-                        dpg.delete_item("particle" + str(chosen.no))
-                        if chosen.orientation == c.path_orientation[next_pos] or c.in_repo(next_pos) or c.in_exit_node(next_pos):
-                            if chosen.no % 10 == 0:
-                                col = (255, 100, 0)
-                            else:
-                                col = (255, 255, 255)
-                            dpg.draw_circle(next_pos, 0.3, fill=col, parent="main_grid",
-                                            tag="particle" + str(chosen.no))
+                        # Find next site to hop to
+                        next_orientation = chosen.orientation
+                        if chosen.orientation == c.path_orientation[chosen.pos]:
+                            next_pos = tuple(rng.choice(c.path_space[chosen.pos]))
+                            # Changing path at split
+                            if chosen.pos in c.splits:
+                                if next_pos in c.splits[chosen.pos]:
+                                    next_orientation = c.path_orientation[next_pos]
+
+                        else:
+                            next_pos = c.undercurrent_space[chosen.orientation][chosen.pos]
+                        if c.in_repo(next_pos):
+                            # Repo could lead to undercurrent, in which case path_space empty
+                            if c.path_space[next_pos] != []:
+                                next_orientation = c.path_orientation[next_pos]
+                        # Hop to site if unoccupied
+                        if self.pos_empty(next_pos, next_orientation):
+                            chosen.pos = next_pos
+                            chosen.orientation = next_orientation
+                            dpg.delete_item("particle" + str(chosen.no))
+                            if chosen.orientation == c.path_orientation[next_pos] or c.in_repo(next_pos) or c.in_exit_node(next_pos):
+                                if chosen.no % 10 == 0:
+                                    col = (255, 100, 0)
+                                else:
+                                    col = (255, 255, 255)
+                                dpg.draw_circle(next_pos, 0.3, fill=col, parent="main_grid",
+                                                tag="particle" + str(chosen.no))
