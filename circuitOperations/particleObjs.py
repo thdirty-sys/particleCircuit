@@ -43,6 +43,10 @@ class Circuit:
         self.repos = repos
         self.entry_nodes = ingress
         self.exit_nodes = egress
+        self.body = self.repos + self.exit_nodes
+        self.path_setup()
+
+    def path_setup(self):
         self.current_obj = "-"
 
         self.path_orientation = {}
@@ -54,8 +58,6 @@ class Circuit:
                 self.path_orientation[(x, y)] = "-"
 
         self.particles = []
-        self.body = self.repos + self.exit_nodes
-
         self.undercurrent_space = {}
         for i, n in enumerate(self.body):
             self.undercurrent_space[str(i)] = {}
@@ -71,7 +73,7 @@ class Circuit:
 
         # First settings for main entry node path
         available = self.repos[1:]
-        connection = self.repos[0]
+        next_connections = self.repos
 
         # Count to keep track of index of available nodes for branching
         attempts = 1
@@ -81,7 +83,10 @@ class Circuit:
         # Generate a path for a node, and begin recursive branch process from that path
         for node in self.entry_nodes + self.repos:
             pointer_pos = node.pos
-            self.path_find(pointer_pos, connection)
+            for connection in next_connections:
+                path = self.path_find(pointer_pos, connection)
+                if path:
+                    break
             self.branch_path_construct(pointer_pos, 1, prev=self.path_orientation[connection.pos])
 
             # Make sure we have the right selection of nodes for branches
@@ -91,8 +96,8 @@ class Circuit:
                 available = self.body[attempts:]
                 attempts += 1
 
-            # Next node for next repo to connect to
-            connection = rng.choice(available, 1)[0]
+            # Randomly selected sequence of nodes to connect next too
+            next_connections = rng.choice(available, len(available), replace=False)
 
         # For any repo without a path to it, generate that path
         # Switch up order of repos first however
@@ -123,6 +128,13 @@ class Circuit:
                             if p not in self.undercurrent_space[self.path_orientation[pos]]:
                                 self.path_space[pos].remove(p)
         self.path_orientation[self.entry_nodes[0].pos] = "-"
+
+        for repo in self.repos:
+            if not self.pos_is_pointed_towards(repo.pos) or not self.path_space[repo.pos]:
+                self.path_setup()
+                return False
+        else:
+            return True
 
     def branch_path_construct(self, pointer, p, prev="-"):
         """Recursively called to generate path space"""
@@ -284,12 +296,6 @@ class Circuit:
                             self.path_orientation[(x, prev_y)] = self.current_obj
                             self.path_space[(x, prev_y)].append((x + 1, prev_y))
 
-                    """if self.path_orientation[(x, prev_y)] != self.current_obj:
-                        self.path_space[(x, prev_y)].append((x + 1, prev_y))
-                        if self.path_orientation[(x, prev_y)] != "-" and not self.in_repo((x, prev_y)):
-                            self.undercurrent_space[self.current_obj][(x, prev_y)] = (x + 1, prev_y)
-                    if self.path_orientation[(x, prev_y)] == "-":
-                        self.path_orientation[(x, prev_y)] = self.current_obj"""
             else:
                 # Range function only works from lower to higher. Hence reverse if prev above next.
                 if prev_y >= next_y:
@@ -304,13 +310,6 @@ class Circuit:
                                 self.path_orientation[(prev_x, y)] = self.current_obj
                                 self.path_space[(prev_x, y)].append((prev_x, y - 1))
 
-                        """if self.path_orientation[(prev_x, y)] != self.current_obj:
-                            self.path_space[(prev_x, y)].append((prev_x, y - 1))
-                            if self.path_orientation[(prev_x, y)] != "-" and not self.in_repo((prev_x, y)):
-                                self.undercurrent_space[self.current_obj][(prev_x, y)] = (prev_x, y - 1)
-                        if self.path_orientation[(prev_x, y)] == "-":
-                            self.path_orientation[(prev_x, y)] = self.current_obj"""
-
                 else:
                     for y in range(prev_y, next_y):
                         if self.path_orientation[(prev_x, y)] != self.current_obj:
@@ -322,13 +321,6 @@ class Circuit:
                             else:
                                 self.path_orientation[(prev_x, y)] = self.current_obj
                                 self.path_space[(prev_x, y)].append((prev_x, y + 1))
-
-                        """if self.path_orientation[(prev_x, y)] != self.current_obj:
-                            self.path_space[(prev_x, y)].append((prev_x, y + 1))
-                            if self.path_orientation[(prev_x, y)] != "-" and not self.in_repo((prev_x, y)):
-                                self.undercurrent_space[self.current_obj][(prev_x, y)] = (prev_x, y + 1)
-                        if self.path_orientation[(prev_x, y)] == "-":
-                            self.path_orientation[(prev_x, y)] = self.current_obj"""
 
     def path_check(self, path_sketch):
         for i in range(1, len(path_sketch)):

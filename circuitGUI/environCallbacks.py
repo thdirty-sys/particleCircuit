@@ -107,7 +107,10 @@ def paths_gen():
     global sep_line_count
 
     # Generate and draw paths
-    res = circuit.gen_circuit_paths()
+    res = False
+    while not res:
+        res = circuit.gen_circuit_paths()
+        print(1)
     path_elements = circuit.path_space
     path_rec_count = 0
     sep_line_count = 0
