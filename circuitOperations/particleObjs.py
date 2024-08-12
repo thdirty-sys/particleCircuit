@@ -39,7 +39,6 @@ class Circuit:
     Given entry/exit nodes necessary, as well as repositories."""
 
     def __init__(self, repos, ingress, egress):
-        self.branches = 0
         self.repos = repos
         self.entry_nodes = ingress
         self.exit_nodes = egress
@@ -139,7 +138,6 @@ class Circuit:
     def branch_path_construct(self, pointer, p, prev="-"):
         """Recursively called to generate path space"""
 
-        self.branches += 1
         rng = np.random.default_rng()
         pointer_pos = pointer
 
