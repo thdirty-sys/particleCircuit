@@ -192,4 +192,7 @@ def wipe_paths():
     dpg.delete_item("start_process_button")
 
 def intiate_process():
+    dpg.delete_item("start_process_button")
+    dpg.delete_item("circuit_wiper_button")
+    dpg.delete_item("wipe_paths_button")
     tcd.run_tasep()
