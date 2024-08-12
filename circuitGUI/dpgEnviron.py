@@ -28,7 +28,7 @@ with dpg.window(tag="primary_window"):
 
 
         with dpg.child_window(tag="control", border=True):
-            gen_button = dpg.add_button(label="Generate circuit", width=150, height=20,
+            gen_button = dpg.add_button(label="Generate circuit", width=200, height=30,
                                         callback=callbacks.gen_circuit, tag="gen_circuit_button")
 
 

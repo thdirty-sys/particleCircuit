@@ -71,7 +71,7 @@ def wipe_circuit():
 
     # Finish wipe
     dpg.delete_item("loading_text")
-    gen_button = dpg.add_button(label="Generate circuit", width=150, height=20,
+    gen_button = dpg.add_button(label="Generate circuit", width=200, height=30,
                                 callback=gen_circuit, tag="gen_circuit_button", parent="control")
 
     circuit.branches = 0
@@ -169,11 +169,11 @@ def paths_gen():
     # Deletes path gen button
     dpg.delete_item("gen_paths_button")
     # Adds path wipe button
-    dpg.add_button(label="Wipe paths", width=150, height=20,
+    dpg.add_button(label="Wipe paths", width=200, height=30,
                     callback=wipe_paths, tag="wipe_paths_button",
                     parent="control", before="circuit_wiper_button")
     # Button to start process
-    dpg.add_button(label="Start process", width=150, height=20,
+    dpg.add_button(label="Start process", width=200, height=30,
                    callback=intiate_process, tag="start_process_button",
                    parent="control", before="wipe_paths_button")
 
@@ -199,17 +199,17 @@ def intiate_process():
     dpg.delete_item("wipe_paths_button")
     tasep_process = threading.Thread(name="tasep process", target=tcd.run_tasep, daemon=True)
     tasep_process.start()
-    dpg.add_button(label="Pause process", width=150, height=20,
+    dpg.add_button(label="Pause process", width=200, height=30,
                    callback=pause_process, tag="pause_process_button",
                    parent="control")
 
 def pause_process():
     tcd.run = False
     dpg.delete_item("pause_process_button")
-    dpg.add_button(label="Play process", width=150, height=20,
+    dpg.add_button(label="Play process", width=200, height=30,
                    callback=play_process, tag="play_process_button",
                    parent="control")
-    dpg.add_button(label="Reset process", width=150, height=20,
+    dpg.add_button(label="Reset process", width=200, height=30,
                    callback=reset_process, tag="reset_process_button",
                    parent="control")
 
@@ -217,7 +217,7 @@ def play_process():
     tcd.run = True
     dpg.delete_item("play_process_button")
     dpg.delete_item("reset_process_button")
-    dpg.add_button(label="Pause process", width=150, height=20,
+    dpg.add_button(label="Pause process", width=200, height=30,
                    callback=pause_process, tag="pause_process_button",
                    parent="control")
 
@@ -233,10 +233,10 @@ def reset_process():
     dpg.add_button(label="WIPE CIRCUIT", width=200, height=30, parent="control",
                    tag="circuit_wiper_button", callback=wipe_circuit)
     # Adds path wipe button
-    dpg.add_button(label="Wipe paths", width=150, height=20,
+    dpg.add_button(label="Wipe paths", width=200, height=30,
                    callback=wipe_paths, tag="wipe_paths_button",
                    parent="control", before="circuit_wiper_button")
     # Button to start process
-    dpg.add_button(label="Start process", width=150, height=20,
+    dpg.add_button(label="Start process", width=200, height=30,
                    callback=intiate_process, tag="start_process_button",
                    parent="control", before="wipe_paths_button")
