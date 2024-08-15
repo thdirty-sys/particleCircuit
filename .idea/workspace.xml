@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="Added help window">
+    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="Filled README.md">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
@@ -209,7 +209,7 @@
       <workItem from="1723460438343" duration="12627000" />
       <workItem from="1723657491150" duration="9274000" />
       <workItem from="1723677589073" duration="301000" />
-      <workItem from="1723720860990" duration="22230000" />
+      <workItem from="1723720860990" duration="22596000" />
     </task>
     <task id="LOCAL-00001" summary="first?">
       <option name="closed" value="true" />
@@ -555,7 +555,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723752663710</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Filled README.md">
+      <option name="closed" value="true" />
+      <created>1723764852474</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1723764852474</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -573,7 +581,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Dramatic changes and improvements to path generation." />
     <MESSAGE value="Made it so that repos must have an exit path" />
     <MESSAGE value="Allow path bijections" />
     <MESSAGE value="Added extra button functionality for resetting paths, as well as a button trigger for TASEP process on the path." />
@@ -598,7 +605,8 @@
     <MESSAGE value="Resizing buttons" />
     <MESSAGE value="Added functioning statistical/menu display" />
     <MESSAGE value="Added help window" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added help window" />
+    <MESSAGE value="Filled README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Filled README.md" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
