@@ -35,3 +35,4 @@ Note
   While most-likely faster for look-ups, it often leads to a confusion of conditions for sticking to the right path
 - Random path generation is limited to the finite-sized grid of the UI, and favours visibility over
   breadth of generation.
+- As of now, main.py does nothing
