@@ -21,6 +21,7 @@ Short-term goals
 - Make random generation customisable
 - Complete TASEP loop without UI element for fast data collection
 - Fix small bugs in path generation
+- Options for the colour-blind
 
 Long-term goals
 ---------------
