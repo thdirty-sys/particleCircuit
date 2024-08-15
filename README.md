@@ -22,7 +22,16 @@ Short-term goals
 - Complete TASEP loop without UI element for fast data collection
 - Fix small bugs in path generation
 - Options for the colour-blind
+- Fill out needed commenting
 
 Long-term goals
 ---------------
 - Tools for handmade circuit crafting
+
+Note
+---
+- In the current version too much of the code is uncommented
+- There are no actual 'paths' in the code, just co-ordinates pointing to other, sometimes several, co-ordinates.
+  While most-likely faster for look-ups, it often leads to a confusion of conditions for sticking to the right path
+- Random path generation is limited to the finite-sized grid of the UI, and favours visibility over
+  breadth of generation.
