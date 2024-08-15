@@ -33,7 +33,7 @@ class CircuitDispatcher:
         for n in range(rng.integers(3, 7)):
             chosen_x = rng.choice(valid_repo_x)
             new_repo = Repository((chosen_x, rng.integers(1, 25)), rng.integers(100, 1001))
-            # For convenience later, repos is ordered by x pos
+            # For convenience later, repos is ordered by x pos. Following code sorts list.
             if repos is []:
                 repos.append(new_repo)
             else:
@@ -106,12 +106,31 @@ class TasepCircuitDispatcher(CircuitDispatcher):
 
 class TasepCircuitDispatcherGUI(TasepCircuitDispatcher):
 
+    def display_currents(self):
+        en = self.circuit.entry_nodes[0]
+        ex = self.circuit.exit_nodes[0]
+        if en.count != 0:
+            dpg.configure_item("en_node_current0",
+                               default_value="Current: "+str(round(len(en.check_in)/(self.play_time - en.check_in[0]), 3))+"p/s")
+
+        if ex.count != 0:
+            dpg.configure_item("ex_node_current0",
+                               default_value="Current: "+str(round(len(ex.check_in)/(self.play_time - ex.check_in[0]), 3))+"p/s")
+
+        for i, repo in enumerate(self.circuit.repos):
+            if repo.count != 0:
+                dpg.configure_item("repo_current" + str(i),
+                                   default_value="Current: "+str(round(len(repo.check_in) / (self.play_time - repo.check_in[0]), 3)) + "p/s")
+
+
     def run_tasep(self):
         """"TASEP dispatcher modified for dearpygui"""
 
         rng = np.random.default_rng()
         self.run = True
         self.alive = True
+        self.speed_factor = 1
+        self.debug_particle = False
 
         if self.circuit is None:
             print("No circuit has been generated")
@@ -120,10 +139,12 @@ class TasepCircuitDispatcherGUI(TasepCircuitDispatcher):
         # Shorthand
         c = self.circuit
         particle_count = 0
+        self.play_time = 0
         while not c.complete() and self.alive:
             while self.run:
                 option_size = len(c.entry_nodes) + len(c.particles)
-                wait_factor = rng.exponential(1/(2*option_size))
+                wait_factor = rng.exponential(1/(self.speed_factor*option_size))
+                self.play_time += rng.exponential(1/(option_size))
                 time.sleep(wait_factor)
                 # Pick entry node or active particle randomly
                 chosen = rng.choice(c.entry_nodes + c.particles, 1)[0]
@@ -138,13 +159,15 @@ class TasepCircuitDispatcherGUI(TasepCircuitDispatcher):
                                 new_particle = Particle(chosen.pos, particle_count)
                                 new_particle.orientation = "-"
                                 c.particles.append(new_particle)
-                                if particle_count % 10 == 0:
+                                if particle_count % 10 == 0 and self.debug_particle:
                                     col = (255, 100, 0)
                                 else:
                                     col = (255, 255, 255)
                                 dpg.draw_circle(chosen.pos, 0.3, fill=col, parent="main_grid",
                                                 tag="particle" + str(new_particle.no))
                                 particle_count += 1
+                                chosen.count += 1
+                                chosen.take(self.play_time)
 
                 if chosen.name == "particle":
                     #If in exit node we take off the circuit with p. rate
@@ -173,10 +196,19 @@ class TasepCircuitDispatcherGUI(TasepCircuitDispatcher):
                             chosen.pos = next_pos
                             chosen.orientation = next_orientation
                             dpg.delete_item("particle" + str(chosen.no))
-                            if chosen.orientation == c.path_orientation[next_pos] or c.in_repo(next_pos) or c.in_exit_node(next_pos):
-                                if chosen.no % 10 == 0:
+                            if chosen.orientation == c.path_orientation[next_pos] or c.in_exit_node(next_pos):
+                                if chosen.no % 10 == 0 and self.debug_particle:
                                     col = (255, 100, 0)
                                 else:
                                     col = (255, 255, 255)
                                 dpg.draw_circle(next_pos, 0.3, fill=col, parent="main_grid",
                                                 tag="particle" + str(chosen.no))
+                            in_repo = c.in_repo(next_pos)
+                            if in_repo or c.in_exit_node(next_pos):
+                                for n in c.body:
+                                    if n.pos == next_pos:
+                                        n.count += 1
+                                        n.take(self.play_time)
+                                        if in_repo:
+                                            dpg.configure_item("repo_text" + str(c.repos.index(n)), text = n.count)
+                                        break

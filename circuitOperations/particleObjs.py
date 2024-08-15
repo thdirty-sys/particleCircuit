@@ -6,6 +6,13 @@ class Node:
         self.name = "node"
         self.pos = start_pos
         self.rate = rate
+        self.count = 0
+        self.check_in = []
+
+    def take(self, t):
+        if len(self.check_in) == 10:
+            self.check_in.pop(0)
+        self.check_in.append(t)
 
 
 class Particle:
@@ -26,12 +33,20 @@ class Repository:
         self.capacity = capacity
         self.pos = start_pos
         self.count = 0
+        self.check_in = []
 
     def in_column_entry_space(self, x):
         if self.pos[0] == x:
             return True
         else:
             return False
+
+    def take(self, t):
+        if len(self.check_in) == 10:
+            self.check_in.pop(0)
+        self.check_in.append(t)
+
+
 
 
 class Circuit:

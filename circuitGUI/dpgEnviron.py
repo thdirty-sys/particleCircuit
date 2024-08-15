@@ -31,6 +31,10 @@ with dpg.window(tag="primary_window"):
             gen_button = dpg.add_button(label="Generate circuit", width=200, height=30,
                                         callback=callbacks.gen_circuit, tag="gen_circuit_button")
 
+        with dpg.window(label="Delete Files", modal=True, show=False, tag="help_window", no_title_bar=True):
+            dpg.add_text("All those beautiful files will be deleted.\nThis operation cannot be undone!")
+            dpg.add_button(label="OK", width=75, callback=lambda: dpg.configure_item("modal_id", show=False))
+
 
 
             # series belong to a y axi
