@@ -238,7 +238,8 @@ def intiate_process():
                        clamped=True, callback=speed_allocate, default_value=1, tag="speed_slider")
 
     dpg.add_spacer(height=10, parent="stats")
-    dpg.add_button(label="?", callback=lambda: dpg.configure_item("help_window", show=True), parent="stats")
+    dpg.add_button(label="?", callback=lambda: dpg.configure_item("help_window", show=True), parent="stats",
+                   width=25, height=20)
     dpg.add_spacer(height=10, parent="stats")
 
     tasep_process = threading.Thread(name="tasep process", target=tcd.run_tasep, daemon=True)
@@ -278,6 +279,10 @@ def reset_process():
     dpg.delete_item("stats")
 
     currents_displayer.cancel()
+
+    for n in circuit.entry_nodes + circuit.body:
+        n.check_in = []
+        n.count = 0
 
     # Adds wipe circuit button
     dpg.add_button(label="WIPE CIRCUIT", width=200, height=30, parent="control",

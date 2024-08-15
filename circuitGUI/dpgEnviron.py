@@ -31,9 +31,36 @@ with dpg.window(tag="primary_window"):
             gen_button = dpg.add_button(label="Generate circuit", width=200, height=30,
                                         callback=callbacks.gen_circuit, tag="gen_circuit_button")
 
-        with dpg.window(label="Delete Files", modal=True, show=False, tag="help_window", no_title_bar=True):
-            dpg.add_text("All those beautiful files will be deleted.\nThis operation cannot be undone!")
-            dpg.add_button(label="OK", width=75, callback=lambda: dpg.configure_item("modal_id", show=False))
+        with dpg.window(label="Delete Files", modal=True, show=False, tag="help_window",
+                        no_title_bar=True, autosize=True):
+            dpg.add_text("- Nodes ordered in menu by occurence from left-to-right. As of now, red 'repositories'\n  onl"
+                         "y count the number of particles that have passed and are used in generating\n  the random cir"
+                         "cuit. Currents are calculated every three seconds, irrespective of the speed\n"
+                         "  factor; see below for more information. "
+                         )
+            dpg.add_spacer(height=5)
+            dpg.add_text("- If 'Orange debug particles' checkbox is ticked, every 10th particle is coloured\n"
+                         "  orange. Useful for keeping track of individual particles.")
+            dpg.add_spacer(height=5)
+            dpg.add_text("- The 'speed factor' slider does not control a simple multiplier for the time-intervals\n"
+                         "  between ticks of the exhibited process. Instead each particle tries to move after a random"
+                         "\n  time interval, sampled from independent exponential distributions of rate 'speed_factor'."
+                         "\n  https://en.wikipedia.org/wiki/Exponential_distribution for more on exponential\n"
+                         "  distributions."
+                         )
+            dpg.add_spacer(height=5)
+            dpg.add_text("- For each node, the individual times at which the last 10 particles 'hopped'\n"
+                         "  into it are logged. Then\n\n"
+                         "              Current = 10/(current_time - tenth_p_time)\n\n"
+                         "  where tenth_p_time is the time at which the tenth-last particle hopped into the node.\n"
+                         "  When a new particle hops into the node, the list is updated, the 'tenth_p_time' is now\n"
+                         "  what was previously the time for the ninth-last particle. I'm not entirely comfortable\n"
+                         "  with this method to be quite honest. There perhaps will be a lack of regularity for\n"
+                         "  the mixing times of the different nodes (current-wise).")
+            dpg.add_spacer(height=5)
+            dpg.add_text("- Any suggested improvements please email to DePradaVill@proton.me")
+            dpg.add_spacer(height=15)
+            dpg.add_button(label="Close", width=75, callback=lambda: dpg.configure_item("help_window", show=False))
 
 
 
