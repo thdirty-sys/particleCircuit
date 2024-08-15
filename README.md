@@ -28,7 +28,7 @@ Long-term goals
 ---------------
 - Tools for handmade circuit crafting
 
-Note
+Notes
 ---
 - In the current version too much of the code is uncommented
 - There are no actual 'paths' in the code, just co-ordinates pointing to other, sometimes several, co-ordinates.
