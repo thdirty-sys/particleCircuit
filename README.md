@@ -36,3 +36,5 @@ Notes
 - Random path generation is limited to the finite-sized grid of the UI, and favours visibility over
   breadth of generation.
 - As of now, main.py does nothing
+
+DEMO: https://streamable.com/efikq5
