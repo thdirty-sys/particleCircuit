@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="Demo added to README">
+      <changelist_data name="thdirty-sys" email="depradavill@proton.me" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -20,6 +21,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="thdirty-sys &lt;depradavill@proton.me&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -29,7 +35,7 @@
   }
 }</component>
   <component name="GithubDefaultAccount">
-    <option name="defaultAccountId" value="b4eeae2b-fc85-4ce0-8305-5f55fb6155f5" />
+    <option name="defaultAccountId" value="3bed0be0-26a7-4c8c-a2e4-9561bd296d8a" />
   </component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
@@ -67,7 +73,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "advanced.settings",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -77,7 +83,7 @@
       <recent name="C:\Users\Theo Prada De Ville\PycharmProjects\particleCircuit\circuitGUI" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.dearpygui">
+  <component name="RunManager" selected="Python.dpgEnviron">
     <configuration name="circuitMotor" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="particleCircuit" />
       <option name="ENV_FILES" value="" />
@@ -172,8 +178,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.dearpygui" />
         <item itemvalue="Python.dpgEnviron" />
+        <item itemvalue="Python.dearpygui" />
         <item itemvalue="Python.circuitMotor" />
       </list>
     </recent_temporary>
@@ -237,14 +243,7 @@
       <workItem from="1723657491150" duration="9274000" />
       <workItem from="1723677589073" duration="301000" />
       <workItem from="1723720860990" duration="27159000" />
-    </task>
-    <task id="LOCAL-00004" summary="Fleshed out circuit objects.">
-      <option name="closed" value="true" />
-      <created>1721771009462</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1721771009462</updated>
+      <workItem from="1723769868235" duration="433000" />
     </task>
     <task id="LOCAL-00005" summary="Circuit objects placed on board. Beginning of path generation.">
       <option name="closed" value="true" />
@@ -630,7 +629,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723769230427</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Demo added to README">
+      <option name="closed" value="true" />
+      <created>1723769927363</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1723769927364</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -641,7 +648,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="text">
+                    <value>
+                      <list>
+                        <option value="user.name" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
