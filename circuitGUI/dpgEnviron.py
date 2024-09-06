@@ -28,6 +28,8 @@ with dpg.window(tag="primary_window"):
 
 
         with dpg.child_window(tag="control", border=True):
+            draw_button = dpg.add_button(label="Draw circuit", width=200, height=30,
+                                        callback=callbacks.draw_mode, tag="draw_circuit_button")
             gen_button = dpg.add_button(label="Generate circuit", width=200, height=30,
                                         callback=callbacks.gen_circuit, tag="gen_circuit_button")
 

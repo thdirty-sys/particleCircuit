@@ -5,10 +5,53 @@ import threading
 path_rec_count = 0
 sep_line_count = 0
 
+class RepeatTimer(threading.Timer):
+    def run(self):
+        while not self.finished.wait(self.interval):
+            self.function(*self.args, **self.kwargs)
+
+def draw_mode():
+    dpg.delete_item("gen_circuit_button")
+    dpg.delete_item("draw_circuit_button")
+
+    dpg.add_spacer(height=20, parent="control")
+
+    dpg.add_group(tag="entry_node_bar", parent="control", horizontal=True)
+    dpg.add_spacer(width=10, parent="entry_node_bar")
+    dpg.add_text("+ Entry node", parent="entry_node_bar")
+    dpg.add_spacer(width=10, parent="entry_node_bar")
+    dpg.add_drawlist(tag="entry_node_icon", parent="entry_node_bar", width=50, height=50)
+    dpg.draw_rectangle(parent="entry_node_icon", pmin=(0, 0), pmax=(25, 25), fill=(233, 240, 50),
+                           color=(0,0,0))
+
+    dpg.add_spacer(height=10, parent="control")
+
+    dpg.add_group(tag="repo_node_bar", parent="control", horizontal=True)
+    dpg.add_spacer(width=10, parent="repo_node_bar")
+    dpg.add_text("+ Repository", parent="repo_node_bar")
+    dpg.add_spacer(width=10, parent="repo_node_bar")
+    dpg.add_drawlist(tag="repo_node_icon", parent="repo_node_bar", width=50, height=50)
+    dpg.draw_rectangle(parent="repo_node_icon", pmin=(0, 0), pmax=(25, 25), fill=(233, 12, 50),
+                           color=(0, 0, 0))
+
+    dpg.add_spacer(height=10, parent="control")
+
+    dpg.add_group(tag="exit_node_bar", parent="control", horizontal=True)
+    dpg.add_spacer(width=10, parent="exit_node_bar")
+    dpg.add_text("+ Exit node", parent="exit_node_bar")
+    dpg.add_spacer(width=10, parent="exit_node_bar")
+    dpg.add_drawlist(tag="exit_node_icon", parent="exit_node_bar", width=50, height=50)
+    dpg.draw_rectangle(parent="exit_node_icon", pmin=(0, 0), pmax=(25, 25), fill=(23, 240, 250),
+                           color=(0, 0, 0))
+
+
+
+
 def gen_circuit():
     """Callback function for 'Generate circuit' button. TASEP dispatcher specifically in this case."""
     global tcd, circuit
     dpg.delete_item("gen_circuit_button")
+    dpg.delete_item("draw_circuit_button")
     dpg.add_text("Loading...", parent="control", tag="loading_text")
 
     # Create an instance of the TASEP circuit dispatcher object
@@ -71,6 +114,8 @@ def wipe_circuit():
 
     # Finish wipe
     dpg.delete_item("loading_text")
+    draw_button = dpg.add_button(label="Draw circuit", width=200, height=30,
+                                callback=draw_mode, tag="draw_circuit_button", parent="control")
     gen_button = dpg.add_button(label="Generate circuit", width=200, height=30,
                                 callback=gen_circuit, tag="gen_circuit_button", parent="control")
 
@@ -301,8 +346,3 @@ def debug_mode():
 
 def speed_allocate(sender):
     tcd.speed_factor = dpg.get_value(sender)
-
-class RepeatTimer(threading.Timer):
-    def run(self):
-        while not self.finished.wait(self.interval):
-            self.function(*self.args, **self.kwargs)
