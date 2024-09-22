@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="Change viewport name">
+    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="Introduced draw mode to UI">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/circuitGUI/dpgEnviron.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitGUI/dpgEnviron.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/circuitGUI/environCallbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitGUI/environCallbacks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/circuitGUI/environCallbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitGUI/genCallbacks.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +68,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Theo Prada De Ville/Documents/PP/main.py&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Theo Prada De Ville/PycharmProjects/particleCircuit/circuitGUI&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -79,6 +79,9 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Theo Prada De Ville\PycharmProjects\particleCircuit\circuitGUI" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Theo Prada De Ville\PycharmProjects\particleCircuit\circuitObjects" />
       <recent name="C:\Users\Theo Prada De Ville\PycharmProjects\particleCircuit\circuitGUI" />
@@ -245,15 +248,17 @@
       <workItem from="1723677589073" duration="301000" />
       <workItem from="1723720860990" duration="27159000" />
       <workItem from="1723769868235" duration="1155000" />
-      <workItem from="1725581599203" duration="4556000" />
-    </task>
-    <task id="LOCAL-00006" summary="Circuit objects placed on board. Beginning of path generation.">
-      <option name="closed" value="true" />
-      <created>1722194251080</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1722194251080</updated>
+      <workItem from="1725581599203" duration="4733000" />
+      <workItem from="1725993051809" duration="2974000" />
+      <workItem from="1726662668250" duration="1442000" />
+      <workItem from="1726919888054" duration="5118000" />
+      <workItem from="1726944005380" duration="3650000" />
+      <workItem from="1726951286432" duration="134000" />
+      <workItem from="1726953290602" duration="80000" />
+      <workItem from="1726954872827" duration="350000" />
+      <workItem from="1726957189768" duration="1942000" />
+      <workItem from="1726959174468" duration="54000" />
+      <workItem from="1726961548247" duration="3962000" />
     </task>
     <task id="LOCAL-00007" summary="Removed path-generating functionality from particle object.">
       <option name="closed" value="true" />
@@ -639,7 +644,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723770425520</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="Introduced draw mode to UI">
+      <option name="closed" value="true" />
+      <created>1725591016342</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1725591016342</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -669,7 +682,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed button blocking on gui. Finally reached an iteration of path branching I am comfortable with, without bugs." />
     <MESSAGE value="Added steelmanning circuit paths with necessary paths TO repos. more path gen bug-fixing." />
     <MESSAGE value="Added seperation lines for better visibility" />
     <MESSAGE value="Two-step attempt for path_find" />
@@ -694,7 +706,8 @@
     <MESSAGE value="README notes" />
     <MESSAGE value="Demo added to README" />
     <MESSAGE value="Change viewport name" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change viewport name" />
+    <MESSAGE value="Introduced draw mode to UI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Introduced draw mode to UI" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -712,6 +725,6 @@
     <SUITE FILE_PATH="coverage/particleCircuit$dearpygui.coverage" NAME="dearpygui Coverage Results" MODIFIED="1723770350723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.venv/Lib/site-packages/dearpygui" />
     <SUITE FILE_PATH="coverage/particleCircuit$repositoryObj.coverage" NAME="repositoryObj Coverage Results" MODIFIED="1721698686405" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/particleCircuit$main.coverage" NAME="main Coverage Results" MODIFIED="1721701372082" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/particleCircuit$dpgEnviron.coverage" NAME="dpgEnviron Coverage Results" MODIFIED="1725586849794" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/particleCircuit$dpgEnviron.coverage" NAME="dpgEnviron Coverage Results" MODIFIED="1726968151873" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
