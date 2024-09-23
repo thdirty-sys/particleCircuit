@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="Introduced draw mode to UI">
+    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="Continued work with draw functionality. Brush menu has proper callback functions attributed and working. Approaching functional">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/circuitGUI/dpgEnviron.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitGUI/dpgEnviron.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/circuitGUI/environCallbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitGUI/genCallbacks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/circuitGUI/drawCallbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitGUI/drawCallbacks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/circuitGUI/genCallbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitGUI/genCallbacks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/circuitOperations/particleObjs.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitOperations/particleObjs.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -258,23 +259,8 @@
       <workItem from="1726954872827" duration="350000" />
       <workItem from="1726957189768" duration="1942000" />
       <workItem from="1726959174468" duration="54000" />
-      <workItem from="1726961548247" duration="3962000" />
-    </task>
-    <task id="LOCAL-00007" summary="Removed path-generating functionality from particle object.">
-      <option name="closed" value="true" />
-      <created>1722194290679</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1722194290679</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Removed path-generating functionality from particle object.">
-      <option name="closed" value="true" />
-      <created>1722195860481</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1722195860481</updated>
+      <workItem from="1726961548247" duration="4572000" />
+      <workItem from="1727040680669" duration="9279000" />
     </task>
     <task id="LOCAL-00009" summary="Fixed bug that uni-directional path generation">
       <option name="closed" value="true" />
@@ -652,7 +638,23 @@
       <option name="project" value="LOCAL" />
       <updated>1725591016342</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="Continued work with draw functionality. Brush menu has proper callback functions attributed and working. Approaching functional">
+      <option name="closed" value="true" />
+      <created>1726968355758</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1726968355759</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Continued work with draw functionality. Brush menu has proper callback functions attributed and working. Approaching functional">
+      <option name="closed" value="true" />
+      <created>1726968369742</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1726968369742</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -682,7 +684,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added steelmanning circuit paths with necessary paths TO repos. more path gen bug-fixing." />
     <MESSAGE value="Added seperation lines for better visibility" />
     <MESSAGE value="Two-step attempt for path_find" />
     <MESSAGE value="Draw sep lines for nodes" />
@@ -707,7 +708,8 @@
     <MESSAGE value="Demo added to README" />
     <MESSAGE value="Change viewport name" />
     <MESSAGE value="Introduced draw mode to UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Introduced draw mode to UI" />
+    <MESSAGE value="Continued work with draw functionality. Brush menu has proper callback functions attributed and working. Approaching functional" />
+    <option name="LAST_COMMIT_MESSAGE" value="Continued work with draw functionality. Brush menu has proper callback functions attributed and working. Approaching functional" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -725,6 +727,6 @@
     <SUITE FILE_PATH="coverage/particleCircuit$dearpygui.coverage" NAME="dearpygui Coverage Results" MODIFIED="1723770350723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.venv/Lib/site-packages/dearpygui" />
     <SUITE FILE_PATH="coverage/particleCircuit$repositoryObj.coverage" NAME="repositoryObj Coverage Results" MODIFIED="1721698686405" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/particleCircuit$main.coverage" NAME="main Coverage Results" MODIFIED="1721701372082" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/particleCircuit$dpgEnviron.coverage" NAME="dpgEnviron Coverage Results" MODIFIED="1726968151873" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/particleCircuit$dpgEnviron.coverage" NAME="dpgEnviron Coverage Results" MODIFIED="1727054285813" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

@@ -66,10 +66,7 @@ class Circuit:
         self.path_orientation = {}
         self.path_space = {}
         self.splits = {}
-        for y in range(26):
-            for x in range(50):
-                self.path_space[(x, y)] = []
-                self.path_orientation[(x, y)] = "-"
+        self.wipe_paths()
 
         self.particles = []
         self.undercurrent_space = {}

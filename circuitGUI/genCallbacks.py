@@ -28,18 +28,18 @@ def gen_circuit():
     # Draw each feature
     for i, repo in enumerate(circuit.repos):
         dpg.draw_rectangle(pmin=repo.pos, pmax=repo.pos, parent="main_grid",
-                           color=(233, 12, 50), tag="repo" + str(i), label=repo.count)
+                           color=(233, 12, 50), tag="repo" + str(i))
         dpg.draw_text(repo.pos, 0, parent="main_grid", tag="repo_text" + str(i), size=0.5, color=(0, 250, 250))
 
     for i, en_node in enumerate(circuit.entry_nodes):
         dpg.draw_rectangle(pmin=en_node.pos, pmax=en_node.pos, parent="main_grid",
-                           color=(233, 240, 50), tag="entry_node" + str(i), label=str(en_node.rate))
+                           color=(233, 240, 50), tag="entry_node" + str(i))
         dpg.draw_text((en_node.pos[0]-0.5, en_node.pos[1]+0.5), round(en_node.rate, 3), parent="main_grid",
                       tag="en_node_text" + str(i), size=0.35, color=(0, 0, 0))
 
     for i, ex_node in enumerate(circuit.exit_nodes):
         dpg.draw_rectangle(pmin=ex_node.pos, pmax=ex_node.pos, parent="main_grid",
-                           color=(23, 240, 250), tag="exit_node" + str(i), label=str(ex_node.rate))
+                           color=(23, 240, 250), tag="exit_node" + str(i))
         dpg.draw_text((ex_node.pos[0] - 0.5, ex_node.pos[1] + 0.5), round(-ex_node.rate, 3), parent="main_grid",
                       tag="ex_node_text" + str(i), size=0.35, color=(0, 1, 0))
 
