@@ -21,18 +21,18 @@ class CircuitDispatcher:
 
         # Generate entry nodes w/ random positions and rates
         for n in range(rng.integers(1, 2)):  # high was 6
-            new_node = Node((0, rng.integers(1, 25)), rng.random())
+            new_node = Node((0, int(rng.integers(1, 25))), rng.random())
             en_nodes.append(new_node)
 
         # Generate exit nodes w/ random positions and rates
         for n in range(rng.integers(1, 2)):  # high was 4
-            new_node = Node((49, rng.integers(1, 25)), -rng.random())
+            new_node = Node((49, int(rng.integers(1, 25))), -rng.random())
             ex_nodes.append(new_node)
 
         # Generate randomly placed repositories w/ random capacities
         for n in range(rng.integers(3, 7)):
-            chosen_x = rng.choice(valid_repo_x)
-            new_repo = Repository((chosen_x, rng.integers(1, 25)), rng.integers(100, 1001))
+            chosen_x = int(rng.choice(valid_repo_x))
+            new_repo = Repository((chosen_x, int(rng.integers(1, 25))), int(rng.integers(100, 1001)))
             # For convenience later, repos is ordered by x pos. Following code sorts list.
             if repos is []:
                 repos.append(new_repo)
@@ -70,7 +70,7 @@ class TasepCircuitDispatcher(CircuitDispatcher):
 
         while not c.complete():
             # Pick entry node or active particle randomly
-            chosen = rng.choice(c.entry_nodes + c.particles, 1)[0]
+            chosen = rng.choice(c.entry_nodes + c.particles)
 
             # Deals with case of entry node
             if chosen.name == "node":
@@ -147,7 +147,7 @@ class TasepCircuitDispatcherGUI(TasepCircuitDispatcher):
                 self.play_time += rng.exponential(1/(option_size))
                 time.sleep(wait_factor)
                 # Pick entry node or active particle randomly
-                chosen = rng.choice(c.entry_nodes + c.particles, 1)[0]
+                chosen = rng.choice(c.entry_nodes + c.particles)
 
                 # Deals with case of entry node
                 if chosen.name == "node":
@@ -178,19 +178,17 @@ class TasepCircuitDispatcherGUI(TasepCircuitDispatcher):
                     else:
                         # Find next site to hop to
                         next_orientation = chosen.orientation
-                        if chosen.orientation == c.path_orientation[chosen.pos]:
+                        if next_orientation == c.path_orientation[chosen.pos]:
                             next_pos = tuple(rng.choice(c.path_space[chosen.pos]))
                             # Changing path at split
-                            if chosen.pos in c.splits:
-                                if next_pos in c.splits[chosen.pos]:
-                                    next_orientation = c.path_orientation[next_pos]
+                            if next_pos not in c.undercurrent_space[next_orientation]:
+                                next_orientation = c.path_orientation[next_pos]
 
                         else:
-                            next_pos = c.undercurrent_space[chosen.orientation][chosen.pos]
+                            next_pos = c.undercurrent_space[next_orientation][chosen.pos]
+
                         if c.in_repo(next_pos):
-                            # Repo could lead to undercurrent, in which case path_space empty
-                            if c.path_space[next_pos] != []:
-                                next_orientation = c.path_orientation[next_pos]
+                            next_orientation = c.path_orientation[next_pos]
                         # Hop to site if unoccupied
                         if self.pos_empty(next_pos, next_orientation):
                             chosen.pos = next_pos

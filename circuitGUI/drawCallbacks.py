@@ -4,8 +4,8 @@ import threading
 import genCallbacks
 
 global current_brush
-path_rec_count = 0
-sep_line_count = 0
+global c
+saved_hover_pos = None
 
 
 class RepeatTimer(threading.Timer):
@@ -77,11 +77,9 @@ def draw_mode():
     dpg.bind_item_handler_registry("path_node_bar", "path_brush_handler")
 
     with dpg.handler_registry():
-        dpg.add_mouse_move_handler(callback=cursor_move, tag="cursor_move")
+        dpg.add_mouse_move_handler(callback=brush_hover, tag="cursor_move")
 
-    dpg.add_item_handler_registry(tag="plot_register")
-    dpg.add_item_clicked_handler(callback=plot_click, parent="plot_register", tag="plot_handler")
-    dpg.bind_item_handler_registry("main_grid", "plot_register")
+    dpg.configure_item("plot_handler", callback=plot_click)
 
     dpg.add_button(label="Exit", width=200, height=30, parent="control",
                    tag="exit_draw_mode", callback=exit_draw_mode)
@@ -93,7 +91,7 @@ def plot_click():
     pos = (round(mouse_pos[0]), round(mouse_pos[1]))
 
     if current_brush == "path":
-        pass
+        enter_path_draw(pos)
     elif c.in_node(pos) or c.in_repo(pos):
         for node in c.entry_nodes + c.repos + c.exit_nodes:
             if pos == node.pos:
@@ -126,14 +124,54 @@ def plot_click():
                 dpg.draw_text(pos, 0, parent="main_grid", tag=f"repo_text_{pos}", size=0.5, color=(0, 250, 250))
                 enter_edit(new_repo)
 
+def path_click(sender, app_data, user_data):
+    global c, saved_hover_pos
+    #user_data is pos from which path would start if executed. saved_hover_pos is end pos of path that has been selected
 
-def cursor_move():
+    if saved_hover_pos[0] >= user_data[0] and saved_hover_pos != user_data:
+        if c.in_repo(saved_hover_pos) or c.in_node(saved_hover_pos):
+            path_executed = c.path_find(user_data, saved_hover_pos)
+            if path_executed:
+                path_elements = c.path_space
+                exit_path_draw()
+            else:
+                pass
+
+def brush_hover():
     if dpg.is_item_hovered("control"):
         for brush in ["repo", "exit", "entry", "path"]:
             if dpg.is_item_hovered(f"{brush}_node_bar"):
                 dpg.configure_item(f"{brush}_brush_rec", color=(200, 75, 200))
             else:
                 dpg.configure_item(f"{brush}_brush_rec", color=(0, 0, 0))
+
+
+def grid_hover(sender, app_data, user_data):
+    global saved_hover_pos, c
+
+    if dpg.is_item_hovered("main_grid"):
+        cursor_pos = dpg.get_plot_mouse_pos()
+        curr_pos = (round(cursor_pos[0]), round(cursor_pos[1]))
+        if curr_pos != saved_hover_pos:
+            dpg.delete_item("ind_rec")
+            saved_hover_pos = curr_pos
+
+
+            # Decision sequence for hover indicator (valid path or not)
+            if curr_pos[0] < user_data[0] or curr_pos == user_data:
+                dpg.draw_rectangle(pmin=curr_pos, pmax=curr_pos, parent="main_grid",
+                                   tag="ind_rec", color=(215, 0, 0))
+            elif not c.in_repo(curr_pos) and not c.in_node(curr_pos):
+                dpg.draw_rectangle(pmin=curr_pos, pmax=curr_pos, parent="main_grid",
+                                   tag="ind_rec", color=(215, 0, 0))
+            elif not c.path_find(user_data, curr_pos, hovering=True):
+                dpg.draw_rectangle(pmin=curr_pos, pmax=curr_pos, parent="main_grid",
+                                   tag="ind_rec", color=(215, 0, 0))
+            else:
+                dpg.draw_rectangle(pmin=curr_pos, pmax=curr_pos, parent="main_grid",
+                                   tag="ind_rec", color=(0, 215, 0))
+
+
 
 
 def brush_pick(sender, app_data, user_data):
@@ -154,6 +192,9 @@ def exit_draw_mode():
     for brush in ["repo", "exit", "entry", "path"]:
         dpg.delete_item(f"{brush}_brush_handler")
 
+    # Remove hover/click handlers for drawing
+    dpg.delete_item("cursor_move")
+
     dpg.add_button(label="Draw circuit", width=200, height=30,
                                  callback=draw_mode, tag="draw_circuit_button", parent="control")
     dpg.add_button(label="Generate circuit", width=200, height=30,
@@ -172,12 +213,62 @@ def enter_edit(node):
 
     # Render node-edit menu
     dpg.add_group(tag="node_edit_group", parent="control")
+    if node.name == "node":
+        dpg.add_spacer(parent="node_edit_group", height=20)
+        dpg.add_group(parent="node_edit_group", horizontal=True, tag="node_edit_slider")
+        dpg.add_text("Rate", parent="node_edit_slider")
+        dpg.add_spacer(parent="node_edit_slider", width=5)
+        dpg.add_spacer(parent="node_edit_group", height=20)
+        dpg.add_slider_float(parent="node_edit_slider", width=150, min_value=0.01, max_value=1, clamped=True,
+                           callback=rate_adjust, default_value=abs(node.rate), tag="rate_slider",user_data=node)
     dpg.add_button(label="Delete", width=200, height=30,
                    callback=node_delete, tag="node_delete", parent="node_edit_group", user_data=node)
     dpg.add_button(label="Back", width=200, height=30,
                    callback=exit_edit, tag="node_edit_back", parent="node_edit_group")
-    if node.name == "node":
-        pass
+
+def enter_path_draw(pos):
+    global saved_hover_pos
+    saved_hover_pos = pos
+    dpg.draw_rectangle(pmin=pos, pmax=pos, parent="main_grid",
+                       tag="ind_rec", color=(215, 0, 0))
+
+    # Hide existing menu
+    dpg.configure_item("brushes_menu", show=False)
+    dpg.configure_item("exit_draw_mode", show=False)
+
+    # change plot click and hover handler to deal with drawing paths
+    dpg.draw_rectangle(pmin=(-0.5, -0.5), pmax=(49.5, 25.5), parent="main_grid",
+                       fill=(255, 215, 0, 50), tag="active_brush_rec", thickness=0)
+    dpg.draw_rectangle(pmin=(pos[0]-0.65, pos[1]-0.65), pmax=(pos[0]+0.65, pos[1]+0.65), parent="main_grid",
+                       fill=(0, 0, 0, 0), tag="start_pos_rec", thickness=0.3, color=(0, 0, 0, 80))
+    dpg.configure_item("plot_handler", callback=path_click, user_data=pos)
+    dpg.configure_item("cursor_move", callback=grid_hover, user_data=pos)
+
+    # Render node-edit menu
+    dpg.add_group(tag="path_draw_group", parent="control")
+    dpg.add_text("You cannot draw paths to\nblank spaces on the grid."
+                 , parent="path_draw_group", indent=5)
+    dpg.add_spacer(parent="path_draw_group", height=10)
+    dpg.add_text("Paths cannot go left to\nright."
+                 , parent="path_draw_group", indent=5)
+    dpg.add_spacer(parent="path_draw_group", height=10)
+    dpg.add_button(label="Back", width=200, height=30,
+                   callback=exit_path_draw, tag="path_draw_exit", parent="path_draw_group")
+
+def exit_path_draw():
+    dpg.delete_item("path_draw_group")
+    dpg.delete_item("ind_rec")
+
+    # Change back click handler
+    dpg.delete_item("active_brush_rec")
+    dpg.delete_item("start_pos_rec")
+    dpg.configure_item("plot_handler", callback=plot_click, user_data=None)
+    dpg.configure_item("cursor_move", callback=brush_hover, user_data=None)
+
+    # Show brush menu
+    dpg.configure_item("brushes_menu", show=True)
+    dpg.configure_item("exit_draw_mode", show=True)
+
 
 def exit_edit():
     dpg.delete_item("node_edit_group")
@@ -188,6 +279,14 @@ def exit_edit():
 
     dpg.configure_item("brushes_menu", show=True)
     dpg.configure_item("exit_draw_mode", show=True)
+
+def rate_adjust(sender, app_data, user_data):
+    # New rate
+    new_rate = dpg.get_value(sender)
+    # Change rate
+    user_data.rate = (user_data.rate*new_rate)/abs(user_data.rate)
+    dpg.configure_item(f"node_text_{user_data.pos}", text=str(round(new_rate, 3)))
+
 
 
 def node_delete(sender, app_data, user_data):
@@ -209,6 +308,5 @@ def node_delete(sender, app_data, user_data):
         dpg.delete_item(f"node_text_{user_data.pos}")
     exit_edit()
 
-    print(c.body)
 
 

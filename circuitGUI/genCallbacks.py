@@ -20,6 +20,8 @@ def gen_circuit():
     dpg.delete_item("draw_circuit_button")
     dpg.add_text("Loading...", parent="control", tag="loading_text")
 
+    dpg.configure_item("plot_handler", callback=get_pos)
+
     # Create an instance of the TASEP circuit dispatcher object
     tcd = circuitOperations.TasepCircuitDispatcherGUI()
     # Method returns skeleton of generated circuit (skeleton because no paths yet generated)
@@ -48,6 +50,19 @@ def gen_circuit():
                    tag="gen_paths_button", callback=paths_gen)
     dpg.add_button(label="WIPE CIRCUIT", width=200, height=30, parent="control",
                    tag="circuit_wiper_button", callback=wipe_circuit)
+
+def get_pos():
+    global circuit
+    mouse_pos = dpg.get_plot_mouse_pos()
+    pos = (round(mouse_pos[0]), round(mouse_pos[1]))
+    print()
+    if pos in circuit.splits:
+        print(f"splits: {circuit.splits[pos]}")
+    print(f"path_space: {circuit.path_space[pos]}")
+    print(f"orientation: {circuit.path_orientation[pos]}")
+    for i in circuit.undercurrent_space:
+        if pos in circuit.undercurrent_space[i]:
+            print(f"undercurrent_space: {circuit.undercurrent_space[i][pos]}")
 
 
 def wipe_circuit():
@@ -128,8 +143,10 @@ def paths_gen():
         if path_elements[pos] != [] and (not circuit.in_repo(pos)) and (not circuit.in_node(pos)):
             # Set colour grading for different node orientations
             l = len(circuit.body)
-            o = int(circuit.path_orientation[pos])
-            col = ((o+1)*255/(l), 50, 100)
+            for i, n in enumerate(circuit.body):
+                if circuit.path_orientation[pos] == str(n.pos):
+                    break
+            col = ((i+1)*255/l, 50, 100)
 
             # Draw rectangle
             dpg.draw_rectangle(pmin=pos, pmax=pos, parent="main_grid", color=col,
@@ -156,12 +173,9 @@ def paths_gen():
                                 draw_sep_line(pos, a)
                                 sep_line_count += 1
                 # Fix case where undercurrent path feeds into repo but no line drawn
-                elif a in circuit.path_space[pos]:
-                    for i, n in enumerate(circuit.body):
-                        if a == n.pos:
-                            target_ori = str(i)
-                            break
-                    if circuit.path_orientation[pos] != target_ori:
+                elif a in path_elements[pos]:
+                    if circuit.path_orientation[pos] != str(a):
+                        print("again")
                         draw_sep_line(pos, a)
                         sep_line_count += 1
 

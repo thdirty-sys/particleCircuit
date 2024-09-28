@@ -62,7 +62,6 @@ class Circuit:
 
     def path_setup(self):
         self.current_obj = "-"
-
         self.path_orientation = {}
         self.path_space = {}
         self.splits = {}
@@ -70,8 +69,9 @@ class Circuit:
 
         self.particles = []
         self.undercurrent_space = {}
-        for i, n in enumerate(self.body):
-            self.undercurrent_space[str(i)] = {}
+        for n in self.body:
+            self.undercurrent_space[str(tuple(n.pos))] = {}
+        self.undercurrent_space['-'] = {}
 
     def wipe_paths(self):
         for y in range(26):
@@ -95,7 +95,7 @@ class Circuit:
         for node in self.entry_nodes + self.repos:
             pointer_pos = node.pos
             for connection in next_connections:
-                path = self.path_find(pointer_pos, connection)
+                path = self.path_find(pointer_pos, connection.pos)
                 if path:
                     break
             self.branch_path_construct(pointer_pos, 1, prev=self.path_orientation[connection.pos])
@@ -118,7 +118,7 @@ class Circuit:
             possible_connections = self.entry_nodes + self.repos[:current_ind]
             connection_queue = rng.choice(possible_connections, len(possible_connections), replace=False)
             for node in connection_queue:
-                path = self.path_find(node.pos, repo)
+                path = self.path_find(node.pos, repo.pos)
                 if path:
                     break
 
@@ -167,7 +167,7 @@ class Circuit:
         selected = rng.choice(available, no_selected, replace=False)
 
         for node in selected:
-            node_orientation = str(self.body.index(node))
+            node_orientation = str(node.pos)
             pointer_orientation = self.path_orientation[pointer_pos]
             if node_orientation != self.path_orientation[pointer_pos]:
                 # Select the second block along in current branch after the pointer_pos
@@ -184,7 +184,7 @@ class Circuit:
                     break
                 # If so generate new path and call recursion
                 else:
-                    path = self.path_find(pointer_pos, node)
+                    path = self.path_find(pointer_pos, node.pos)
                     if path:
                         for pos in self.path_space[pointer_pos]:
                             # Select path newly created
@@ -233,13 +233,15 @@ class Circuit:
     def in_node(self, pos):
         return self.in_entry_node(pos) or self.in_exit_node(pos)
 
-    def path_find(self, start, target):
-        target_x, target_y = target.pos
+    def path_find(self, start, target, hovering=False):
+        target_x, target_y = target
         start_x, start_y = start
         found = False
 
-
-        self.current_obj = str(self.body.index(target))
+        if self.in_repo(target) or self.in_node(target):
+            self.current_obj = str(target)
+        else:
+            self.current_obj = self.path_orientation[target]
 
 
         # Construct path
@@ -248,9 +250,10 @@ class Circuit:
                 pass
             else:
                 pos_sketch_lower = [start, (start_x, start_y - elbow_room), (target_x, start_y - elbow_room),
-                                    target.pos]
+                                    target]
                 if self.path_check(pos_sketch_lower):
-                    self.gen_path(pos_sketch_lower)
+                    if not hovering:
+                        self.gen_path(pos_sketch_lower)
                     found = True
                     break
 
@@ -258,9 +261,10 @@ class Circuit:
                 pass
             else:
                 pos_sketch_higher = [start, (start_x, start_y + elbow_room), (target_x, start_y + elbow_room),
-                                     target.pos]
+                                     target]
                 if self.path_check(pos_sketch_higher):
-                    self.gen_path(pos_sketch_higher)
+                    if not hovering:
+                        self.gen_path(pos_sketch_higher)
                     found = True
                     break
 
@@ -271,9 +275,10 @@ class Circuit:
                     pass
                 else:
                     pos_sketch_lower = [start, (start_x, start_y - elbow_room), (target_x, start_y - elbow_room),
-                                        target.pos]
+                                        target]
                     if self.path_check(pos_sketch_lower):
-                        self.gen_path(pos_sketch_lower)
+                        if not hovering:
+                            self.gen_path(pos_sketch_lower)
                         found = True
                         break
 
@@ -281,9 +286,10 @@ class Circuit:
                     pass
                 else:
                     pos_sketch_higher = [start, (start_x, start_y + elbow_room), (target_x, start_y + elbow_room),
-                                         target.pos]
+                                         target]
                     if self.path_check(pos_sketch_higher):
-                        self.gen_path(pos_sketch_higher)
+                        if not hovering:
+                            self.gen_path(pos_sketch_higher)
                         found = True
                         break
         return found

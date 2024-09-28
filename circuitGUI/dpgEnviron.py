@@ -4,6 +4,9 @@ import drawCallbacks as dcallbacks
 
 dim_x, dim_y = 1880, 900
 
+def nothing():
+    pass
+
 dpg.create_context()
 dpg.create_viewport(title="tasepC", resizable=False)
 dpg.configure_viewport(0, x_pos=0, y_pos=0, width=dim_x, height=dim_y)
@@ -65,7 +68,9 @@ with dpg.window(tag="primary_window"):
             dpg.add_spacer(height=15)
             dpg.add_button(label="Close", width=75, callback=lambda: dpg.configure_item("help_window", show=False))
 
-
+        dpg.add_item_handler_registry(tag="plot_register")
+        dpg.add_item_clicked_handler(callback=nothing, parent="plot_register", tag="plot_handler")
+        dpg.bind_item_handler_registry("main_grid", "plot_register")
 
             # series belong to a y axi
 dpg.setup_dearpygui()

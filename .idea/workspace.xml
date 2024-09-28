@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="Continued work with draw functionality. Brush menu has proper callback functions attributed and working. Approaching functional">
+    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="Nodes can be placed and edit menu added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/circuitGUI/dpgEnviron.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitGUI/dpgEnviron.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/circuitGUI/drawCallbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitGUI/drawCallbacks.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/circuitGUI/genCallbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitGUI/genCallbacks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/circuitOperations/circuitDispatchers.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitOperations/circuitDispatchers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/circuitOperations/particleObjs.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitOperations/particleObjs.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -260,15 +262,15 @@
       <workItem from="1726957189768" duration="1942000" />
       <workItem from="1726959174468" duration="54000" />
       <workItem from="1726961548247" duration="4572000" />
-      <workItem from="1727040680669" duration="9279000" />
-    </task>
-    <task id="LOCAL-00009" summary="Fixed bug that uni-directional path generation">
-      <option name="closed" value="true" />
-      <created>1722196961669</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1722196961669</updated>
+      <workItem from="1727040680669" duration="9310000" />
+      <workItem from="1727088023175" duration="868000" />
+      <workItem from="1727095860464" duration="2671000" />
+      <workItem from="1727105605454" duration="1770000" />
+      <workItem from="1727117332088" duration="3231000" />
+      <workItem from="1727130242358" duration="9206000" />
+      <workItem from="1727184766773" duration="1510000" />
+      <workItem from="1727353120318" duration="8996000" />
+      <workItem from="1727544921987" duration="3184000" />
     </task>
     <task id="LOCAL-00010" summary="Fixed bug that wouldn't draw vertical sections of path">
       <option name="closed" value="true" />
@@ -654,13 +656,26 @@
       <option name="project" value="LOCAL" />
       <updated>1726968369742</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="Nodes can be placed and edit menu added">
+      <option name="closed" value="true" />
+      <created>1727054324923</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1727054324923</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="d2117c07-f716-4cb6-81e7-956c58a58491" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -680,11 +695,15 @@
             </State>
           </value>
         </entry>
+        <entry key="d2117c07-f716-4cb6-81e7-956c58a58491">
+          <value>
+            <State />
+          </value>
+        </entry>
       </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added seperation lines for better visibility" />
     <MESSAGE value="Two-step attempt for path_find" />
     <MESSAGE value="Draw sep lines for nodes" />
     <MESSAGE value="Added node annotations" />
@@ -709,7 +728,8 @@
     <MESSAGE value="Change viewport name" />
     <MESSAGE value="Introduced draw mode to UI" />
     <MESSAGE value="Continued work with draw functionality. Brush menu has proper callback functions attributed and working. Approaching functional" />
-    <option name="LAST_COMMIT_MESSAGE" value="Continued work with draw functionality. Brush menu has proper callback functions attributed and working. Approaching functional" />
+    <MESSAGE value="Nodes can be placed and edit menu added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nodes can be placed and edit menu added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -719,6 +739,11 @@
           <line>8</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/circuitGUI/drawCallbacks.py</url>
+          <line>111</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -727,6 +752,6 @@
     <SUITE FILE_PATH="coverage/particleCircuit$dearpygui.coverage" NAME="dearpygui Coverage Results" MODIFIED="1723770350723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.venv/Lib/site-packages/dearpygui" />
     <SUITE FILE_PATH="coverage/particleCircuit$repositoryObj.coverage" NAME="repositoryObj Coverage Results" MODIFIED="1721698686405" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/particleCircuit$main.coverage" NAME="main Coverage Results" MODIFIED="1721701372082" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/particleCircuit$dpgEnviron.coverage" NAME="dpgEnviron Coverage Results" MODIFIED="1727054285813" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/particleCircuit$dpgEnviron.coverage" NAME="dpgEnviron Coverage Results" MODIFIED="1727548044611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
