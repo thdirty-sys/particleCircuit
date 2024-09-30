@@ -2,6 +2,7 @@ import dearpygui.dearpygui as dpg
 import circuitOperations
 import threading
 import genCallbacks
+import interfaceObjects
 
 global current_brush
 global c
@@ -15,7 +16,7 @@ class RepeatTimer(threading.Timer):
 
 
 def draw_mode():
-    global current_brush, c
+    global current_brush, c, circuit_image
     current_brush = "off"
 
     dpg.delete_item("gen_circuit_button")
@@ -58,6 +59,7 @@ def draw_mode():
 
     tcd_draw = circuitOperations.TasepCircuitDispatcherGUI()
     c = circuitOperations.Circuit([], [], [])
+    circuit_image = interfaceObjects.CircuitImage(c)
 
     with dpg.item_handler_registry(tag="entry_brush_handler") as handler:
         dpg.add_item_clicked_handler(callback=brush_pick, user_data="entry")
@@ -125,7 +127,7 @@ def plot_click():
                 enter_edit(new_repo)
 
 def path_click(sender, app_data, user_data):
-    global c, saved_hover_pos
+    global c, saved_hover_pos, circuit_image
     #user_data is pos from which path would start if executed. saved_hover_pos is end pos of path that has been selected
 
     if saved_hover_pos[0] >= user_data[0] and saved_hover_pos != user_data:
@@ -133,6 +135,7 @@ def path_click(sender, app_data, user_data):
             path_executed = c.path_find(user_data, saved_hover_pos)
             if path_executed:
                 path_elements = c.path_space
+                circuit_image.show_paths()
                 exit_path_draw()
             else:
                 pass
