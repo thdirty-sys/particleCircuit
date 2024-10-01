@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="Reconfigured circuit object so that undercurrent_space is no longer a dictionary of dictionaries. Path drawing now working in terms of displaying">
+    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="Cannot enter path draw mode by clicking exit nodes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/circuitGUI/drawCallbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitGUI/drawCallbacks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/circuitGUI/interfaceObjects.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitGUI/interfaceObjects.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/circuitOperations/circuitDispatchers.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitOperations/circuitDispatchers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/circuitOperations/particleObjs.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitOperations/particleObjs.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -268,15 +271,8 @@
       <workItem from="1727353120318" duration="8996000" />
       <workItem from="1727544921987" duration="6302000" />
       <workItem from="1727565419981" duration="605000" />
-      <workItem from="1727727426977" duration="11400000" />
-    </task>
-    <task id="LOCAL-00013" summary="Begun recursive path generation">
-      <option name="closed" value="true" />
-      <created>1722216337738</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1722216337738</updated>
+      <workItem from="1727727426977" duration="12177000" />
+      <workItem from="1727807441760" duration="5675000" />
     </task>
     <task id="LOCAL-00014" summary="Added orientation space and perfected path finding.">
       <option name="closed" value="true" />
@@ -662,7 +658,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727743012735</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="Cannot enter path draw mode by clicking exit nodes">
+      <option name="closed" value="true" />
+      <created>1727743880466</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1727743880466</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -702,7 +706,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Made viewport un-resizable" />
     <MESSAGE value="Added tasep pathing for particles + GUI version" />
     <MESSAGE value="debugging" />
     <MESSAGE value="Completed TASEP routing through. Debugging in process" />
@@ -727,7 +730,8 @@
     <MESSAGE value="Added hovering path brush and hover indicator added for brush, along with 'path_draw_mode'" />
     <MESSAGE value="Brought the UI image of the circuit into a general object in 'interfaceObjects' file. Code changed to accommodate this. Path draw almost functioning." />
     <MESSAGE value="Reconfigured circuit object so that undercurrent_space is no longer a dictionary of dictionaries. Path drawing now working in terms of displaying" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reconfigured circuit object so that undercurrent_space is no longer a dictionary of dictionaries. Path drawing now working in terms of displaying" />
+    <MESSAGE value="Cannot enter path draw mode by clicking exit nodes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cannot enter path draw mode by clicking exit nodes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -750,6 +754,6 @@
     <SUITE FILE_PATH="coverage/particleCircuit$dearpygui.coverage" NAME="dearpygui Coverage Results" MODIFIED="1723770350723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.venv/Lib/site-packages/dearpygui" />
     <SUITE FILE_PATH="coverage/particleCircuit$repositoryObj.coverage" NAME="repositoryObj Coverage Results" MODIFIED="1721698686405" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/particleCircuit$main.coverage" NAME="main Coverage Results" MODIFIED="1721701372082" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/particleCircuit$dpgEnviron.coverage" NAME="dpgEnviron Coverage Results" MODIFIED="1727743773557" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/particleCircuit$dpgEnviron.coverage" NAME="dpgEnviron Coverage Results" MODIFIED="1727821363756" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

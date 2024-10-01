@@ -110,7 +110,7 @@ def plot_click(sender, app_data):
             match current_brush:
                 case "entry":
                     new_entry = circuitOperations.Node(pos, 0.01)
-                    c.entry_nodes.append(new_entry)
+                    c.add_node(new_entry)
                     dpg.draw_rectangle(pmin=pos, pmax=pos, parent="main_grid",
                                        color=(233, 240, 50), tag=f"node_{pos}")
                     dpg.draw_text((pos[0] - 0.5, pos[1] + 0.5), "0.01", parent="main_grid",
@@ -119,7 +119,7 @@ def plot_click(sender, app_data):
 
                 case "exit":
                     new_exit = circuitOperations.Node(pos, -0.01)
-                    c.exit_nodes.append(new_exit)
+                    c.add_node(new_exit)
                     dpg.draw_rectangle(pmin=pos, pmax=pos, parent="main_grid",
                                        color=(23, 240, 250), tag=f"node_{pos}")
                     dpg.draw_text((pos[0] - 0.5, pos[1] + 0.5), "0.01", parent="main_grid",
@@ -128,7 +128,7 @@ def plot_click(sender, app_data):
 
                 case "repo":
                     new_repo = circuitOperations.Repository(pos, 100)
-                    c.repos.append(new_repo)
+                    c.add_repo(new_repo)
                     dpg.draw_rectangle(pmin=pos, pmax=pos, parent="main_grid",
                                        color=(233, 12, 50), tag=f"repo_{pos}")
                     dpg.draw_text(pos, 0, parent="main_grid", tag=f"repo_text_{pos}", size=0.5, color=(0, 250, 250))
@@ -147,7 +147,7 @@ def path_click(sender, app_data, user_data):
     #user_data is pos from which path would start if executed. saved_hover_pos is end pos of path that has been selected
 
     if saved_hover_pos[0] >= user_data[0] and saved_hover_pos != user_data:
-        if c.in_repo(saved_hover_pos) or c.in_node(saved_hover_pos):
+        if c.in_repo(saved_hover_pos) or c.in_node(saved_hover_pos) or c.path_space[saved_hover_pos] != []:
             path_executed = c.path_find(user_data, saved_hover_pos)
             if path_executed:
                 path_elements = c.path_space
@@ -180,7 +180,7 @@ def grid_hover(sender, app_data, user_data):
             if curr_pos[0] < user_data[0] or curr_pos == user_data:
                 dpg.draw_rectangle(pmin=curr_pos, pmax=curr_pos, parent="main_grid",
                                    tag="ind_rec", color=(215, 0, 0))
-            elif not c.in_repo(curr_pos) and not c.in_node(curr_pos):
+            elif not c.in_repo(curr_pos) and not c.in_node(curr_pos) and c.path_space[curr_pos] == []:
                 dpg.draw_rectangle(pmin=curr_pos, pmax=curr_pos, parent="main_grid",
                                    tag="ind_rec", color=(215, 0, 0))
             elif not c.path_find(user_data, curr_pos, hovering=True):
@@ -313,15 +313,12 @@ def node_delete(sender, app_data, user_data):
 
     # 'user_data' is node to be deleted
     if user_data.name == "repo":
-        c.repos.remove(user_data)
+        c.delete_repo(user_data)
         # Remove repo from plot
         dpg.delete_item(f"repo_{user_data.pos}")
         dpg.delete_item(f"repo_text_{user_data.pos}")
     else:
-        if user_data.rate < 0:
-            c.exit_nodes.remove(user_data)
-        else:
-            c.entry_nodes.remove(user_data)
+        c.delete_node(user_data)
         # Remove node from plot
         dpg.delete_item(f"node_{user_data.pos}")
         dpg.delete_item(f"node_text_{user_data.pos}")

@@ -58,6 +58,9 @@ class Circuit:
         self.entry_nodes = ingress
         self.exit_nodes = egress
         self.body = self.repos + self.exit_nodes
+        self.node_positions = {}
+        for node in self.entry_nodes + self.body:
+            self.node_positions[node.pos] = node
         self.path_setup()
 
     def path_setup(self):
@@ -65,10 +68,37 @@ class Circuit:
         self.path_orientation = {}
         self.path_space = {}
         self.splits = {}
-        self.wipe_paths()
-
         self.particles = []
         self.undercurrent_space = {}
+        self.undercurrent_orientation = {}
+
+        self.wipe_paths()
+
+    def add_node(self, node):
+        if node.rate >= 0:
+            self.entry_nodes.append(node)
+        else:
+            self.exit_nodes.append(node)
+            self.body = self.repos + self.exit_nodes
+        self.node_positions[node.pos] = node
+
+    def add_repo(self, repo):
+        self.repos.append(repo)
+        self.body = self.repos + self.exit_nodes
+        self.node_positions[repo.pos] = repo
+
+    def delete_node(self, node):
+        if node.rate >= 0:
+            self.entry_nodes.remove(node)
+        else:
+            self.exit_nodes.remove(node)
+            self.body = self.repos + self.exit_nodes
+        del self.node_positions[node.pos]
+
+    def delete_repo(self, repo):
+        self.repos.remove(repo)
+        self.body = self.repos + self.exit_nodes
+        del self.node_positions[repo.pos]
 
     def wipe_paths(self):
         for y in range(26):
@@ -305,6 +335,7 @@ class Circuit:
                                 self.path_space[(x, prev_y)].append((x + 1, prev_y))
                             else:
                                 self.undercurrent_space[(x, prev_y)] = (x + 1, prev_y)
+                                self.undercurrent_orientation[(x, prev_y)] = self.current_obj
                         else:
                             self.path_orientation[(x, prev_y)] = self.current_obj
                             self.path_space[(x, prev_y)].append((x + 1, prev_y))
@@ -319,6 +350,7 @@ class Circuit:
                                     self.path_space[(prev_x, y)].append((prev_x, y - 1))
                                 else:
                                     self.undercurrent_space[(prev_x, y)] = (prev_x, y - 1)
+                                    self.undercurrent_orientation[(prev_x, y)] = self.current_obj
                             else:
                                 self.path_orientation[(prev_x, y)] = self.current_obj
                                 self.path_space[(prev_x, y)].append((prev_x, y - 1))
@@ -331,6 +363,7 @@ class Circuit:
                                     self.path_space[(prev_x, y)].append((prev_x, y + 1))
                                 else:
                                     self.undercurrent_space[(prev_x, y)] = (prev_x, y + 1)
+                                    self.undercurrent_orientation[(prev_x, y)] = self.current_obj
                             else:
                                 self.path_orientation[(prev_x, y)] = self.current_obj
                                 self.path_space[(prev_x, y)].append((prev_x, y + 1))

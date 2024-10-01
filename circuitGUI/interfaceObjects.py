@@ -31,7 +31,7 @@ class CircuitImage():
         path_space = circuit.path_space
         for pos in path_space:
             if path_space[pos] != [] and (not circuit.in_repo(pos)) and (not circuit.in_node(pos)):
-                # Setcolour grading for different node orientations
+                # Set colour grading for different node orientations
                 l = len(circuit.repos + circuit.exit_nodes)
                 for i, n in enumerate(circuit.repos + circuit.exit_nodes):
                     if circuit.path_orientation[pos] == str(n.pos):

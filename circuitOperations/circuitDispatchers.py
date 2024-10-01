@@ -176,23 +176,30 @@ class TasepCircuitDispatcherGUI(TasepCircuitDispatcher):
                             c.particles.remove(chosen)
                             dpg.delete_item("particle" + str(chosen.no))
                     else:
-                        # Find next site to hop to
-                        next_orientation = chosen.orientation
-                        if next_orientation == c.path_orientation[chosen.pos]:
-                            next_pos = tuple(rng.choice(c.path_space[chosen.pos]))
-                            # Changing path at split
-                            if next_pos not in c.undercurrent_space:
-                                next_orientation = c.path_orientation[next_pos]
 
+                        ori = chosen.orientation
+                        # The following calculates the next pos.
+                        # If not in undercurrent, next pos is randomly selected. Otherwise it is determinate.
+                        # Case when chosen particle is NOT in undercurrent
+                        if chosen.orientation == c.path_orientation[chosen.pos]:
+                            next_pos = tuple(rng.choice(c.path_space[chosen.pos]))
+                            # If next pos is not undercurrent pos, then change ori since we have split
+                            if next_pos not in c.undercurrent_space:
+                                ori = c.path_orientation[next_pos]
+                            # If next pos IS undercurrent, but the undercurrent is not of the correct orientation
+                            # do the same.
+                            elif ori != c.undercurrent_orientation[next_pos]:
+                                ori = c.path_orientation[next_pos]
+                        # Case when chosen particle IS in undercurrent
                         else:
                             next_pos = c.undercurrent_space[chosen.pos]
 
                         if c.in_repo(next_pos):
-                            next_orientation = c.path_orientation[next_pos]
+                            ori = c.path_orientation[next_pos]
                         # Hop to site if unoccupied
-                        if self.pos_empty(next_pos, next_orientation):
+                        if self.pos_empty(next_pos, ori):
                             chosen.pos = next_pos
-                            chosen.orientation = next_orientation
+                            chosen.orientation = ori
                             dpg.delete_item("particle" + str(chosen.no))
                             if chosen.orientation == c.path_orientation[next_pos] or c.in_exit_node(next_pos):
                                 if chosen.no % 10 == 0 and self.debug_particle:
