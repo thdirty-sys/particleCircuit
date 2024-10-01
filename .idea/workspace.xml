@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="Added hovering path brush and hover indicator added for brush, along with 'path_draw_mode'">
-      <change afterPath="$PROJECT_DIR$/circuitGUI/interfaceObjects.py" afterDir="false" />
+    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="Brought the UI image of the circuit into a general object in 'interfaceObjects' file. Code changed to accommodate this. Path draw almost functioning.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/circuitGUI/drawCallbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitGUI/drawCallbacks.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/circuitGUI/genCallbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitGUI/genCallbacks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/circuitOperations/circuitDispatchers.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitOperations/circuitDispatchers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/circuitOperations/particleObjs.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitOperations/particleObjs.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -270,15 +270,7 @@
       <workItem from="1727353120318" duration="8996000" />
       <workItem from="1727544921987" duration="6302000" />
       <workItem from="1727565419981" duration="605000" />
-      <workItem from="1727727426977" duration="5599000" />
-    </task>
-    <task id="LOCAL-00011" summary="Fixed pointer-splitting bug">
-      <option name="closed" value="true" />
-      <created>1722208892953</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1722208892953</updated>
+      <workItem from="1727727426977" duration="10385000" />
     </task>
     <task id="LOCAL-00012" summary="Fixed pointer-splitting bug">
       <option name="closed" value="true" />
@@ -664,7 +656,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727548574764</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="Brought the UI image of the circuit into a general object in 'interfaceObjects' file. Code changed to accommodate this. Path draw almost functioning.">
+      <option name="closed" value="true" />
+      <created>1727737904758</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1727737904758</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -704,7 +704,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Draw sep lines for nodes" />
     <MESSAGE value="Added node annotations" />
     <MESSAGE value="Made viewport un-resizable" />
     <MESSAGE value="Added tasep pathing for particles + GUI version" />
@@ -729,7 +728,8 @@
     <MESSAGE value="Continued work with draw functionality. Brush menu has proper callback functions attributed and working. Approaching functional" />
     <MESSAGE value="Nodes can be placed and edit menu added" />
     <MESSAGE value="Added hovering path brush and hover indicator added for brush, along with 'path_draw_mode'" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added hovering path brush and hover indicator added for brush, along with 'path_draw_mode'" />
+    <MESSAGE value="Brought the UI image of the circuit into a general object in 'interfaceObjects' file. Code changed to accommodate this. Path draw almost functioning." />
+    <option name="LAST_COMMIT_MESSAGE" value="Brought the UI image of the circuit into a general object in 'interfaceObjects' file. Code changed to accommodate this. Path draw almost functioning." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -752,6 +752,6 @@
     <SUITE FILE_PATH="coverage/particleCircuit$dearpygui.coverage" NAME="dearpygui Coverage Results" MODIFIED="1723770350723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.venv/Lib/site-packages/dearpygui" />
     <SUITE FILE_PATH="coverage/particleCircuit$repositoryObj.coverage" NAME="repositoryObj Coverage Results" MODIFIED="1721698686405" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/particleCircuit$main.coverage" NAME="main Coverage Results" MODIFIED="1721701372082" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/particleCircuit$dpgEnviron.coverage" NAME="dpgEnviron Coverage Results" MODIFIED="1727737356221" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/particleCircuit$dpgEnviron.coverage" NAME="dpgEnviron Coverage Results" MODIFIED="1727742829120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

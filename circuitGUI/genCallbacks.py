@@ -45,9 +45,8 @@ def get_pos():
         print(f"splits: {circuit.splits[pos]}")
     print(f"path_space: {circuit.path_space[pos]}")
     print(f"orientation: {circuit.path_orientation[pos]}")
-    for i in circuit.undercurrent_space:
-        if pos in circuit.undercurrent_space[i]:
-            print(f"undercurrent_space: {circuit.undercurrent_space[i][pos]}")
+    if pos in circuit.undercurrent_space:
+        print(f"undercurrent_space: {circuit.undercurrent_space[pos]}")
 
 
 def wipe_circuit():

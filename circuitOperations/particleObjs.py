@@ -69,9 +69,6 @@ class Circuit:
 
         self.particles = []
         self.undercurrent_space = {}
-        for n in self.body:
-            self.undercurrent_space[str(tuple(n.pos))] = {}
-        self.undercurrent_space['-'] = {}
 
     def wipe_paths(self):
         for y in range(26):
@@ -127,7 +124,7 @@ class Circuit:
             self.splits[node.pos] = self.path_space[node.pos]
 
         # Clean out unnecessary routing covered by undercurrent dictionary
-        for pos in self.path_space:
+        '''for pos in self.path_space:
             for p in self.path_space[pos]:
                 if self.path_orientation[p] != self.path_orientation[pos]:
                     if not self.in_repo(p) and not self.in_exit_node(p):
@@ -137,7 +134,7 @@ class Circuit:
                                     self.path_space[pos].remove(p)
                         else:
                             if p not in self.undercurrent_space[self.path_orientation[pos]]:
-                                self.path_space[pos].remove(p)
+                                self.path_space[pos].remove(p)'''
         self.path_orientation[self.entry_nodes[0].pos] = "-"
 
         for repo in self.repos:
@@ -190,7 +187,7 @@ class Circuit:
                             # Select path newly created
                             if self.path_orientation[pos] == node_orientation:
                                 # Extra condition for fixing undercurrent bug
-                                if pos not in self.undercurrent_space[self.path_orientation[pointer_pos]]:
+                                if pos not in self.undercurrent_space:
                                     if pointer_pos in self.splits:
                                         self.splits[pointer_pos].append(pos)
                                     else:
@@ -307,7 +304,7 @@ class Circuit:
                             if x == prev_x and (prev_x, prev_y) == path_sketch[0]:
                                 self.path_space[(x, prev_y)].append((x + 1, prev_y))
                             else:
-                                self.undercurrent_space[self.current_obj][(x, prev_y)] = (x + 1, prev_y)
+                                self.undercurrent_space[(x, prev_y)] = (x + 1, prev_y)
                         else:
                             self.path_orientation[(x, prev_y)] = self.current_obj
                             self.path_space[(x, prev_y)].append((x + 1, prev_y))
@@ -321,7 +318,7 @@ class Circuit:
                                 if y == prev_y and (prev_x, prev_y) == path_sketch[0]:
                                     self.path_space[(prev_x, y)].append((prev_x, y - 1))
                                 else:
-                                    self.undercurrent_space[self.current_obj][(prev_x, y)] = (prev_x, y - 1)
+                                    self.undercurrent_space[(prev_x, y)] = (prev_x, y - 1)
                             else:
                                 self.path_orientation[(prev_x, y)] = self.current_obj
                                 self.path_space[(prev_x, y)].append((prev_x, y - 1))
@@ -333,7 +330,7 @@ class Circuit:
                                 if y == prev_y and (prev_x, prev_y) == path_sketch[0]:
                                     self.path_space[(prev_x, y)].append((prev_x, y + 1))
                                 else:
-                                    self.undercurrent_space[self.current_obj][(prev_x, y)] = (prev_x, y + 1)
+                                    self.undercurrent_space[(prev_x, y)] = (prev_x, y + 1)
                             else:
                                 self.path_orientation[(prev_x, y)] = self.current_obj
                                 self.path_space[(prev_x, y)].append((prev_x, y + 1))
