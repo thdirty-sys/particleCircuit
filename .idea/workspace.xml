@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="Added undercurrent orientation and proper node/repo delete/add methods for circuit object. Beginning to phase out splits attribute">
+    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="splits attribute for circuit object made redundant and removed">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/circuitGUI/interfaceObjects.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitGUI/interfaceObjects.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/circuitOperations/circuitDispatchers.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitOperations/circuitDispatchers.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -268,15 +270,7 @@
       <workItem from="1727544921987" duration="6302000" />
       <workItem from="1727565419981" duration="605000" />
       <workItem from="1727727426977" duration="12177000" />
-      <workItem from="1727807441760" duration="7313000" />
-    </task>
-    <task id="LOCAL-00015" summary="Dramatic changes and improvements to path generation.">
-      <option name="closed" value="true" />
-      <created>1722223342222</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1722223342222</updated>
+      <workItem from="1727807441760" duration="8332000" />
     </task>
     <task id="LOCAL-00016" summary="Made it so that repos must have an exit path">
       <option name="closed" value="true" />
@@ -662,7 +656,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727822211789</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="splits attribute for circuit object made redundant and removed">
+      <option name="closed" value="true" />
+      <created>1727823492270</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1727823492270</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -702,7 +704,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="debugging" />
     <MESSAGE value="Completed TASEP routing through. Debugging in process" />
     <MESSAGE value="Completed debugging for GUI version of path-routing" />
     <MESSAGE value="Remove print statements" />
@@ -727,7 +728,8 @@
     <MESSAGE value="Reconfigured circuit object so that undercurrent_space is no longer a dictionary of dictionaries. Path drawing now working in terms of displaying" />
     <MESSAGE value="Cannot enter path draw mode by clicking exit nodes" />
     <MESSAGE value="Added undercurrent orientation and proper node/repo delete/add methods for circuit object. Beginning to phase out splits attribute" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added undercurrent orientation and proper node/repo delete/add methods for circuit object. Beginning to phase out splits attribute" />
+    <MESSAGE value="splits attribute for circuit object made redundant and removed" />
+    <option name="LAST_COMMIT_MESSAGE" value="splits attribute for circuit object made redundant and removed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -750,6 +752,6 @@
     <SUITE FILE_PATH="coverage/particleCircuit$dearpygui.coverage" NAME="dearpygui Coverage Results" MODIFIED="1723770350723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.venv/Lib/site-packages/dearpygui" />
     <SUITE FILE_PATH="coverage/particleCircuit$repositoryObj.coverage" NAME="repositoryObj Coverage Results" MODIFIED="1721698686405" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/particleCircuit$main.coverage" NAME="main Coverage Results" MODIFIED="1721701372082" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/particleCircuit$dpgEnviron.coverage" NAME="dpgEnviron Coverage Results" MODIFIED="1727823190231" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/particleCircuit$dpgEnviron.coverage" NAME="dpgEnviron Coverage Results" MODIFIED="1727824043319" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

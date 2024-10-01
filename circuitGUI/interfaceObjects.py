@@ -50,19 +50,13 @@ class CircuitImage():
                         if a not in path_space[pos] and pos not in path_space[a]:
                             self.draw_sep_line(pos, a)
                             self.sep_line_count += 1
-                        # Otherwise, if their orientations aren't the same...
+                        # Otherwise, draw line their orientations aren't the same and it isnt a branch splitting...
                         elif circuit.path_orientation[pos] != circuit.path_orientation[a]:
                             if a in path_space[pos]:
                                 if a in circuit.undercurrent_space:
                                     if circuit.undercurrent_orientation[a] == circuit.path_orientation[pos]:
                                         self.draw_sep_line(pos, a)
                                         self.sep_line_count += 1
-                    # Fix case where undercurrent path feeds into repo but no line drawn
-                    elif a in path_space[pos]:
-                        if circuit.path_orientation[pos] != str(a):
-                            print("again")
-                            self.draw_sep_line(pos, a)
-                            self.sep_line_count += 1
 
         # Deal with sep lines for nodes
         for node in circuit.entry_nodes + circuit.body:

@@ -170,7 +170,7 @@ class TasepCircuitDispatcherGUI(TasepCircuitDispatcher):
                                 chosen.take(self.play_time)
 
                 if chosen.name == "particle":
-                    #If in exit node we take off the circuit with p. rate
+                    # If in exit node we take off the circuit with p. rate
                     if c.in_exit_node(chosen.pos):
                         if rng.random() <= -c.exit_nodes[0].rate:
                             c.particles.remove(chosen)
