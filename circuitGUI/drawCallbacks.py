@@ -135,8 +135,6 @@ def plot_click(sender, app_data):
                     enter_edit(new_repo)
     else:
         print()
-        if pos in c.splits:
-            print(f"splits: {c.splits[pos]}")
         print(f"path_space: {c.path_space[pos]}")
         print(f"orientation: {c.path_orientation[pos]}")
         if pos in c.undercurrent_space:

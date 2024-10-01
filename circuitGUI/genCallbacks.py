@@ -41,8 +41,6 @@ def get_pos():
     mouse_pos = dpg.get_plot_mouse_pos()
     pos = (round(mouse_pos[0]), round(mouse_pos[1]))
     print()
-    if pos in circuit.splits:
-        print(f"splits: {circuit.splits[pos]}")
     print(f"path_space: {circuit.path_space[pos]}")
     print(f"orientation: {circuit.path_orientation[pos]}")
     if pos in circuit.undercurrent_space:

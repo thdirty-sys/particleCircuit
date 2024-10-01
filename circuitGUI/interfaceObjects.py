@@ -46,22 +46,17 @@ class CircuitImage():
                 adjacent = self.valid_adjacents(pos)
                 for a in adjacent:
                     if not circuit.in_repo(a) and not circuit.in_node(a):
+                        # Draw line between positions if they don't interact in any way
                         if a not in path_space[pos] and pos not in path_space[a]:
                             self.draw_sep_line(pos, a)
                             self.sep_line_count += 1
-                        else:
-                            if circuit.path_orientation[pos] != circuit.path_orientation[a]:
-                                if pos in circuit.splits:
-                                    if a not in circuit.splits[pos]:
+                        # Otherwise, if their orientations aren't the same...
+                        elif circuit.path_orientation[pos] != circuit.path_orientation[a]:
+                            if a in path_space[pos]:
+                                if a in circuit.undercurrent_space:
+                                    if circuit.undercurrent_orientation[a] == circuit.path_orientation[pos]:
                                         self.draw_sep_line(pos, a)
                                         self.sep_line_count += 1
-                                elif a in circuit.splits:
-                                    if pos not in circuit.splits[a]:
-                                        self.draw_sep_line(pos, a)
-                                        self.sep_line_count += 1
-                                else:
-                                    self.draw_sep_line(pos, a)
-                                    self.sep_line_count += 1
                     # Fix case where undercurrent path feeds into repo but no line drawn
                     elif a in path_space[pos]:
                         if circuit.path_orientation[pos] != str(a):

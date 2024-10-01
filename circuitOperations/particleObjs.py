@@ -67,7 +67,6 @@ class Circuit:
         self.current_obj = "-"
         self.path_orientation = {}
         self.path_space = {}
-        self.splits = {}
         self.particles = []
         self.undercurrent_space = {}
         self.undercurrent_orientation = {}
@@ -149,9 +148,6 @@ class Circuit:
                 if path:
                     break
 
-        # Make sure our splits dictionary is up-to-date with splits at repos/entry nodes
-        for node in self.entry_nodes + self.repos:
-            self.splits[node.pos] = self.path_space[node.pos]
 
         # Clean out unnecessary routing covered by undercurrent dictionary
         '''for pos in self.path_space:
@@ -218,10 +214,6 @@ class Circuit:
                             if self.path_orientation[pos] == node_orientation:
                                 # Extra condition for fixing undercurrent bug
                                 if pos not in self.undercurrent_space:
-                                    if pointer_pos in self.splits:
-                                        self.splits[pointer_pos].append(pos)
-                                    else:
-                                        self.splits[pointer_pos] = [pos]
                                     self.branch_path_construct(pos, p / 2, prev=pointer_orientation)
                                     break
 
