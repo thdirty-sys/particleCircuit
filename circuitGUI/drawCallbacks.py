@@ -87,44 +87,60 @@ def draw_mode():
                    tag="exit_draw_mode", callback=exit_draw_mode)
 
 
-def plot_click():
+def plot_click(sender, app_data):
     global current_brush, c
     mouse_pos = dpg.get_plot_mouse_pos()
     pos = (round(mouse_pos[0]), round(mouse_pos[1]))
 
-    if current_brush == "path":
-        enter_path_draw(pos)
-    elif c.in_node(pos) or c.in_repo(pos):
-        for node in c.entry_nodes + c.repos + c.exit_nodes:
-            if pos == node.pos:
-                enter_edit(node)
-    elif True:
-        match current_brush:
-            case "entry":
-                new_entry = circuitOperations.Node(pos, 0.01)
-                c.entry_nodes.append(new_entry)
-                dpg.draw_rectangle(pmin=pos, pmax=pos, parent="main_grid",
-                                   color=(233, 240, 50), tag=f"node_{pos}")
-                dpg.draw_text((pos[0] - 0.5, pos[1] + 0.5), "0.01", parent="main_grid",
-                              tag=f"node_text_{pos}", size=0.35, color=(0, 0, 0))
-                enter_edit(new_entry)
+    if app_data[0] == 0:
+        if current_brush == "path":
+            # Check clicked pos is not exit node
+            for n in c.exit_nodes:
+                if n.pos == pos:
+                    break
+            else:
+                # If not exit node, then enter path draw
+                enter_path_draw(pos)
+        elif c.in_node(pos) or c.in_repo(pos):
+            for node in c.entry_nodes + c.repos + c.exit_nodes:
+                if pos == node.pos:
+                    enter_edit(node)
+                    break
+        elif True:
+            match current_brush:
+                case "entry":
+                    new_entry = circuitOperations.Node(pos, 0.01)
+                    c.entry_nodes.append(new_entry)
+                    dpg.draw_rectangle(pmin=pos, pmax=pos, parent="main_grid",
+                                       color=(233, 240, 50), tag=f"node_{pos}")
+                    dpg.draw_text((pos[0] - 0.5, pos[1] + 0.5), "0.01", parent="main_grid",
+                                  tag=f"node_text_{pos}", size=0.35, color=(0, 0, 0))
+                    enter_edit(new_entry)
 
-            case "exit":
-                new_exit = circuitOperations.Node(pos, -0.01)
-                c.exit_nodes.append(new_exit)
-                dpg.draw_rectangle(pmin=pos, pmax=pos, parent="main_grid",
-                                   color=(23, 240, 250), tag=f"node_{pos}")
-                dpg.draw_text((pos[0] - 0.5, pos[1] + 0.5), "0.01", parent="main_grid",
-                              tag=f"node_text_{pos}", size=0.35, color=(0, 1, 0))
-                enter_edit(new_exit)
+                case "exit":
+                    new_exit = circuitOperations.Node(pos, -0.01)
+                    c.exit_nodes.append(new_exit)
+                    dpg.draw_rectangle(pmin=pos, pmax=pos, parent="main_grid",
+                                       color=(23, 240, 250), tag=f"node_{pos}")
+                    dpg.draw_text((pos[0] - 0.5, pos[1] + 0.5), "0.01", parent="main_grid",
+                                  tag=f"node_text_{pos}", size=0.35, color=(0, 1, 0))
+                    enter_edit(new_exit)
 
-            case "repo":
-                new_repo = circuitOperations.Repository(pos, 100)
-                c.repos.append(new_repo)
-                dpg.draw_rectangle(pmin=pos, pmax=pos, parent="main_grid",
-                                   color=(233, 12, 50), tag=f"repo_{pos}")
-                dpg.draw_text(pos, 0, parent="main_grid", tag=f"repo_text_{pos}", size=0.5, color=(0, 250, 250))
-                enter_edit(new_repo)
+                case "repo":
+                    new_repo = circuitOperations.Repository(pos, 100)
+                    c.repos.append(new_repo)
+                    dpg.draw_rectangle(pmin=pos, pmax=pos, parent="main_grid",
+                                       color=(233, 12, 50), tag=f"repo_{pos}")
+                    dpg.draw_text(pos, 0, parent="main_grid", tag=f"repo_text_{pos}", size=0.5, color=(0, 250, 250))
+                    enter_edit(new_repo)
+    else:
+        print()
+        if pos in c.splits:
+            print(f"splits: {c.splits[pos]}")
+        print(f"path_space: {c.path_space[pos]}")
+        print(f"orientation: {c.path_orientation[pos]}")
+        if pos in c.undercurrent_space:
+            print(f"undercurrent_space: {c.undercurrent_space[pos]}")
 
 def path_click(sender, app_data, user_data):
     global c, saved_hover_pos, circuit_image
