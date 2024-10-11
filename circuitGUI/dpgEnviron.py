@@ -13,12 +13,14 @@ dpg.configure_viewport(0, x_pos=0, y_pos=0, width=dim_x, height=dim_y)
 
 with dpg.window(tag="primary_window"):
     with dpg.group(horizontal=True):
-        with dpg.plot(no_menus=False, no_title=True, no_box_select=True, no_mouse_pos=True, width=1625,
+        with dpg.plot(no_menus=False, no_title=True, no_box_select=True, no_mouse_pos=False, width=1625,
                               height=845, equal_aspects=True, tag="main_grid"):
 
             #create x and y axes; arguments to make it as unidentifiable as a graph
-            def_x = dpg.add_plot_axis(axis=0, no_tick_marks=True, no_tick_labels=True, lock_min=True, no_gridlines=True)
-            def_y = dpg.add_plot_axis(axis=1, no_tick_marks=True, no_tick_labels=True, lock_min=True, no_gridlines=True)
+            def_x = dpg.add_plot_axis(axis=0, no_tick_marks=True, no_tick_labels=True, lock_min=True, tag="x_axis",
+                                      no_gridlines=True)
+            def_y = dpg.add_plot_axis(axis=1, no_tick_marks=True, no_tick_labels=True, lock_min=True, tag="y_axis",
+                                      no_gridlines=True)
 
             dpg.set_axis_limits(axis=def_x, ymin=-0.5, ymax=49.5)
             dpg.set_axis_limits(axis=def_y, ymin=-0.5, ymax=25.5)
@@ -68,8 +70,8 @@ with dpg.window(tag="primary_window"):
             dpg.add_spacer(height=15)
             dpg.add_button(label="Close", width=75, callback=lambda: dpg.configure_item("help_window", show=False))
 
-        dpg.add_item_handler_registry(tag="plot_register")
-        dpg.add_item_clicked_handler(callback=nothing, parent="plot_register", tag="plot_handler")
+        with dpg.item_handler_registry(tag="plot_register") as handler:
+            dpg.add_item_clicked_handler(callback=nothing, tag="plot_handler")
         dpg.bind_item_handler_registry("main_grid", "plot_register")
 
             # series belong to a y axi

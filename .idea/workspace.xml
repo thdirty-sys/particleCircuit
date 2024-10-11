@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="splits attribute for circuit object made redundant and removed">
+      <change afterPath="$PROJECT_DIR$/to_do.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/circuitGUI/dpgEnviron.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitGUI/dpgEnviron.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/circuitGUI/drawCallbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitGUI/drawCallbacks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/circuitGUI/genCallbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitGUI/genCallbacks.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/circuitGUI/interfaceObjects.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitGUI/interfaceObjects.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/circuitOperations/circuitDispatchers.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitOperations/circuitDispatchers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/circuitOperations/particleObjs.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitOperations/particleObjs.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +73,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Theo Prada De Ville/PycharmProjects/particleCircuit/circuitGUI&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Theo Prada De Ville/PycharmProjects/particleCircuit&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -76,6 +81,11 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;TEXT&quot;
+    ]
   }
 }</component>
   <component name="RecentsManager">
@@ -83,6 +93,7 @@
       <recent name="C:\Users\Theo Prada De Ville\PycharmProjects\particleCircuit\circuitGUI" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Theo Prada De Ville\PycharmProjects\particleCircuit" />
       <recent name="C:\Users\Theo Prada De Ville\PycharmProjects\particleCircuit\circuitObjects" />
       <recent name="C:\Users\Theo Prada De Ville\PycharmProjects\particleCircuit\circuitGUI" />
     </key>
@@ -270,15 +281,27 @@
       <workItem from="1727544921987" duration="6302000" />
       <workItem from="1727565419981" duration="605000" />
       <workItem from="1727727426977" duration="12177000" />
-      <workItem from="1727807441760" duration="8332000" />
-    </task>
-    <task id="LOCAL-00016" summary="Made it so that repos must have an exit path">
-      <option name="closed" value="true" />
-      <created>1722302381078</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1722302381078</updated>
+      <workItem from="1727807441760" duration="11234000" />
+      <workItem from="1727865246423" duration="5623000" />
+      <workItem from="1727871228289" duration="252000" />
+      <workItem from="1727887392386" duration="6534000" />
+      <workItem from="1727974614997" duration="602000" />
+      <workItem from="1728126639995" duration="2097000" />
+      <workItem from="1728132239284" duration="2323000" />
+      <workItem from="1728148615182" duration="8297000" />
+      <workItem from="1728162296762" duration="2331000" />
+      <workItem from="1728221834657" duration="10566000" />
+      <workItem from="1728320086443" duration="602000" />
+      <workItem from="1728344918317" duration="1357000" />
+      <workItem from="1728413854979" duration="1635000" />
+      <workItem from="1728426070095" duration="10735000" />
+      <workItem from="1728438898372" duration="906000" />
+      <workItem from="1728516863850" duration="687000" />
+      <workItem from="1728558653651" duration="11999000" />
+      <workItem from="1728601732005" duration="2335000" />
+      <workItem from="1728647824541" duration="1802000" />
+      <workItem from="1728659694728" duration="35000" />
+      <workItem from="1728672696488" duration="842000" />
     </task>
     <task id="LOCAL-00017" summary="Made it so that repos must have an exit path">
       <option name="closed" value="true" />
@@ -664,7 +687,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727823492270</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="splits attribute for circuit object made redundant and removed">
+      <option name="closed" value="true" />
+      <created>1727824381445</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1727824381445</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -741,7 +772,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/circuitGUI/drawCallbacks.py</url>
-          <line>121</line>
+          <line>162</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
@@ -752,6 +783,6 @@
     <SUITE FILE_PATH="coverage/particleCircuit$dearpygui.coverage" NAME="dearpygui Coverage Results" MODIFIED="1723770350723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.venv/Lib/site-packages/dearpygui" />
     <SUITE FILE_PATH="coverage/particleCircuit$repositoryObj.coverage" NAME="repositoryObj Coverage Results" MODIFIED="1721698686405" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/particleCircuit$main.coverage" NAME="main Coverage Results" MODIFIED="1721701372082" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/particleCircuit$dpgEnviron.coverage" NAME="dpgEnviron Coverage Results" MODIFIED="1727824043319" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/particleCircuit$dpgEnviron.coverage" NAME="dpgEnviron Coverage Results" MODIFIED="1728672833606" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

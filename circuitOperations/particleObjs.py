@@ -1,13 +1,16 @@
 import numpy as np
+from copy import deepcopy
 
 
 class Node:
-    def __init__(self, start_pos, rate):
+    def __init__(self, start_pos, rate, **kwargs):
         self.name = "node"
         self.pos = start_pos
         self.rate = rate
         self.count = 0
         self.check_in = []
+        for key in kwargs:
+            self.__dict__[key] = kwargs[key]
 
     def take(self, t):
         if len(self.check_in) == 10:
@@ -16,24 +19,26 @@ class Node:
 
 
 class Particle:
-    """General element of the Circuit"""
 
     def __init__(self, start_pos, number):
         self.pos = start_pos
         self.name = "particle"
-        self.orientation = "-"
+        self.orientation = None
         self.no = number
 
 
 class Repository:
     """Repository object; fed particles."""
 
-    def __init__(self, start_pos, capacity):
+    def __init__(self, start_pos, capacity, colour=(233, 12, 50), **kwargs):
         self.name = "repo"
         self.capacity = capacity
         self.pos = start_pos
         self.count = 0
         self.check_in = []
+        self.colour = colour
+        for key in kwargs:
+            self.__dict__[key] = kwargs[key]
 
     def in_column_entry_space(self, x):
         if self.pos[0] == x:
@@ -58,13 +63,10 @@ class Circuit:
         self.entry_nodes = ingress
         self.exit_nodes = egress
         self.body = self.repos + self.exit_nodes
-        self.node_positions = {}
-        for node in self.entry_nodes + self.body:
-            self.node_positions[node.pos] = node
         self.path_setup()
 
     def path_setup(self):
-        self.current_obj = "-"
+        self.current_obj = None
         self.path_orientation = {}
         self.path_space = {}
         self.particles = []
@@ -73,18 +75,22 @@ class Circuit:
 
         self.wipe_paths()
 
+    def wipe_paths(self):
+        for y in range(26):
+            for x in range(50):
+                self.path_space[(x, y)] = []
+                self.path_orientation[(x, y)] = None
+
     def add_node(self, node):
         if node.rate >= 0:
             self.entry_nodes.append(node)
         else:
             self.exit_nodes.append(node)
             self.body = self.repos + self.exit_nodes
-        self.node_positions[node.pos] = node
 
     def add_repo(self, repo):
         self.repos.append(repo)
         self.body = self.repos + self.exit_nodes
-        self.node_positions[repo.pos] = repo
 
     def delete_node(self, node):
         if node.rate >= 0:
@@ -92,18 +98,12 @@ class Circuit:
         else:
             self.exit_nodes.remove(node)
             self.body = self.repos + self.exit_nodes
-        del self.node_positions[node.pos]
 
     def delete_repo(self, repo):
         self.repos.remove(repo)
         self.body = self.repos + self.exit_nodes
-        del self.node_positions[repo.pos]
 
-    def wipe_paths(self):
-        for y in range(26):
-            for x in range(50):
-                self.path_space[(x, y)] = []
-                self.path_orientation[(x, y)] = "-"
+
 
     def gen_circuit_paths(self):
         rng = np.random.default_rng()
@@ -148,21 +148,6 @@ class Circuit:
                 if path:
                     break
 
-
-        # Clean out unnecessary routing covered by undercurrent dictionary
-        '''for pos in self.path_space:
-            for p in self.path_space[pos]:
-                if self.path_orientation[p] != self.path_orientation[pos]:
-                    if not self.in_repo(p) and not self.in_exit_node(p):
-                        if pos in self.splits:
-                            if p not in self.splits[pos]:
-                                if p not in self.undercurrent_space[self.path_orientation[pos]]:
-                                    self.path_space[pos].remove(p)
-                        else:
-                            if p not in self.undercurrent_space[self.path_orientation[pos]]:
-                                self.path_space[pos].remove(p)'''
-        self.path_orientation[self.entry_nodes[0].pos] = "-"
-
         for repo in self.repos:
             if not self.pos_is_pointed_towards(repo.pos) or not self.path_space[repo.pos]:
                 self.path_setup()
@@ -170,7 +155,7 @@ class Circuit:
         else:
             return True
 
-    def branch_path_construct(self, pointer, p, prev="-"):
+    def branch_path_construct(self, pointer, p, prev=None):
         """Recursively called to generate path space"""
 
         rng = np.random.default_rng()
@@ -190,7 +175,7 @@ class Circuit:
         selected = rng.choice(available, no_selected, replace=False)
 
         for node in selected:
-            node_orientation = str(node.pos)
+            node_orientation = node.pos
             pointer_orientation = self.path_orientation[pointer_pos]
             if node_orientation != self.path_orientation[pointer_pos]:
                 # Select the second block along in current branch after the pointer_pos
@@ -322,7 +307,7 @@ class Circuit:
             if next_x != prev_x:
                 for x in range(prev_x, next_x):
                     if self.path_orientation[(x, prev_y)] != self.current_obj:
-                        if self.path_orientation[(x, prev_y)] != "-":
+                        if self.path_orientation[(x, prev_y)] != None:
                             if x == prev_x and (prev_x, prev_y) == path_sketch[0]:
                                 self.path_space[(x, prev_y)].append((x + 1, prev_y))
                             else:
@@ -337,7 +322,7 @@ class Circuit:
                 if prev_y >= next_y:
                     for y in reversed(range(next_y + 1, prev_y + 1)):
                         if self.path_orientation[(prev_x, y)] != self.current_obj:
-                            if self.path_orientation[(prev_x, y)] != "-":
+                            if self.path_orientation[(prev_x, y)] != None:
                                 if y == prev_y and (prev_x, prev_y) == path_sketch[0]:
                                     self.path_space[(prev_x, y)].append((prev_x, y - 1))
                                 else:
@@ -350,7 +335,7 @@ class Circuit:
                 else:
                     for y in range(prev_y, next_y):
                         if self.path_orientation[(prev_x, y)] != self.current_obj:
-                            if self.path_orientation[(prev_x, y)] != "-":
+                            if self.path_orientation[(prev_x, y)] != None:
                                 if y == prev_y and (prev_x, prev_y) == path_sketch[0]:
                                     self.path_space[(prev_x, y)].append((prev_x, y + 1))
                                 else:
@@ -368,7 +353,7 @@ class Circuit:
                 for x in range(prev_x, next_x):
                     orientation = self.path_orientation[(x, prev_y)]
                     # Laterally, check there are no crossing paths heading in the same direction
-                    if orientation != self.current_obj and orientation != "-":
+                    if orientation != self.current_obj and orientation != None:
                         if self.path_orientation[(x + 1, prev_y)] == self.current_obj:
                             return False
                         if not self.is_crossable_x(x, prev_y):
@@ -378,14 +363,15 @@ class Circuit:
                     elif orientation == self.current_obj:
                         if (x + 1, prev_y) not in self.path_space[(x, prev_y)]:
                             return False
-                    if self.in_repo((x, prev_y)) and (x, prev_y) != path_sketch[0]:
-                        return False
+                    if (x, prev_y) != path_sketch[0]:
+                        if self.in_repo((x, prev_y)) or self.in_node((x, prev_y)):
+                            return False
             else:
                 # Range function only works from lower to higher. Hence reverse if prev above next.
                 if prev_y >= next_y:
                     for y in reversed(range(next_y + 1, prev_y + 1)):
                         orientation = self.path_orientation[(prev_x, y)]
-                        if orientation != "-" and orientation != self.current_obj:
+                        if orientation != None and orientation != self.current_obj:
                             if self.path_orientation[(prev_x, y - 1)] == self.current_obj:
                                 return False
                             if not self.is_crossable_y(prev_x, y):
@@ -395,10 +381,13 @@ class Circuit:
                         elif orientation == self.current_obj:
                             if (prev_x, y - 1) not in self.path_space[(prev_x, y)]:
                                 return False
+                        if (prev_x, y) != path_sketch[0]:
+                            if self.in_repo((prev_x, y)) or self.in_node((prev_x, y)):
+                                return False
                 else:
                     for y in range(prev_y, next_y):
                         orientation = self.path_orientation[(prev_x, y)]
-                        if orientation != "-" and orientation != self.current_obj:
+                        if orientation != None and orientation != self.current_obj:
                             if self.path_orientation[(prev_x, y + 1)] == self.current_obj:
                                 return False
                             if not self.is_crossable_y(prev_x, y, down=False):
@@ -408,21 +397,24 @@ class Circuit:
                         elif orientation == self.current_obj:
                             if (prev_x, y + 1) not in self.path_space[(prev_x, y)]:
                                 return False
+                        if (prev_x, y) != path_sketch[0]:
+                            if self.in_repo((prev_x, y)) or self.in_node((prev_x, y)):
+                                return False
         return True
 
     def is_crossable_x(self, x, prev_y):
         traversable = (x + 1, prev_y) not in self.path_space[(x, prev_y)]
-        continuable = self.path_orientation[(x + 1, prev_y)] == "-"
+        continuable = self.path_orientation[(x + 1, prev_y)] == None
 
         return traversable and continuable
 
     def is_crossable_y(self, prev_x, y, down=True):
         if down:
             traversable = (prev_x, y - 1) not in self.path_space[(prev_x, y)]
-            continuable = self.path_orientation[(prev_x, y - 1)] == "-"
+            continuable = self.path_orientation[(prev_x, y - 1)] == None
         else:
             traversable = (prev_x, y + 1) not in self.path_space[(prev_x, y)]
-            continuable = self.path_orientation[(prev_x, y + 1)] == "-"
+            continuable = self.path_orientation[(prev_x, y + 1)] == None
 
         return traversable and continuable
 
@@ -431,3 +423,133 @@ class Circuit:
             return False
         else:
             return True
+
+
+class UndoRedoCaretaker:
+    def __init__(self, circuit):
+        self.undo_stack = []
+        self.redo_stack = []
+        self._circuit = circuit
+
+    def undo(self):
+        if self.undo_stack:
+            command = self.undo_stack.pop()
+            inverse_command = command.execute(self._circuit)
+            self.redo_stack.append(inverse_command)
+            if len(self.redo_stack) == 10:
+                del self.redo_stack[0]
+
+    def redo(self):
+        if self.redo_stack:
+            state = self.redo_stack.pop()
+            inverse_command = state.execute(self._circuit)
+            self.undo_push(inverse_command)
+
+    def undo_push(self, inverse_command):
+        self.undo_stack.append(inverse_command)
+        if len(self.undo_stack) == 20:
+            del self.undo_stack[0]
+
+    def new_undo_push(self, inverse_command):
+        self.redo_stack = []
+        self.undo_push(inverse_command)
+
+
+class RestoreNodeCommand:
+    def __init__(self, node):
+        self.__dict__ = deepcopy(node.__dict__)
+
+    def execute(self, circuit):
+        # Finds relevant node and reverts attributes back to saved values
+        for i, n in enumerate(circuit.body + circuit.entry_nodes):
+            if self.pos == n.pos:
+                # Saves inverse of command
+                inverse_command = RestoreNodeCommand(n)
+                # Updates relevant node
+                n.__dict__ = deepcopy(self.__dict__)
+                break
+
+        # Returns inverse for undo/redo stack
+        return inverse_command
+
+
+class DeleteNodeCommand:
+    def __init__(self, node):
+        self.pos = node.pos
+        self.name = node.name
+
+    def execute(self, circuit):
+        # Deletes repo if node
+        if self.name == "repo":
+            for i, r in enumerate(circuit.repos):
+                if self.pos == r.pos:
+                    inverse_command = CreateNodeCommand(r)
+                    del circuit.repos[i]
+                    break
+        else:
+            # Deletes entry node
+            for i, en in enumerate(circuit.entry_nodes):
+                if self.pos == en.pos:
+                    inverse_command = CreateNodeCommand(en)
+                    del circuit.entry_nodes[i]
+                    break
+            else:
+                # Deletes exit node
+                for i, ex in enumerate(circuit.exit_nodes):
+                    if self.pos == ex.pos:
+                        inverse_command = CreateNodeCommand(ex)
+                        del circuit.exit_nodes[i]
+                        break
+        print(circuit.entry_nodes)
+        return inverse_command
+
+
+class CreateNodeCommand:
+    def __init__(self, node):
+        self.__dict__ = deepcopy(node.__dict__)
+
+    def execute(self, circuit):
+        # Creates node and returns inverse command for redo/undo stack
+        if self.name == 'repo':
+            del self.__dict__['capacity']
+            repo = Repository(self.pos, 100, **self.__dict__)
+            inverse_command = DeleteNodeCommand(repo)
+            circuit.add_repo(repo)
+            return inverse_command
+        else:
+            node = Node(self.pos, self.rate)
+            inverse_command = DeleteNodeCommand(node)
+            circuit.add_node(node)
+            return inverse_command
+
+class PathsRestoreCommand:
+    def __init__(self, circuit):
+        self.memento = {}
+        for y in range(26):
+            for x in range(50):
+                if circuit.path_orientation[(x, y)] != None:
+                    self.memento[(x, y)] = [circuit.path_space[(x, y)].copy(), circuit.path_orientation[(x, y)]]
+                    if (x, y) in circuit.undercurrent_space:
+                        self.memento[(x, y)].append(circuit.undercurrent_space[(x, y)])
+                        self.memento[(x, y)].append(circuit.undercurrent_orientation[(x, y)])
+                    else:
+                        self.memento[(x, y)].append(None)
+                        self.memento[(x, y)].append(None)
+
+    def execute(self, circuit):
+        inverse_command = PathsRestoreCommand(circuit)
+        for y in range(26):
+            for x in range(50):
+                if (x, y) in self.memento:
+                    circuit.path_space[(x, y)] = self.memento[(x, y)][0]
+                    circuit.path_orientation[(x, y)] = self.memento[(x, y)][1]
+                    if self.memento[(x, y)][2] is not None:
+                        circuit.undercurrent_space[(x, y)] = self.memento[(x, y)][2]
+                        circuit.undercurrent_orientation[(x, y)] = self.memento[(x, y)][3]
+                else:
+                    circuit.path_space[(x, y)] = []
+                    circuit.path_orientation[(x, y)] = None
+                    circuit.undercurrent_space[(x, y)] = []
+                    circuit.undercurrent_orientation[(x, y)] = None
+        return inverse_command
+
