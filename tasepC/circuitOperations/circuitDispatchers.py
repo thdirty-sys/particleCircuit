@@ -1,5 +1,3 @@
-
-from circuitOperations.circuitObjects import *
 import numpy as np
 
 class TasepCircuitDispatcher():

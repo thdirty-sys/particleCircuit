@@ -4,8 +4,8 @@ from math import floor
 import numpy as np
 import time
 
-import circuitOperations.circuitDispatchers as circuitDispatchers
-from circuitOperations.circuitObjects import Particle, DataRecorder
+from tasepC import circuitOperations as circuitDispatchers
+from tasepC.circuitOperations.circuitObjects import Particle, DataRecorder
 
 
 

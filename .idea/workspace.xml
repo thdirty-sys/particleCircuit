@@ -4,16 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="Draw mode completed and functioning.">
-      <change afterPath="$PROJECT_DIR$/tasepC.ico" afterDir="false" />
+    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="Removed unnecessary code.">
+      <change afterPath="$PROJECT_DIR$/tasepC/circuitGUI/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/circuitGUI/dpgEnviron.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitGUI/dpgEnviron.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/circuitGUI/drawCallbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitGUI/drawCallbacks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/circuitGUI/genCallbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitGUI/genCallbacks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/circuitGUI/interfaceObjects.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitGUI/interfaceObjects.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/circuitOperations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitOperations/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/circuitOperations/circuitDispatchers.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitOperations/circuitDispatchers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/circuitOperations/particleObjs.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitOperations/circuitObjects.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/circuitGUI/dpgEnviron.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasepC/circuitGUI/dpgEnviron.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/circuitGUI/drawCallbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasepC/circuitGUI/drawCallbacks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/circuitGUI/genCallbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasepC/circuitGUI/genCallbacks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/circuitGUI/interfaceObjects.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasepC/circuitGUI/interfaceObjects.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/circuitOperations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasepC/circuitOperations/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/circuitOperations/circuitDispatchers.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasepC/circuitOperations/circuitDispatchers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/circuitOperations/circuitObjects.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasepC/circuitOperations/circuitObjects.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasepC.ico" beforeDir="false" afterPath="$PROJECT_DIR$/tasepC/tasepC.ico" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,42 +66,44 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.circuitMotor.executor&quot;: &quot;Run&quot;,
-    &quot;Python.dearpygui.executor&quot;: &quot;Run&quot;,
-    &quot;Python.dpgEnviron.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.repositoryObj.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Theo Prada De Ville/PycharmProjects/particleCircuit&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.circuitMotor.executor": "Run",
+    "Python.dearpygui.executor": "Run",
+    "Python.dpgEnviron (1).executor": "Run",
+    "Python.dpgEnviron.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.repositoryObj.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/Theo Prada De Ville/PycharmProjects/particleCircuit",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;TEXT&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "TEXT"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Theo Prada De Ville\PycharmProjects\particleCircuit\circuitGUI" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Theo Prada De Ville\PycharmProjects\particleCircuit\tasepC" />
       <recent name="C:\Users\Theo Prada De Ville\PycharmProjects\particleCircuit" />
       <recent name="C:\Users\Theo Prada De Ville\PycharmProjects\particleCircuit\circuitObjects" />
       <recent name="C:\Users\Theo Prada De Ville\PycharmProjects\particleCircuit\circuitGUI" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.dpgEnviron">
+  <component name="RunManager" selected="Python.dpgEnviron (1)">
     <configuration name="circuitMotor" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="particleCircuit" />
       <option name="ENV_FILES" value="" />
@@ -138,6 +142,29 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/.venv/Lib/site-packages/dearpygui/dearpygui.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="dpgEnviron (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="particleCircuit" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tasepC/circuitGUI" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tasepC/circuitGUI/dpgEnviron.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -194,6 +221,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.dpgEnviron (1)" />
         <item itemvalue="Python.dpgEnviron" />
         <item itemvalue="Python.dearpygui" />
         <item itemvalue="Python.circuitMotor" />
@@ -329,15 +357,7 @@
       <workItem from="1730571962268" duration="599000" />
       <workItem from="1730860264806" duration="599000" />
       <workItem from="1730933363487" duration="6645000" />
-      <workItem from="1731786105292" duration="1166000" />
-    </task>
-    <task id="LOCAL-00018" summary="Allow path bijections">
-      <option name="closed" value="true" />
-      <created>1722355331293</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1722355331293</updated>
+      <workItem from="1731786105292" duration="2496000" />
     </task>
     <task id="LOCAL-00019" summary="Allow path bijections">
       <option name="closed" value="true" />
@@ -723,7 +743,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728673649652</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="Removed unnecessary code.">
+      <option name="closed" value="true" />
+      <created>1731787523544</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1731787523544</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -763,7 +791,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Completed debugging for GUI version of path-routing" />
     <MESSAGE value="Remove print statements" />
     <MESSAGE value="Remove commented out code" />
     <MESSAGE value="Made tasep process threaded, that can be paused and played" />
@@ -788,18 +815,14 @@
     <MESSAGE value="Added undercurrent orientation and proper node/repo delete/add methods for circuit object. Beginning to phase out splits attribute" />
     <MESSAGE value="splits attribute for circuit object made redundant and removed" />
     <MESSAGE value="Draw mode completed and functioning." />
-    <option name="LAST_COMMIT_MESSAGE" value="Draw mode completed and functioning." />
+    <MESSAGE value="Removed unnecessary code." />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed unnecessary code." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>8</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/circuitGUI/drawCallbacks.py</url>
+          <url>file://$PROJECT_DIR$/tasepC/circuitGUI/drawCallbacks.py</url>
           <line>170</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
@@ -808,9 +831,10 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/particleCircuit$circuitMotor.coverage" NAME="circuitMotor Coverage Results" MODIFIED="1721777459192" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/circuitObjects" />
+    <SUITE FILE_PATH="coverage/particleCircuit$dpgEnviron__1_.coverage" NAME="dpgEnviron (1) Coverage Results" MODIFIED="1731789061158" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tasepC/circuitGUI" />
     <SUITE FILE_PATH="coverage/particleCircuit$dearpygui.coverage" NAME="dearpygui Coverage Results" MODIFIED="1723770350723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.venv/Lib/site-packages/dearpygui" />
     <SUITE FILE_PATH="coverage/particleCircuit$repositoryObj.coverage" NAME="repositoryObj Coverage Results" MODIFIED="1721698686405" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/particleCircuit$main.coverage" NAME="main Coverage Results" MODIFIED="1721701372082" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/particleCircuit$dpgEnviron.coverage" NAME="dpgEnviron Coverage Results" MODIFIED="1730947547332" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/particleCircuit$dpgEnviron.coverage" NAME="dpgEnviron Coverage Results" MODIFIED="1731789029178" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

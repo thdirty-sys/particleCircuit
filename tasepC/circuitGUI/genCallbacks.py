@@ -1,7 +1,7 @@
 import dearpygui.dearpygui as dpg
 import drawCallbacks
 import interfaceObjects
-import circuitOperations
+from tasepC import circuitOperations
 
 
 def gen_circuit():
@@ -59,7 +59,7 @@ def wipe_circuit():
     # Finish wipe
     dpg.delete_item("loading_text")
     draw_button = dpg.add_button(label="Draw circuit", width=200, height=30,
-                                callback=drawCallbacks.draw_mode, tag="draw_circuit_button", parent="control")
+                                 callback=drawCallbacks.draw_mode, tag="draw_circuit_button", parent="control")
     gen_button = dpg.add_button(label="Generate circuit", width=200, height=30,
                                 callback=gen_circuit, tag="gen_circuit_button", parent="control")
 

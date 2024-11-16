@@ -1,7 +1,7 @@
 from math import floor
 
 import dearpygui.dearpygui as dpg
-import circuitOperations
+from tasepC import circuitOperations
 import threading
 import genCallbacks
 import interfaceObjects
@@ -348,7 +348,7 @@ def exit_draw_mode():
     dpg.add_button(label="Draw circuit", width=200, height=30,
                                  callback=draw_mode, tag="draw_circuit_button", parent="control")
     dpg.add_button(label="Generate circuit", width=200, height=30,
-                                callback=genCallbacks.gen_circuit, tag="gen_circuit_button", parent="control")
+                   callback=genCallbacks.gen_circuit, tag="gen_circuit_button", parent="control")
 
 
 def enter_edit(node):
