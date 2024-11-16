@@ -4,15 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="splits attribute for circuit object made redundant and removed">
-      <change afterPath="$PROJECT_DIR$/to_do.txt" afterDir="false" />
+    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="Draw mode completed and functioning.">
+      <change afterPath="$PROJECT_DIR$/tasepC.ico" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/circuitGUI/dpgEnviron.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitGUI/dpgEnviron.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/circuitGUI/drawCallbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitGUI/drawCallbacks.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/circuitGUI/genCallbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitGUI/genCallbacks.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/circuitGUI/interfaceObjects.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitGUI/interfaceObjects.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/circuitOperations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitOperations/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/circuitOperations/circuitDispatchers.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitOperations/circuitDispatchers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/circuitOperations/particleObjs.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitOperations/particleObjs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/circuitOperations/particleObjs.py" beforeDir="false" afterPath="$PROJECT_DIR$/circuitOperations/circuitObjects.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -301,15 +302,34 @@
       <workItem from="1728601732005" duration="2335000" />
       <workItem from="1728647824541" duration="1802000" />
       <workItem from="1728659694728" duration="35000" />
-      <workItem from="1728672696488" duration="842000" />
-    </task>
-    <task id="LOCAL-00017" summary="Made it so that repos must have an exit path">
-      <option name="closed" value="true" />
-      <created>1722346360485</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1722346360485</updated>
+      <workItem from="1728672696488" duration="2709000" />
+      <workItem from="1728984098754" duration="17593000" />
+      <workItem from="1729076123439" duration="2584000" />
+      <workItem from="1729086950649" duration="250000" />
+      <workItem from="1729121023095" duration="3023000" />
+      <workItem from="1729207223182" duration="1503000" />
+      <workItem from="1729258591646" duration="5460000" />
+      <workItem from="1729293924752" duration="600000" />
+      <workItem from="1729339985127" duration="9074000" />
+      <workItem from="1729433096912" duration="1732000" />
+      <workItem from="1729461696945" duration="7205000" />
+      <workItem from="1729549845264" duration="2370000" />
+      <workItem from="1729595491862" duration="18308000" />
+      <workItem from="1729682849735" duration="3998000" />
+      <workItem from="1729704318360" duration="6662000" />
+      <workItem from="1729712913582" duration="2000" />
+      <workItem from="1729712924866" duration="2000" />
+      <workItem from="1729712934615" duration="2000" />
+      <workItem from="1729714703960" duration="445000" />
+      <workItem from="1729715290414" duration="6443000" />
+      <workItem from="1729766536033" duration="13828000" />
+      <workItem from="1729804814202" duration="3190000" />
+      <workItem from="1729865725696" duration="11944000" />
+      <workItem from="1730246215234" duration="8000" />
+      <workItem from="1730571962268" duration="599000" />
+      <workItem from="1730860264806" duration="599000" />
+      <workItem from="1730933363487" duration="6645000" />
+      <workItem from="1731786105292" duration="1166000" />
     </task>
     <task id="LOCAL-00018" summary="Allow path bijections">
       <option name="closed" value="true" />
@@ -695,7 +715,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727824381445</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="Draw mode completed and functioning.">
+      <option name="closed" value="true" />
+      <created>1728673649651</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1728673649652</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -735,7 +763,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Completed TASEP routing through. Debugging in process" />
     <MESSAGE value="Completed debugging for GUI version of path-routing" />
     <MESSAGE value="Remove print statements" />
     <MESSAGE value="Remove commented out code" />
@@ -760,7 +787,8 @@
     <MESSAGE value="Cannot enter path draw mode by clicking exit nodes" />
     <MESSAGE value="Added undercurrent orientation and proper node/repo delete/add methods for circuit object. Beginning to phase out splits attribute" />
     <MESSAGE value="splits attribute for circuit object made redundant and removed" />
-    <option name="LAST_COMMIT_MESSAGE" value="splits attribute for circuit object made redundant and removed" />
+    <MESSAGE value="Draw mode completed and functioning." />
+    <option name="LAST_COMMIT_MESSAGE" value="Draw mode completed and functioning." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -772,7 +800,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/circuitGUI/drawCallbacks.py</url>
-          <line>162</line>
+          <line>170</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
@@ -783,6 +811,6 @@
     <SUITE FILE_PATH="coverage/particleCircuit$dearpygui.coverage" NAME="dearpygui Coverage Results" MODIFIED="1723770350723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.venv/Lib/site-packages/dearpygui" />
     <SUITE FILE_PATH="coverage/particleCircuit$repositoryObj.coverage" NAME="repositoryObj Coverage Results" MODIFIED="1721698686405" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/particleCircuit$main.coverage" NAME="main Coverage Results" MODIFIED="1721701372082" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/particleCircuit$dpgEnviron.coverage" NAME="dpgEnviron Coverage Results" MODIFIED="1728672833606" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/particleCircuit$dpgEnviron.coverage" NAME="dpgEnviron Coverage Results" MODIFIED="1730947547332" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

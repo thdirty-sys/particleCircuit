@@ -1,11 +1,11 @@
+from math import floor
+
 import dearpygui.dearpygui as dpg
 import circuitOperations
 import threading
 import genCallbacks
 import interfaceObjects
 
-global current_brush
-global c
 saved_hover_pos = None
 
 
@@ -95,6 +95,9 @@ def draw_mode():
     dpg.add_button(label="Start process", width=200, height=30,
                    callback=initiate_process, tag="start_process_button",
                    parent="action_buttons", before="wipe_paths_button", show=False)
+    dpg.add_button(label="Start sim", width=200, height=30,
+                   callback=initiate_sim, tag="start_sim_button",
+                   parent="action_buttons", before="wipe_paths_button", show=False)
     dpg.add_spacer(height=5, parent="action_buttons")
     dpg.add_button(label="Exit", width=200, height=30, parent="action_buttons",
                    tag="exit_draw_mode", callback=exit_draw_mode)
@@ -107,6 +110,8 @@ def redo_callback():
     circuit_image.show_nodes()
     circuit_image.show_paths()
 
+    check_initiable()
+
 def undo_callback():
     # Execute undo and refresh circuit image
     circuit_image.hide_paths()
@@ -114,6 +119,8 @@ def undo_callback():
     caretaker.undo()
     circuit_image.show_nodes()
     circuit_image.show_paths()
+
+    check_initiable()
 
 def plot_click(sender, app_data):
     global current_brush, c
@@ -138,50 +145,51 @@ def plot_click(sender, app_data):
                     caretaker.new_undo_push(new_command)
                     break
         elif True:
-            match current_brush:
-                case "entry":
-                    new_entry = circuitOperations.Node(pos, 1.00)
-                    # Add node delete command for node to undo stack
-                    undo_command = circuitOperations.DeleteNodeCommand(new_entry)
-                    caretaker.new_undo_push(undo_command)
-                    # Add new node to circuit
-                    c.add_node(new_entry)
-                    # Draw new node
-                    dpg.draw_rectangle(pmin=pos, pmax=pos, parent="main_grid",
-                                       color=(233, 240, 50), tag=f"node_{pos}")
-                    dpg.draw_text((pos[0] - 0.5, pos[1] + 0.5), "1.00", parent="main_grid",
-                                  tag=f"node_text_{pos}", size=0.35, color=(0, 0, 0))
-                    # Enter edit mode for node
-                    enter_edit(new_entry)
+            if pos[1] < 26:
+                match current_brush:
+                    case "entry":
+                        new_entry = circuitOperations.Node(pos, 1.00)
+                        # Add node delete command for node to undo stack
+                        undo_command = circuitOperations.DeleteNodeCommand(new_entry)
+                        caretaker.new_undo_push(undo_command)
+                        # Add new node to circuit
+                        c.add_node(new_entry)
+                        # Draw new node
+                        dpg.draw_rectangle(pmin=pos, pmax=pos, parent="main_grid",
+                                           color=(233, 240, 50), tag=f"node_{pos}")
+                        dpg.draw_text((pos[0] - 0.5, pos[1] + 0.5), "1.00", parent="main_grid",
+                                      tag=f"node_text_{pos}", size=0.35, color=(0, 0, 0))
+                        # Enter edit mode for node
+                        enter_edit(new_entry)
 
-                case "exit":
-                    new_exit = circuitOperations.Node(pos, -1.00)
-                    # Add node delete command for node to undo stack
-                    undo_command = circuitOperations.DeleteNodeCommand(new_exit)
-                    caretaker.new_undo_push(undo_command)
-                    # Add new node to circuit
-                    c.add_node(new_exit)
-                    # Draw new node
-                    dpg.draw_rectangle(pmin=pos, pmax=pos, parent="main_grid",
-                                       color=(23, 240, 250), tag=f"node_{pos}")
-                    dpg.draw_text((pos[0] - 0.5, pos[1] + 0.5), "1.00", parent="main_grid",
-                                  tag=f"node_text_{pos}", size=0.35, color=(0, 1, 0))
-                    # Enter edit mode for node
-                    enter_edit(new_exit)
+                    case "exit":
+                        new_exit = circuitOperations.Node(pos, -1.00)
+                        # Add node delete command for node to undo stack
+                        undo_command = circuitOperations.DeleteNodeCommand(new_exit)
+                        caretaker.new_undo_push(undo_command)
+                        # Add new node to circuit
+                        c.add_node(new_exit)
+                        # Draw new node
+                        dpg.draw_rectangle(pmin=pos, pmax=pos, parent="main_grid",
+                                           color=(23, 240, 250), tag=f"node_{pos}")
+                        dpg.draw_text((pos[0] - 0.5, pos[1] + 0.5), "1.00", parent="main_grid",
+                                      tag=f"node_text_{pos}", size=0.35, color=(0, 1, 0))
+                        # Enter edit mode for node
+                        enter_edit(new_exit)
 
-                case "repo":
-                    new_repo = circuitOperations.Repository(pos, 100)
-                    # Add node delete command for node to undo stack
-                    undo_command = circuitOperations.DeleteNodeCommand(new_repo)
-                    caretaker.new_undo_push(undo_command)
-                    # Add new node to circuit
-                    c.add_repo(new_repo)
-                    # Draw new node
-                    dpg.draw_rectangle(pmin=pos, pmax=pos, parent="main_grid",
-                                       color=(233, 12, 50), tag=f"repo_{pos}")
-                    dpg.draw_text(pos, "0", parent="main_grid", tag=f"repo_text_{pos}", size=0.5, color=(0, 250, 250))
-                    # Enter edit mode for node
-                    enter_edit(new_repo)
+                    case "repo":
+                        new_repo = circuitOperations.Repository(pos, 100)
+                        # Add node delete command for node to undo stack
+                        undo_command = circuitOperations.DeleteNodeCommand(new_repo)
+                        caretaker.new_undo_push(undo_command)
+                        # Add new node to circuit
+                        c.add_repo(new_repo)
+                        # Draw new node
+                        dpg.draw_rectangle(pmin=pos, pmax=pos, parent="main_grid",
+                                           color=(233, 12, 50), tag=f"repo_{pos}")
+                        dpg.draw_text(pos, "0", parent="main_grid", tag=f"repo_text_{pos}", size=0.5, color=(0, 250, 250))
+                        # Enter edit mode for node
+                        enter_edit(new_repo)
     else:
         print()
         print(f"path_space: {c.path_space[pos]}")
@@ -226,9 +234,54 @@ def check_initiable():
     for n in c.entry_nodes + c.repos:
         if not c.path_space[n.pos]:
             dpg.configure_item("start_process_button", show=False)
+            dpg.configure_item("start_sim_button", show=False)
             break
     else:
-        dpg.configure_item("start_process_button", show=True)
+        for pos in c.path_space:
+            for a in c.path_space[pos]:
+                if not c.path_space[a] and not c.in_exit_node(a):
+                    dpg.configure_item("start_process_button", show=False)
+                    dpg.configure_item("start_sim_button", show=False)
+                    break
+                else:
+                    dpg.configure_item("start_sim_button", show=True)
+                    dpg.configure_item("start_process_button", show=True)
+
+def initiate_sim():
+    dpg.configure_item("brushes_menu", show=False)
+    dpg.configure_item("action_buttons", show=False)
+
+    tcd = circuitOperations.TasepCircuitDispatcher()
+    # Storing hidden groups so that tcd knows what to return to
+    tcd.hidden = ["brushes_menu", "action_buttons"]
+    tcd.circuit = c
+    tcd.run_tasep()
+
+    tracked = []
+    for n in c.entry_nodes + c.body:
+        if n.track:
+            tracked.append(n)
+    data = circuitOperations.DataRecorder(tracked)
+    for node in tracked:
+        count = floor(node.check_in[0])
+        top = floor(node.check_in[-1])
+        if top != count:
+            for i, t in enumerate(node.check_in):
+                f = floor(t)
+                while count != f:
+                    count += 1
+                    data.currents_1[node.pos].append(0)
+                else:
+                    if count != top:
+                        data.currents_1[node.pos][-1] += 1
+            print(sum(data.currents_1[node.pos])/len(data.currents_1[node.pos]))
+        node.check_in = []
+
+    data.calc_currents()
+    print("Done")
+    dpg.configure_item("main_grid", show=False)
+    graphs = interfaceObjects.StatisticalFrames(data)
+    graphs.setup_frames()
 
 
 def grid_hover(sender, app_data, user_data):
@@ -312,6 +365,9 @@ def enter_edit(node):
     dpg.add_group(tag="node_edit_group", parent="control")
     dpg.add_spacer(parent="node_edit_group", height=20)
     # TODO: checkbox for showing currents
+    dpg.add_checkbox(label="Track stats", parent="node_edit_group", callback=track_toggle, user_data=node,
+                     default_value=node.track)
+    dpg.add_spacer(parent="node_edit_group", height=5)
     if node.name == "node":
         dpg.add_group(parent="node_edit_group", horizontal=True, tag="node_edit_slider")
         dpg.add_text("Rate", parent="node_edit_slider")
@@ -327,6 +383,10 @@ def enter_edit(node):
                    callback=node_delete, tag="node_delete", parent="node_edit_group", user_data=node)
     dpg.add_button(label="Back", width=200, height=30,
                    callback=exit_edit, tag="node_edit_back", parent="node_edit_group")
+
+def track_toggle(sender, app_data, user_data):
+    node = user_data
+    node.track = not node.track
 
 def enter_path_draw(pos):
     global saved_hover_pos

@@ -1,2 +1,2 @@
 from circuitOperations.circuitDispatchers import *
-from circuitOperations.particleObjs import *
+from circuitOperations.circuitObjects import *

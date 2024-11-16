@@ -1,13 +1,12 @@
 import dearpygui.dearpygui as dpg
 import drawCallbacks
 import interfaceObjects
-
-global circuit_image
+import circuitOperations
 
 
 def gen_circuit():
     """Callback function for 'Generate circuit' button. TASEP dispatcher specifically in this case."""
-    global tcd, circuit, circuit_image
+    global tcd, circuit, circuit_image, circ_generator
     dpg.delete_item("gen_circuit_button")
     dpg.delete_item("draw_circuit_button")
     dpg.add_text("Loading...", parent="control", tag="loading_text")
@@ -17,7 +16,10 @@ def gen_circuit():
     # Create an instance of the TASEP circuit dispatcher object
     tcd = interfaceObjects.TasepCircuitDispatcherGUI()
     # Method returns skeleton of generated circuit (skeleton because no paths yet generated)
-    circuit = tcd.gen_circuit()
+    circ_generator = circuitOperations.RandomCompleteCircuitGenerator()
+    circuit = circ_generator.gen_circuit()
+    # set circuit for TASEP to act on
+    tcd.circuit = circuit
     # Instance of circuit image generated
     circuit_image = interfaceObjects.CircuitImage(circuit)
     # Draw path-less circuit
@@ -70,7 +72,7 @@ def paths_gen():
     # Generate and draw paths
     res = False
     while not res:
-        res = circuit.gen_circuit_paths()
+        res = circ_generator.gen_circuit_paths()
     circuit_image.show_paths()
 
     # Deletes path gen button
@@ -87,7 +89,7 @@ def paths_gen():
 def wipe_paths():
     global circuit_image
     dpg.delete_item("wipe_paths_button")
-    circuit.wipe_paths()
+    circuit.reset_paths()
 
     circuit_image.hide_paths()
 

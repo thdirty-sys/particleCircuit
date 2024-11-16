@@ -9,7 +9,11 @@ def nothing():
 
 dpg.create_context()
 dpg.create_viewport(title="tasepC", resizable=False)
+dpg.set_viewport_clear_color([0, 0, 0])
 dpg.configure_viewport(0, x_pos=0, y_pos=0, width=dim_x, height=dim_y)
+
+dpg.set_viewport_small_icon("tasepC.ico")
+dpg.set_viewport_large_icon("tasepC.ico")
 
 with dpg.window(tag="primary_window"):
     with dpg.group(horizontal=True):
@@ -42,9 +46,7 @@ with dpg.window(tag="primary_window"):
         with dpg.window(label="Delete Files", modal=True, show=False, tag="help_window",
                         no_title_bar=True, autosize=True):
             dpg.add_text("- Nodes ordered in menu by occurence from left-to-right. As of now, red 'repositories'\n  onl"
-                         "y count the number of particles that have passed and are used in generating\n  the random cir"
-                         "cuit. Currents are calculated every three seconds, irrespective of the speed\n"
-                         "  factor; see below for more information. "
+                         "y count the number of particles that have passed."
                          )
             dpg.add_spacer(height=5)
             dpg.add_text("- If 'Orange debug particles' checkbox is ticked, every 10th particle is coloured\n"
@@ -53,18 +55,25 @@ with dpg.window(tag="primary_window"):
             dpg.add_text("- The 'speed factor' slider does not control a simple multiplier for the time-intervals\n"
                          "  between ticks of the exhibited process. Instead each particle tries to move after a random"
                          "\n  time interval, sampled from independent exponential distributions of rate 'speed_factor'."
-                         "\n  https://en.wikipedia.org/wiki/Exponential_distribution for more on exponential\n"
-                         "  distributions."
                          )
             dpg.add_spacer(height=5)
-            dpg.add_text("- For each node, the individual times at which the last 10 particles 'hopped'\n"
-                         "  into it are logged. Then\n\n"
-                         "              Current = 10/(current_time - tenth_p_time)\n\n"
-                         "  where tenth_p_time is the time at which the tenth-last particle hopped into the node.\n"
-                         "  When a new particle hops into the node, the list is updated, the 'tenth_p_time' is now\n"
-                         "  what was previously the time for the ninth-last particle. I'm not entirely comfortable\n"
-                         "  with this method to be quite honest. There perhaps will be a lack of regularity for\n"
-                         "  the mixing times of the different nodes (current-wise).")
+            dpg.add_text("- Currents are calculated using the system's internal clock.\n\n"
+                         "              Current = # particles hopped into node/interval size\n\n"
+                         "  Once the system arrives at its non-equilibrium steady state, stationarity\n"
+                         "  requires that the average current is constant along any connected stretch.\n"
+                         "  As we vary entry and exit rates TASEP exhibits a complex profile\n"
+                         "  of phases, for such a simple process, even at finite length scales.\n"
+                         "  The phase transitions are well studied. Below are some relevant papers:")
+            dpg.add_spacer(height=5)
+            dpg.add_text("Schütz, G. M., & Domany, E. (1993).\n"
+                         "'Phase Transitions in an Exactly Soluble One-Dimensional Exclusion Process'\n"
+                         "Journal of Statistical Physics, 72(1-2), 277–296.\n\n"
+                         " Derrida, B., Evans, M. R., Hakim, V., & Pasquier, V. (1993).\n"
+                         "'Exact Solution of a 1D Asymmetric Exclusion Model Using a Matrix Formulation'\n"
+                         "Journal of Physics A: Mathematical and General, 26(7), 1493.\n\n"
+                         " de Gier, J., & Essler, F. H. L. (2006).\n"
+                         "'Dynamical Transition in the Open-Boundary Totally Asymmetric Exclusion Process'\n"
+                         "Physical Review Letters, 95(24), 240601.")
             dpg.add_spacer(height=5)
             dpg.add_text("- Any suggested improvements please email to DePradaVill@proton.me")
             dpg.add_spacer(height=15)

@@ -1,21 +1,24 @@
 import numpy as np
 from copy import deepcopy
+from math import floor
 
 
 class Node:
     def __init__(self, start_pos, rate, **kwargs):
+        self.last_t_mult = 0
         self.name = "node"
         self.pos = start_pos
         self.rate = rate
         self.count = 0
-        self.check_in = []
+        self.check_in = [0]
+        self.track = True
         for key in kwargs:
             self.__dict__[key] = kwargs[key]
 
     def take(self, t):
-        if len(self.check_in) == 10:
-            self.check_in.pop(0)
-        self.check_in.append(t)
+        if self.track:
+            self.check_in.append(t)
+
 
 
 class Particle:
@@ -31,12 +34,14 @@ class Repository:
     """Repository object; fed particles."""
 
     def __init__(self, start_pos, capacity, colour=(233, 12, 50), **kwargs):
+        self.last_t_mult = 0
         self.name = "repo"
         self.capacity = capacity
         self.pos = start_pos
         self.count = 0
-        self.check_in = []
+        self.check_in = [0]
         self.colour = colour
+        self.track = True
         for key in kwargs:
             self.__dict__[key] = kwargs[key]
 
@@ -47,10 +52,8 @@ class Repository:
             return False
 
     def take(self, t):
-        if len(self.check_in) == 10:
-            self.check_in.pop(0)
-        self.check_in.append(t)
-
+        if self.track:
+            self.check_in.append(t)
 
 
 
@@ -63,19 +66,15 @@ class Circuit:
         self.entry_nodes = ingress
         self.exit_nodes = egress
         self.body = self.repos + self.exit_nodes
-        self.path_setup()
-
-    def path_setup(self):
         self.current_obj = None
         self.path_orientation = {}
         self.path_space = {}
         self.particles = []
         self.undercurrent_space = {}
         self.undercurrent_orientation = {}
+        self.reset_paths()
 
-        self.wipe_paths()
-
-    def wipe_paths(self):
+    def reset_paths(self):
         for y in range(26):
             for x in range(50):
                 self.path_space[(x, y)] = []
@@ -418,13 +417,6 @@ class Circuit:
 
         return traversable and continuable
 
-    def complete(self):
-        if len(self.particles) < 200:
-            return False
-        else:
-            return True
-
-
 class UndoRedoCaretaker:
     def __init__(self, circuit):
         self.undo_stack = []
@@ -553,3 +545,174 @@ class PathsRestoreCommand:
                     circuit.undercurrent_orientation[(x, y)] = None
         return inverse_command
 
+class RandomCompleteCircuitGenerator:
+    def __init__(self):
+        self.circuit = None
+    def gen_circuit(self):
+        """Generate circuit (without any paths)."""
+        rng = np.random.default_rng()
+        en_nodes = []
+        ex_nodes = []
+        repos = []
+
+        valid_repo_x = [i for i in range(2, 48)]
+
+        # Generate entry nodes w/ random positions and rates
+        for n in range(rng.integers(1, 2)):  # high was 6
+            new_node = Node((0, int(rng.integers(1, 25))), rng.random())
+            en_nodes.append(new_node)
+
+        # Generate exit nodes w/ random positions and rates
+        for n in range(rng.integers(1, 2)):  # high was 4
+            new_node = Node((49, int(rng.integers(1, 25))), -rng.random())
+            ex_nodes.append(new_node)
+
+        # Generate randomly placed repositories w/ random capacities
+        for n in range(rng.integers(3, 7)):
+            chosen_x = int(rng.choice(valid_repo_x))
+            new_repo = Repository((chosen_x, int(rng.integers(1, 25))), int(rng.integers(100, 1001)))
+            # For convenience later, repos is ordered by x pos. Following code sorts list.
+            if repos is []:
+                repos.append(new_repo)
+            else:
+                for i, repo in enumerate(repos):
+                    if new_repo.pos[0] <= repo.pos[0]:
+                        repos.insert(i, new_repo)
+                        break
+                else:
+                    repos.append(new_repo)
+
+            # To regulate distances between repositories
+            valid_repo_x.remove(chosen_x)
+            if chosen_x + 1 in valid_repo_x:
+                valid_repo_x.remove(chosen_x + 1)
+            if chosen_x - 1 in valid_repo_x:
+                valid_repo_x.remove(chosen_x - 1)
+
+        self.circuit = Circuit(repos, en_nodes, ex_nodes)
+        return self.circuit
+
+    def gen_circuit_paths(self):
+        """Generates paths"""
+        rng = np.random.default_rng()
+        c = self.circuit
+
+        # First settings for main entry node path
+        next_connections = c.repos
+
+        # Count to keep track of index of available nodes for branching
+        attempts = 1
+
+        # Generate a path for a node, and begin recursive branch process from that path
+        for node in c.entry_nodes + c.repos:
+            pointer_pos = node.pos
+            for connection in next_connections:
+                path = c.path_find(pointer_pos, connection.pos)
+                if path:
+                    break
+            self.branch_path_construct(pointer_pos, 1, prev=c.path_orientation[connection.pos])
+
+            # Make sure we have the right selection of nodes for branches
+            if attempts >= len(c.repos):
+                available = c.exit_nodes
+            else:
+                available = c.body[attempts:]
+                attempts += 1
+
+            # Randomly selected sequence of nodes to connect next too
+            next_connections = rng.choice(available, len(available), replace=False)
+
+        # For any repo without a path to it, generate that path
+        # Switch up order of repos first however
+        mixed = rng.choice(c.repos, len(c.repos), replace=False)
+        for repo in mixed:
+            current_ind = c.repos.index(repo)
+            possible_connections = c.entry_nodes + c.repos[:current_ind]
+            connection_queue = rng.choice(possible_connections, len(possible_connections), replace=False)
+            for node in connection_queue:
+                path = c.path_find(node.pos, repo.pos)
+                if path:
+                    break
+
+        for repo in c.repos:
+            if not c.pos_is_pointed_towards(repo.pos) or not c.path_space[repo.pos]:
+                self.path_setup()
+                return False
+        else:
+            return True
+
+    def branch_path_construct(self, pointer, p, prev=None):
+        """Recursively called to generate path space"""
+        rng = np.random.default_rng()
+        pointer_pos = pointer
+        c = self.circuit
+
+        # Only consider repos and exit nodes with a higher x value than pointer, since whole process is left to right
+        for i, repo in enumerate(c.repos):
+            if pointer_pos[0] < repo.pos[0]:
+                available = c.repos[i:] + c.exit_nodes
+                break
+        else:
+            available = c.exit_nodes
+
+        # Make random selection from available
+        no_available = len(available)
+        no_selected = rng.binomial(no_available, min(p / no_available, 1))
+        selected = rng.choice(available, no_selected, replace=False)
+
+        for node in selected:
+            node_orientation = node.pos
+            pointer_orientation = c.path_orientation[pointer_pos]
+            if node_orientation != c.path_orientation[pointer_pos]:
+                # Select the second block along in current branch after the pointer_pos
+                for pos in c.path_space[pointer_pos]:
+                    if c.path_orientation[pos] == pointer_orientation:
+                        pointer_pos = pos
+                        break
+                for pos in c.path_space[pointer_pos]:
+                    if c.path_orientation[pos] == pointer_orientation:
+                        pointer_pos = pos
+                        break
+                # Test if we are still along the branch path
+                if c.in_repo(pointer_pos) or node_orientation == prev:
+                    break
+                # If so generate new path and call recursion
+                else:
+                    path = c.path_find(pointer_pos, node.pos)
+                    if path:
+                        for pos in c.path_space[pointer_pos]:
+                            # Select path newly created
+                            if c.path_orientation[pos] == node_orientation:
+                                # Extra condition for fixing undercurrent bug
+                                if pos not in c.undercurrent_space:
+                                    self.branch_path_construct(pos, p / 2, prev=pointer_orientation)
+                                    break
+
+    def path_setup(self):
+        self.circuit.current_obj = None
+        self.circuit.path_orientation = {}
+        self.circuit.path_space = {}
+        self.circuit.particles = []
+        self.circuit.undercurrent_space = {}
+        self.circuit.undercurrent_orientation = {}
+        self.circuit.reset_paths()
+
+class DataRecorder:
+    def __init__(self, tracked_nodes):
+        self.nodes = tracked_nodes
+        self.currents_1 = {}
+        self.currents_10 = {}
+        self.currents_50 = {}
+
+        for node in self.nodes:
+            self.currents_1[node.pos] = [0]
+            self.currents_10[node.pos] = []
+            self.currents_50[node.pos] = []
+
+    def calc_currents(self):
+        for pos in self.currents_1:
+            for i in range(len(self.currents_1[pos]) // 10):
+                self.currents_10[pos].append(sum(self.currents_1[pos][i * 10:i * 10 + 10]) / 10)
+            for i in range(len(self.currents_1[pos]) // 50):
+                self.currents_50[pos].append(sum(self.currents_1[pos][i * 50:i * 50 + 50]) / 50)
+            self.currents_1[pos] = [0]
