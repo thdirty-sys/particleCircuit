@@ -10,5 +10,5 @@ setup(
         "dearpygui==2.0.0",
         "numpy>=2.0.2"
     ],
-    python_requires=">=3.8",
+    python_requires=">=3.10",
 )
