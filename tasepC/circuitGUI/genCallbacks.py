@@ -1,7 +1,6 @@
 import dearpygui.dearpygui as dpg
-import drawCallbacks
-import interfaceObjects
-from tasepC import circuitOperations
+from circuitGUI import drawCallbacks, interfaceObjects
+from tasepC.circuitOperations.circuitObjects import RandomCompleteCircuitGenerator
 
 
 def gen_circuit():
@@ -16,7 +15,7 @@ def gen_circuit():
     # Create an instance of the TASEP circuit dispatcher object
     tcd = interfaceObjects.TasepCircuitDispatcherGUI()
     # Method returns skeleton of generated circuit (skeleton because no paths yet generated)
-    circ_generator = circuitOperations.RandomCompleteCircuitGenerator()
+    circ_generator = RandomCompleteCircuitGenerator()
     circuit = circ_generator.gen_circuit()
     # set circuit for TASEP to act on
     tcd.circuit = circuit
@@ -32,14 +31,7 @@ def gen_circuit():
                    tag="circuit_wiper_button", callback=wipe_circuit)
 
 def get_pos():
-    global circuit
-    mouse_pos = dpg.get_plot_mouse_pos()
-    pos = (round(mouse_pos[0]), round(mouse_pos[1]))
-    print()
-    print(f"path_space: {circuit.path_space[pos]}")
-    print(f"orientation: {circuit.path_orientation[pos]}")
-    if pos in circuit.undercurrent_space:
-        print(f"undercurrent_space: {circuit.undercurrent_space[pos]}")
+    pass
 
 
 def wipe_circuit():

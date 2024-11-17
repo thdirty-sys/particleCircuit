@@ -1,13 +1,10 @@
 from math import floor
-
 import dearpygui.dearpygui as dpg
-from tasepC import circuitOperations
 import threading
-import genCallbacks
-import interfaceObjects
+from circuitGUI import genCallbacks, interfaceObjects
+import circuitOperations
 
 saved_hover_pos = None
-
 
 class RepeatTimer(threading.Timer):
     def run(self):

@@ -4,8 +4,7 @@ from math import floor
 import numpy as np
 import time
 
-from tasepC import circuitOperations as circuitDispatchers
-from tasepC.circuitOperations.circuitObjects import Particle, DataRecorder
+import circuitOperations
 
 
 
@@ -144,7 +143,7 @@ class CircuitImage():
             dpg.delete_item(f"sep_line{i}")
 
 
-class TasepCircuitDispatcherGUI(circuitDispatchers.TasepCircuitDispatcher):
+class TasepCircuitDispatcherGUI(circuitOperations.TasepCircuitDispatcher):
 
     def run_tasep(self):
         """"TASEP dispatcher modified for dearpygui"""
@@ -175,7 +174,7 @@ class TasepCircuitDispatcherGUI(circuitDispatchers.TasepCircuitDispatcher):
                         # With probability of node rate add new particle to empty node
                         if rng.random() <= chosen.rate:
                             if self.pos_empty(chosen.pos, c.path_orientation[chosen.pos]):
-                                new_particle = Particle(chosen.pos, self.particle_count)
+                                new_particle = circuitOperations.Particle(chosen.pos, self.particle_count)
                                 new_particle.orientation = c.path_orientation[chosen.pos]
                                 c.particles.append(new_particle)
                                 if self.particle_count % 10 == 0 and self.debug_particle:
@@ -465,7 +464,7 @@ class TasepCircuitDispatcherGUI(circuitDispatchers.TasepCircuitDispatcher):
         for n in self.circuit.entry_nodes + self.circuit.body:
             if n.track:
                 self.tracked.append(n)
-        self.data = DataRecorder(self.tracked)
+        self.data = circuitOperations.DataRecorder(self.tracked)
 
         # Create lock to avoid errors in threading
         self.lock = threading.Lock()
