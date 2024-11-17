@@ -441,14 +441,7 @@
       <workItem from="1731865165003" duration="5065000" />
       <workItem from="1731872095798" duration="9548000" />
       <workItem from="1731885002790" duration="14000" />
-    </task>
-    <task id="LOCAL-00025" summary="Added steelmanning circuit paths with necessary paths TO repos. more path gen bug-fixing.">
-      <option name="closed" value="true" />
-      <created>1722688735355</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1722688735355</updated>
+      <workItem from="1731886085320" duration="835000" />
     </task>
     <task id="LOCAL-00026" summary="Added seperation lines for better visibility">
       <option name="closed" value="true" />
@@ -834,7 +827,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731883943715</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="Reformat">
+      <option name="closed" value="true" />
+      <created>1731886227780</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1731886227781</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
