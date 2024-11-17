@@ -1,4 +1,4 @@
-<div align="center">The TASEP circuit generator and simulator<\div>
+##The TASEP circuit generator and simulator<\div>
 =========================================
 
 The Asymmetric Simple Exclusion Process (ASEP) is a Stochastic process,
