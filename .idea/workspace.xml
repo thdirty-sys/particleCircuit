@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="Added setup file. Refactoring.">
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/particleCircuit.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/tasepC.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasepC/circuitGUI/dpgEnviron.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasepC/circuitGUI/tasepC.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasepC/circuitGUI/interfaceObjects.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasepC/circuitGUI/interfaceObjects.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/to_do.txt" beforeDir="false" />
-    </list>
+    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="Added setup file. Refactoring." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,6 +18,19 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="master" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
         <option value="thdirty-sys &lt;depradavill@proton.me&gt;" />
@@ -513,23 +517,7 @@
       <workItem from="1730933363487" duration="6645000" />
       <workItem from="1731786105292" duration="2496000" />
       <workItem from="1731789099427" duration="4148000" />
-      <workItem from="1731865165003" duration="3790000" />
-    </task>
-    <task id="LOCAL-00021" summary="Begun work on TASEP process across the circuit">
-      <option name="closed" value="true" />
-      <created>1722480629366</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1722480629366</updated>
-    </task>
-    <task id="LOCAL-00022" summary="Begun work on TASEP process across the circuit">
-      <option name="closed" value="true" />
-      <created>1722482824274</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1722482824274</updated>
+      <workItem from="1731865165003" duration="4758000" />
     </task>
     <task id="LOCAL-00023" summary="Fixed button blocking">
       <option name="closed" value="true" />
@@ -907,7 +895,23 @@
       <option name="project" value="LOCAL" />
       <updated>1731869229121</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="Added setup file. Refactoring.">
+      <option name="closed" value="true" />
+      <created>1731871597758</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1731871597758</updated>
+    </task>
+    <task id="LOCAL-00071" summary="Added setup file. Refactoring.">
+      <option name="closed" value="true" />
+      <created>1731871648439</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1731871648439</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
