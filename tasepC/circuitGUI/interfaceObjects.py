@@ -528,16 +528,15 @@ class StatisticalFrames:
         x_10 = [10*x for x in range(len(y_10))]
         x_50 = [50*x for x in range(len(y_50))]
         # REQUIRED: create x and y axes
-        ax_x = dpg.add_plot_axis(axis=0, label="Time - s", parent=f"{pos}_current_plot", lock_min=False,
+        ax_x = dpg.add_plot_axis(dpg.mvXAxis, label="Time - s", parent=f"{pos}_current_plot", lock_min=False,
                                  lock_max=False)
-        dpg.add_plot_axis(axis=1, label="Current - p/s", parent=f"{pos}_current_plot", tag=f"{pos}_y_axis")
+        dpg.add_plot_axis(dpg.mvYAxis, label="Current - p/s", parent=f"{pos}_current_plot", tag=f"{pos}_y_axis")
         dpg.fit_axis_data(axis=ax_x)
         #dpg.set_axis_limits(axis=ax_x, ymin=0, ymax=x_10[-1])
 
+        avg = sum(y_10)/len(y_10)
 
-
-        avg_line = [sum(y_10)/len(y_10) for i in range(len(y_10))]
         dpg.add_line_series(x_50, y_50, parent=f"{pos}_y_axis", label="Intervals of 50")
         dpg.add_line_series(x_10, y_10, parent=f"{pos}_y_axis", label="Intervals of 10")
-        dpg.add_hline_series(avg_line, parent=f"{pos}_y_axis", label=f"{round(avg_line[0], 5)}")
+        dpg.add_inf_line_series([avg], parent=f"{pos}_y_axis", label=f"{round(avg, 5)}", horizontal=True)
 

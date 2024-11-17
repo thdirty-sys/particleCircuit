@@ -21,20 +21,17 @@ with dpg.window(tag="primary_window"):
                               height=845, equal_aspects=True, tag="main_grid"):
 
             #create x and y axes; arguments to make it as unidentifiable as a graph
-            def_x = dpg.add_plot_axis(axis=0, no_tick_marks=True, no_tick_labels=True, lock_min=True, tag="x_axis",
-                                      no_gridlines=True)
-            def_y = dpg.add_plot_axis(axis=1, no_tick_marks=True, no_tick_labels=True, lock_min=True, tag="y_axis",
-                                      no_gridlines=True)
+            def_x = dpg.add_plot_axis(dpg.mvXAxis, no_tick_marks=True, no_tick_labels=True, lock_min=True,
+                                      tag="x_axis", no_gridlines=True)
+            def_y = dpg.add_plot_axis(dpg.mvYAxis, no_tick_marks=True, no_tick_labels=True, lock_min=True,
+                                      tag="y_axis", no_gridlines=True)
 
             dpg.set_axis_limits(axis=def_x, ymin=-0.5, ymax=49.5)
             dpg.set_axis_limits(axis=def_y, ymin=-0.5, ymax=25.5)
 
-
-
             #add horizontal bars and vertical bars
-            dpg.add_vline_series(x=[n-1.5 for n in range(51)], parent=def_x)
-            dpg.add_hline_series(x=[f-1.5 for f in range(27)], parent=def_y)
-
+            dpg.add_inf_line_series(x=[n - 1.5 for n in range(51)], parent=def_x)
+            dpg.add_inf_line_series(x=[f - 1.5 for f in range(27)], parent=def_y, horizontal=True)
 
 
         with dpg.child_window(tag="control", border=True):
