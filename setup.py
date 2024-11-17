@@ -5,10 +5,10 @@ setup(
     version="1.0.0",
     author="Theo Prada De Ville",
     author_email="DePradaVill@proton.me",
-    scripts=["./tasepC/circuitGUI/gg.py"],
+    scripts=["./tasepC/main.py"],
     install_requires=[
         "dearpygui==2.0.0",
-        "numpy>=2.1.3"
+        "numpy>=2.0.2"
     ],
     python_requires=">=3.8",
 )
