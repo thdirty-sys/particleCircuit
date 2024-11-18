@@ -31,9 +31,7 @@ Once a circuit is set up, users can run detailed simulations, observing the evol
 
 ## Analyse
 After the simulation, the application provides graphing tools to visualize key metrics, such as the current over nodes.
-<video width="720" height="405">
-<source src="./imgs/analyse_vid.mp4" type="video/mp4">
-<\video>
+./imgs/analyse_vid.mp4
 
 # Installation
 
@@ -71,4 +69,3 @@ After the simulation, the application provides graphing tools to visualize key m
 
 If properly installed, main.py in tasepC folder will run the application.
 
-https://user-images.githubusercontent.com/6877923/115474571-03c75800-a23e-11eb-8096-8973aad5fa9f.mp4
