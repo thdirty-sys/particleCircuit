@@ -1,8 +1,6 @@
 The TASEP circuit generator and simulator
 =========================================
 
-<img src="./imgs/yes.png">
-
 ## Table of Contents
 
 1. [Introduction](#introduction)
