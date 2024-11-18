@@ -31,7 +31,9 @@ Once a circuit is set up, users can run detailed simulations, observing the evol
 
 ## Analyse
 After the simulation, the application provides graphing tools to visualize key metrics, such as the current over nodes.
-<video width="720" height="405"><source src="./imgs/analyse_vid.mp4" type="video/mp4"><\video>
+<video width="720" height="405">
+<source src="./imgs/analyse_vid.mp4" type="video/mp4">
+<\video>
 
 # Installation
 
