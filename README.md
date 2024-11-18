@@ -23,11 +23,17 @@ This tool enables the user to draw their own circuit with customisable in/out ra
 ## Draw
 Users can draw their own custom circuits using an intuitive interface, enabling precise control over the simulation environment. Boundary transition rates can be set manually.
 
+https://github.com/user-attachments/assets/fc0bb442-7b5f-4b7d-bb70-9311f4516030
+
 ## Random Generation
 Alternatively, they can choose to generate random circuits, providing a quick and diverse way to experiment with different configurations.
 
+https://github.com/user-attachments/assets/834301f4-5c5f-4e56-92c6-a1353cc43583
+
 ## Play
 Once a circuit is set up, users can run detailed simulations, observing the evolution of particle flow over time.
+
+https://github.com/user-attachments/assets/365965d8-8ad9-4a7e-9ece-da83a917fb08
 
 ## Analyse
 After the simulation, the application provides graphing tools to visualize key metrics, such as the current over nodes.
