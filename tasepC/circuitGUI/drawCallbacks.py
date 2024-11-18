@@ -188,11 +188,7 @@ def plot_click(sender, app_data):
                         # Enter edit mode for node
                         enter_edit(new_repo)
     else:
-        print()
-        print(f"path_space: {c.path_space[pos]}")
-        print(f"orientation: {c.path_orientation[pos]}")
-        if pos in c.undercurrent_space:
-            print(f"undercurrent_space: {c.undercurrent_space[pos]}")
+        pass
 
     # If circuit is valid to run, allow 'Start process' button to show
     check_initiable()

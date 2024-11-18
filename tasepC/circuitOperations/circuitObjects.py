@@ -492,7 +492,6 @@ class DeleteNodeCommand:
                         inverse_command = CreateNodeCommand(ex)
                         del circuit.exit_nodes[i]
                         break
-        print(circuit.entry_nodes)
         return inverse_command
 
 
