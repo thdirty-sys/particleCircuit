@@ -1,7 +1,7 @@
 The TASEP circuit generator and simulator
 =========================================
 
-<div>Mein fuhrer</div>
+<div align="center">Mein fuhrer</div>
 
 ## Table of Contents
 
