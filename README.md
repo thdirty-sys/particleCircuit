@@ -19,13 +19,18 @@ transport phenomena” (Horng-Tzer Yau, 2004).
 This tool enables the user to draw their own circuit with customisable in/out rates, or to generate a random circuit, over which TASEP is simulated. Raw current data is recorded and graphs can be opened to observe stationarity and the unique, well-recorded properties of this process in open boundary conditions. Should be helpful for visualisation of the TASEP process.
 
 # Features
-Draw
 
-Gen
+## Draw
+Users can draw their own custom circuits using an intuitive interface, enabling precise control over the simulation environment. Boundary transition rates can be set manually.
 
-Play
+## Random Generation
+Alternatively, they can choose to generate random circuits, providing a quick and diverse way to experiment with different configurations.
 
-Analyse
+## Play
+Once a circuit is set up, users can run detailed simulations, observing the evolution of particle flow over time.
+
+## Analyse
+After the simulation, the application provides graphing tools to visualize key metrics, such as the current over nodes.
 
 # Installation
 
