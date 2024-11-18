@@ -1,8 +1,9 @@
-The TASEP circuit generator and simulator
-=========================================
+<div align="center">
+  <h1>tasepC</h1>
+  <h2>The Totally Asymmetric Simple Exclusion Process simulation tool</h2>
+</div>
 
-<div align="center">Mein fuhrer</div>
-
+  
 ## Table of Contents
 
 1. [Introduction](#introduction)
