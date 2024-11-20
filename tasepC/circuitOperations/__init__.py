@@ -1,2 +1,2 @@
-from tasepC.circuitOperations.circuitDispatchers import *
-from tasepC.circuitOperations.circuitObjects import *
+from circuitOperations.circuitDispatchers import *
+from circuitOperations.circuitObjects import *

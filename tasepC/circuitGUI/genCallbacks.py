@@ -1,6 +1,6 @@
 import dearpygui.dearpygui as dpg
 from circuitGUI import drawCallbacks, interfaceObjects
-from tasepC.circuitOperations.circuitObjects import RandomCompleteCircuitGenerator
+from circuitOperations.circuitObjects import RandomCompleteCircuitGenerator
 
 
 def gen_circuit():
