@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="edited lines">
-      <change beforePath="$PROJECT_DIR$/tasepC/tasepC.ico" beforeDir="false" />
-    </list>
+    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="edited lines" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -106,9 +104,9 @@
       <recent name="C:\Users\Theo Prada De Ville\PycharmProjects\particleCircuit\circuitGUI" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Theo Prada De Ville\PycharmProjects\particleCircuit" />
       <recent name="C:\Users\Theo Prada De Ville\PycharmProjects\particleCircuit\tasepC" />
       <recent name="C:\Users\Theo Prada De Ville\PycharmProjects\particleCircuit\tasepC\circuitGUI" />
-      <recent name="C:\Users\Theo Prada De Ville\PycharmProjects\particleCircuit" />
       <recent name="C:\Users\Theo Prada De Ville\PycharmProjects\particleCircuit\circuitObjects" />
       <recent name="C:\Users\Theo Prada De Ville\PycharmProjects\particleCircuit\circuitGUI" />
     </key>
@@ -446,31 +444,7 @@
       <workItem from="1732121755880" duration="2411000" />
       <workItem from="1732134272687" duration="1043000" />
       <workItem from="1732195364562" duration="624000" />
-      <workItem from="1732213388368" duration="2078000" />
-    </task>
-    <task id="LOCAL-00032" summary="debugging">
-      <option name="closed" value="true" />
-      <created>1722774429647</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1722774429647</updated>
-    </task>
-    <task id="LOCAL-00033" summary="Completed TASEP routing through. Debugging in process">
-      <option name="closed" value="true" />
-      <created>1722867888879</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1722867888879</updated>
-    </task>
-    <task id="LOCAL-00034" summary="Completed debugging for GUI version of path-routing">
-      <option name="closed" value="true" />
-      <created>1722900600937</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1722900600937</updated>
+      <workItem from="1732213388368" duration="2419000" />
     </task>
     <task id="LOCAL-00035" summary="Remove print statements">
       <option name="closed" value="true" />
@@ -840,7 +814,31 @@
       <option name="project" value="LOCAL" />
       <updated>1732215907672</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="edited lines">
+      <option name="closed" value="true" />
+      <created>1732215931521</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1732215931521</updated>
+    </task>
+    <task id="LOCAL-00082" summary="edited lines">
+      <option name="closed" value="true" />
+      <created>1732216002033</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1732216002033</updated>
+    </task>
+    <task id="LOCAL-00083" summary="edited lines">
+      <option name="closed" value="true" />
+      <created>1732216164140</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1732216164140</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -921,7 +919,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/tasepC$run__1_.coverage" NAME="run (1) Coverage Results" MODIFIED="1731880895410" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tasepC" />
     <SUITE FILE_PATH="coverage/tasepC$run.coverage" NAME="run Coverage Results" MODIFIED="1731880452466" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tasepC" />
-    <SUITE FILE_PATH="coverage/tasepC$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1732215198196" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tasepC" />
+    <SUITE FILE_PATH="coverage/tasepC$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1732216155435" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tasepC" />
     <SUITE FILE_PATH="coverage/particleCircuit$repositoryObj.coverage" NAME="repositoryObj Coverage Results" MODIFIED="1721698686405" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/tasepC$drawCallbacks.coverage" NAME="drawCallbacks Coverage Results" MODIFIED="1731880919018" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tasepC/circuitGUI" />
     <SUITE FILE_PATH="coverage/particleCircuit$main.coverage" NAME="main Coverage Results" MODIFIED="1721701372082" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
