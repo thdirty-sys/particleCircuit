@@ -1,6 +1,6 @@
 <div align="center">
   <h1>tasepC</h1>
-  <img src="./tasepC/tasepC.ico"> 
+  <img src="tasepC.png"> 
   <h2>The Totally Asymmetric Simple Exclusion Process simulation tool</h2>
 </div>
 
@@ -54,7 +54,7 @@ https://github.com/user-attachments/assets/44dcb163-230e-4639-a745-fe5836a22bb4
   - MacOS
 - Python versions:
   - 3.12.0
-  - 3.1
+  - 3.10.0
   
 1. **Download and Install Python:**
 
