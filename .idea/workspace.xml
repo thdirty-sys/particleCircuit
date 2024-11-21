@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="edited lines">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasepC/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasepC/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tasepC/tasepC.ico" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -448,23 +446,7 @@
       <workItem from="1732121755880" duration="2411000" />
       <workItem from="1732134272687" duration="1043000" />
       <workItem from="1732195364562" duration="624000" />
-      <workItem from="1732213388368" duration="1528000" />
-    </task>
-    <task id="LOCAL-00030" summary="Made viewport un-resizable">
-      <option name="closed" value="true" />
-      <created>1722698185507</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1722698185507</updated>
-    </task>
-    <task id="LOCAL-00031" summary="Added tasep pathing for particles + GUI version">
-      <option name="closed" value="true" />
-      <created>1722770229760</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1722770229760</updated>
+      <workItem from="1732213388368" duration="2078000" />
     </task>
     <task id="LOCAL-00032" summary="debugging">
       <option name="closed" value="true" />
@@ -842,7 +824,23 @@
       <option name="project" value="LOCAL" />
       <updated>1732214054343</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="edited lines">
+      <option name="closed" value="true" />
+      <created>1732215371092</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1732215371092</updated>
+    </task>
+    <task id="LOCAL-00080" summary="edited lines">
+      <option name="closed" value="true" />
+      <created>1732215907672</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1732215907672</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
