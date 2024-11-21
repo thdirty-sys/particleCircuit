@@ -7,12 +7,9 @@ def nothing():
     pass
 
 dpg.create_context()
-dpg.create_viewport(title="tasepC", resizable=False)
+dpg.create_viewport(title="tasepC", resizable=False, large_icon="tasepC.ico", small_icon="tasep.ico")
 dpg.set_viewport_clear_color([0, 0, 0])
 dpg.configure_viewport(0, x_pos=0, y_pos=0, width=dim_x, height=dim_y)
-
-dpg.set_viewport_small_icon("tasepC.ico")
-dpg.set_viewport_large_icon("tasepC.ico")
 
 with dpg.window(tag="primary_window"):
     with dpg.group(horizontal=True):
