@@ -1,6 +1,6 @@
 <div align="center">
   <h1>tasepC</h1>
-    <img src="./tasepC/tasepC.ico"> 
+  <img src="./tasepC/tasepC.ico"> 
   <h2>The Totally Asymmetric Simple Exclusion Process simulation tool</h2>
 </div>
 
