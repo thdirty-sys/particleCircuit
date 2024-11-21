@@ -3,7 +3,7 @@ import threading
 from math import floor
 import numpy as np
 import time
-
+import circuitGUI as GUI
 import circuitOperations
 
 
@@ -392,8 +392,6 @@ class TasepCircuitDispatcherGUI(circuitOperations.TasepCircuitDispatcher):
         dpg.delete_item("runtime_register")
         dpg.bind_item_handler_registry("main_grid", "plot_register")
 
-        print(self.circuit.particles)
-
     def reveal_graphs(self):
         dpg.delete_item("reset_process_button")
         dpg.delete_item("graphical_breakdown")
@@ -518,7 +516,7 @@ class StatisticalFrames:
                 self.create_current_plot(pos)
             self.loaded = pos
     def create_current_plot(self, pos):
-        dpg.add_plot(label=f"Current at {pos}", height=800, width=1600, tag=f"{pos}_current_plot", parent="info")
+        dpg.add_plot(label=f"Current at {pos}", height=GUI.plot_y, width=GUI.plot_x, tag=f"{pos}_current_plot", parent="info")
         # optionally create legend
         dpg.add_plot_legend(parent=f"{pos}_current_plot")
         # Load data to display

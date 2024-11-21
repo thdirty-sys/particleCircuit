@@ -5,7 +5,6 @@ from circuitGUI import genCallbacks, interfaceObjects
 import circuitOperations
 
 saved_hover_pos = None
-
 class RepeatTimer(threading.Timer):
     def run(self):
         while not self.finished.wait(self.interval):
