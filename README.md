@@ -4,7 +4,9 @@
   <h2>The Totally Asymmetric Simple Exclusion Process simulation tool</h2>
 </div>
 
-  
+<i>Note: application works fine on a laptop but the UI isn't quite adapted cleanly to it.  
+<\i>
+
 ## Table of Contents
 
 1. [Introduction](#introduction)
@@ -51,7 +53,7 @@ https://github.com/user-attachments/assets/44dcb163-230e-4639-a745-fe5836a22bb4
 
 - Operating Systems:
   - Windows 10
-  - MacOS
+  - MacOS 12.7.6
 - Python versions:
   - 3.12.0
   - 3.10.0
