@@ -531,9 +531,10 @@ class StatisticalFrames:
         dpg.fit_axis_data(axis=ax_x)
         #dpg.set_axis_limits(axis=ax_x, ymin=0, ymax=x_10[-1])
 
-        avg = sum(y_10)/len(y_10)
 
         dpg.add_line_series(x_50, y_50, parent=f"{pos}_y_axis", label="Intervals of 50")
         dpg.add_line_series(x_10, y_10, parent=f"{pos}_y_axis", label="Intervals of 10")
-        dpg.add_inf_line_series([avg], parent=f"{pos}_y_axis", label=f"{round(avg, 5)}", horizontal=True)
+        if len(y_10) > 0:
+            avg = sum(y_10) / len(y_10)
+            dpg.add_inf_line_series([avg], parent=f"{pos}_y_axis", label=f"{round(avg, 5)}", horizontal=True)
 

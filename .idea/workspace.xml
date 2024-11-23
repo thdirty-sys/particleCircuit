@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="Adjusted application sizes for laptop screens">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="README laptop note">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -446,15 +446,8 @@
       <workItem from="1732121755880" duration="2411000" />
       <workItem from="1732134272687" duration="1043000" />
       <workItem from="1732195364562" duration="624000" />
-      <workItem from="1732213388368" duration="9167000" />
-    </task>
-    <task id="LOCAL-00037" summary="Remove commented out code">
-      <option name="closed" value="true" />
-      <created>1723460493479</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1723460493479</updated>
+      <workItem from="1732213388368" duration="10096000" />
+      <workItem from="1732324845030" duration="643000" />
     </task>
     <task id="LOCAL-00038" summary="Made tasep process threaded, that can be paused and played">
       <option name="closed" value="true" />
@@ -840,7 +833,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732227840352</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="README laptop note">
+      <option name="closed" value="true" />
+      <created>1732230047817</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1732230047817</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -880,7 +881,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Filled README.md" />
     <MESSAGE value="README edit... colour-blind" />
     <MESSAGE value="colour-blind edit..." />
     <MESSAGE value="README notes" />
@@ -905,7 +905,8 @@
     <MESSAGE value="edited lines" />
     <MESSAGE value="logo size" />
     <MESSAGE value="Adjusted application sizes for laptop screens" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adjusted application sizes for laptop screens" />
+    <MESSAGE value="README laptop note" />
+    <option name="LAST_COMMIT_MESSAGE" value="README laptop note" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -925,9 +926,9 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/tasepC$run__1_.coverage" NAME="run (1) Coverage Results" MODIFIED="1731880895410" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tasepC" />
     <SUITE FILE_PATH="coverage/tasepC$run.coverage" NAME="run Coverage Results" MODIFIED="1731880452466" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tasepC" />
-    <SUITE FILE_PATH="coverage/tasepC$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1732227797349" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tasepC" />
-    <SUITE FILE_PATH="coverage/particleCircuit$repositoryObj.coverage" NAME="repositoryObj Coverage Results" MODIFIED="1721698686405" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/tasepC$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1732324872222" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tasepC" />
     <SUITE FILE_PATH="coverage/tasepC$drawCallbacks.coverage" NAME="drawCallbacks Coverage Results" MODIFIED="1731880919018" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tasepC/circuitGUI" />
+    <SUITE FILE_PATH="coverage/particleCircuit$repositoryObj.coverage" NAME="repositoryObj Coverage Results" MODIFIED="1721698686405" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/particleCircuit$main.coverage" NAME="main Coverage Results" MODIFIED="1721701372082" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/particleCircuit$dpgEnviron.coverage" NAME="dpgEnviron Coverage Results" MODIFIED="1731789114034" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/particleCircuit$circuitMotor.coverage" NAME="circuitMotor Coverage Results" MODIFIED="1721777459192" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/circuitObjects" />

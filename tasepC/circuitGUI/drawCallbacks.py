@@ -91,9 +91,6 @@ def draw_mode():
     dpg.add_button(label="Start process", width=200, height=30,
                    callback=initiate_process, tag="start_process_button",
                    parent="action_buttons", before="wipe_paths_button", show=False)
-    dpg.add_button(label="Start sim", width=200, height=30,
-                   callback=initiate_sim, tag="start_sim_button",
-                   parent="action_buttons", before="wipe_paths_button", show=False)
     dpg.add_spacer(height=5, parent="action_buttons")
     dpg.add_button(label="Exit", width=200, height=30, parent="action_buttons",
                    tag="exit_draw_mode", callback=exit_draw_mode)
@@ -226,17 +223,14 @@ def check_initiable():
     for n in c.entry_nodes + c.repos:
         if not c.path_space[n.pos]:
             dpg.configure_item("start_process_button", show=False)
-            dpg.configure_item("start_sim_button", show=False)
             break
     else:
         for pos in c.path_space:
             for a in c.path_space[pos]:
                 if not c.path_space[a] and not c.in_exit_node(a):
                     dpg.configure_item("start_process_button", show=False)
-                    dpg.configure_item("start_sim_button", show=False)
                     break
                 else:
-                    dpg.configure_item("start_sim_button", show=True)
                     dpg.configure_item("start_process_button", show=True)
 
 def initiate_sim():
