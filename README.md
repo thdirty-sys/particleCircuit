@@ -51,6 +51,8 @@ https://github.com/user-attachments/assets/44dcb163-230e-4639-a745-fe5836a22bb4
 
 # Installation
 
+The following executable is available for windows users, however it triggers my anti-virus and I have to make an exception for it not to be quarantined: https://github.com/thdirty-sys/tasepC/releases/download/v1.0.0/Win_tasepC.exe
+
 **Confirmed successful runs on the following:**
 
 - Operating Systems:
