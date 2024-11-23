@@ -4,7 +4,7 @@
   <h2>The Totally Asymmetric Simple Exclusion Process simulation tool</h2>
 </div>
 
-<i>Note: application works fine on a laptop but the UI isn't quite adapted cleanly to it.
+<i>Note: application works fine on a laptop but the UI isn't as well-fitted.
 
 ## Table of Contents
 
