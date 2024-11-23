@@ -361,7 +361,6 @@ def enter_edit(node):
     # Render node-edit menu
     dpg.add_group(tag="node_edit_group", parent="control")
     dpg.add_spacer(parent="node_edit_group", height=20)
-    # TODO: checkbox for showing currents
     dpg.add_checkbox(label="Track stats", parent="node_edit_group", callback=track_toggle, user_data=node,
                      default_value=node.track)
     dpg.add_spacer(parent="node_edit_group", height=5)

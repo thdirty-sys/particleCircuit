@@ -269,7 +269,7 @@ class TasepCircuitDispatcherGUI(circuitOperations.TasepCircuitDispatcher):
         dpg.add_spacer(height=2, parent="stats")
         dpg.add_text("Click node on grid\nto identify:", parent="stats", indent=40, tag="click_explainer")
         dpg.add_spacer(height=9, parent="stats")
-        # FIXME: could be one for loop through self.tracked. Neater; line efficient.
+        # TODO: could be one for loop through self.tracked. Neater; line efficient.
         for en_node in self.circuit.entry_nodes:
             if en_node.track:
                 dpg.add_group(tag=f"en_stat_list{en_node.pos}", parent="stats", horizontal=True)
