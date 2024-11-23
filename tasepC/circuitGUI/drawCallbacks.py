@@ -91,6 +91,8 @@ def draw_mode():
     dpg.add_button(label="Start process", width=200, height=30,
                    callback=initiate_process, tag="start_process_button",
                    parent="action_buttons", before="wipe_paths_button", show=False)
+    dpg.add_text("Circuit is not complete.", tag="completion_warning",
+                   parent="action_buttons", before="wipe_paths_button")
     dpg.add_spacer(height=5, parent="action_buttons")
     dpg.add_button(label="Exit", width=200, height=30, parent="action_buttons",
                    tag="exit_draw_mode", callback=exit_draw_mode)
@@ -223,15 +225,18 @@ def check_initiable():
     for n in c.entry_nodes + c.repos:
         if not c.path_space[n.pos]:
             dpg.configure_item("start_process_button", show=False)
+            dpg.configure_item("completion_warning", show=True)
             break
     else:
         for pos in c.path_space:
             for a in c.path_space[pos]:
                 if not c.path_space[a] and not c.in_exit_node(a):
                     dpg.configure_item("start_process_button", show=False)
+                    dpg.configure_item("completion_warning", show=True)
                     break
                 else:
                     dpg.configure_item("start_process_button", show=True)
+                    dpg.configure_item("completion_warning", show=False)
 
 def initiate_sim():
     dpg.configure_item("brushes_menu", show=False)

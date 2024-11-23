@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="Remove avg calc error. Remove &quot;start_sim_button&quot;.">
+    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="Updated TODO list">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/tasepC/circuitGUI/drawCallbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/build/lib/tasepC/circuitGUI/drawCallbacks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/tasepC/circuitGUI/interfaceObjects.py" beforeDir="false" afterPath="$PROJECT_DIR$/build/lib/tasepC/circuitGUI/interfaceObjects.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasepC/circuitGUI/drawCallbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasepC/circuitGUI/drawCallbacks.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -450,15 +447,7 @@
       <workItem from="1732134272687" duration="1043000" />
       <workItem from="1732195364562" duration="624000" />
       <workItem from="1732213388368" duration="10096000" />
-      <workItem from="1732324845030" duration="1002000" />
-    </task>
-    <task id="LOCAL-00039" summary="Ensured that only valid circuit pathing is accepted">
-      <option name="closed" value="true" />
-      <created>1723490044928</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1723490044928</updated>
+      <workItem from="1732324845030" duration="1653000" />
     </task>
     <task id="LOCAL-00040" summary="Removed useless self.branches">
       <option name="closed" value="true" />
@@ -844,7 +833,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732329625415</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="Updated TODO list">
+      <option name="closed" value="true" />
+      <created>1732329718743</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1732329718743</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -884,7 +881,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="colour-blind edit..." />
     <MESSAGE value="README notes" />
     <MESSAGE value="Demo added to README" />
     <MESSAGE value="Change viewport name" />
@@ -909,7 +905,8 @@
     <MESSAGE value="Adjusted application sizes for laptop screens" />
     <MESSAGE value="README laptop note" />
     <MESSAGE value="Remove avg calc error. Remove &quot;start_sim_button&quot;." />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove avg calc error. Remove &quot;start_sim_button&quot;." />
+    <MESSAGE value="Updated TODO list" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated TODO list" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -929,7 +926,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/tasepC$run__1_.coverage" NAME="run (1) Coverage Results" MODIFIED="1731880895410" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tasepC" />
     <SUITE FILE_PATH="coverage/tasepC$run.coverage" NAME="run Coverage Results" MODIFIED="1731880452466" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tasepC" />
-    <SUITE FILE_PATH="coverage/tasepC$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1732329519688" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tasepC" />
+    <SUITE FILE_PATH="coverage/tasepC$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1732334428976" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tasepC" />
     <SUITE FILE_PATH="coverage/tasepC$drawCallbacks.coverage" NAME="drawCallbacks Coverage Results" MODIFIED="1731880919018" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tasepC/circuitGUI" />
     <SUITE FILE_PATH="coverage/particleCircuit$repositoryObj.coverage" NAME="repositoryObj Coverage Results" MODIFIED="1721698686405" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/particleCircuit$main.coverage" NAME="main Coverage Results" MODIFIED="1721701372082" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
