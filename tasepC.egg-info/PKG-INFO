@@ -1,9 +1,0 @@
-Metadata-Version: 2.1
-Name: tasepC
-Version: 1.0.0
-Author: Theo Prada De Ville
-Author-email: DePradaVill@proton.me
-Requires-Python: >=3.10
-License-File: LICENSE
-Requires-Dist: dearpygui==2.0.0
-Requires-Dist: numpy>=2.0.2
