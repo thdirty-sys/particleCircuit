@@ -27,7 +27,7 @@ This tool enables the user to draw their own circuit with customisable in/out ra
 
 ## How it works
 
-Particles enter and exit the circuit by entry nodes (yellow) and exit nodes. They then proceed under TASEP along the drawn paths. Path colour merely indicates the destination of the path and has no impact on the process. The other remaining option for a node is a repository (whose colour can be chosen) that is useful for helping construct circuits, but also records the current at its location and can be seen as the equivalent of an ammeter.
+Particles enter and exit the circuit by entry nodes (yellow) and exit nodes (blue). They then proceed under TASEP along the drawn paths. Path colour merely indicates the destination of the path and has no impact on the process. The other remaining option for a node is a repository (whose colour can be chosen) that is useful for helping construct circuits, but also records the current at its location and can be seen as the equivalent of an ammeter.
 
 ## Draw
 Users can draw their own custom circuits using an intuitive interface, enabling precise control over the simulation environment. Boundary transition rates can be set manually. A circuit must be 'complete' for the option of starting the simulation to appear.
