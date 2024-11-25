@@ -87,5 +87,9 @@ The following executable is available for windows users, however it triggers my 
 
 ## Usage
 
-If properly installed, main.py in tasepC folder will run the application.
+If properly installed, 
+```bash
+   python main.py
+   ```
+in tasepC directory will run the application.
 
