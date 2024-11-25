@@ -89,7 +89,7 @@ The following executable is available for windows users, however it triggers my 
 
 If properly installed, 
 ```bash
-   python main.py
+python main.py
    ```
 in tasepC directory will run the application.
 
