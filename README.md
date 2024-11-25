@@ -87,9 +87,9 @@ The following executable is available for windows users, however it triggers my 
 
 ## Usage
 
-If properly installed, 
+If the above dependencies are properly installed, either navigate to the tasepC folder containing 'main.py' and enter the following:
 ```bash
 python main.py
    ```
-in tasepC directory will run the application.
+or run the python file in your IDE.
 
