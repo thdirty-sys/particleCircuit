@@ -57,10 +57,12 @@ The following executable is available for windows users, however it triggers my 
 
 - Operating Systems:
   - Windows 10
-  - MacOS 12.7.6
+  - MacOS 12.7.6 (has not been tested since new screeninfo dependency introduced)
+  - Oracle Linux 8
 - Python versions:
   - 3.12.0
   - 3.10.0
+  - 3.9.19
   
 1. **Download and Install Python:**
 
