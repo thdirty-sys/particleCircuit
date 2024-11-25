@@ -8,7 +8,8 @@ setup(
     scripts=["./tasepC/main.py"],
     install_requires=[
         "dearpygui==2.0.0",
-        "numpy>=2.0.2"
+        "numpy>=2.0.2",
+        "screeninfo>=0.8"
     ],
     python_requires=">=3.10",
 )
