@@ -1,16 +1,11 @@
 import dearpygui.dearpygui as dpg
 import circuitGUI as GUI
-import tkinter as tk
+from screeninfo import get_monitors
 
 def screen_dim():
-    root = tk.Tk()
-    root.update_idletasks()
-    root.attributes('-fullscreen', True)
-    root.state('iconic')
-    dims = root.winfo_geometry()
-    root.destroy()
-    return dims
-# 1880, 900
+    for m in get_monitors():
+        if m.is_primary:
+            return m.width, m.height
 
 def nothing():
     pass
@@ -97,10 +92,8 @@ def create_application():
     dpg.start_dearpygui()
     dpg.destroy_context()
 
-def set_dimensions(screen_dims):
-    dim_i = screen_dims.index("x")
-    width = int(screen_dims[:dim_i])
-    if width <= 1880:
+def set_dimensions(screen_width):
+    if screen_width <= 1880:
         GUI.dim_x = 1210
         GUI.dim_y = 565
         GUI.circuit_space_x = 975
@@ -112,6 +105,6 @@ def set_dimensions(screen_dims):
 
 
 if __name__ == '__main__':
-    dims = screen_dim()
-    set_dimensions(dims)
+    x, y = screen_dim()
+    set_dimensions(x)
     create_application()
