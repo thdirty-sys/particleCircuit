@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="Completion warning added">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_11_2024_18_49_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_11_2024_18_49__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_18_11_2024_19_14__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_18_11_2024_19_14__Changes_.xml" afterDir="false" />
+    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="Properly changing out the match case for python3.9 compatibility">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/lib/tasepC/circuitGUI/drawCallbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/build/lib/tasepC/circuitGUI/drawCallbacks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasepC/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasepC/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -456,31 +452,7 @@
       <workItem from="1732368714362" duration="82000" />
       <workItem from="1732492042389" duration="4000" />
       <workItem from="1732494489562" duration="612000" />
-      <workItem from="1732507202164" duration="454000" />
-    </task>
-    <task id="LOCAL-00041" summary="Resizing buttons">
-      <option name="closed" value="true" />
-      <created>1723491237046</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1723491237046</updated>
-    </task>
-    <task id="LOCAL-00042" summary="Added functioning statistical/menu display">
-      <option name="closed" value="true" />
-      <created>1723745418861</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1723745418861</updated>
-    </task>
-    <task id="LOCAL-00043" summary="Added help window">
-      <option name="closed" value="true" />
-      <created>1723752663710</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1723752663710</updated>
+      <workItem from="1732507202164" duration="1484000" />
     </task>
     <task id="LOCAL-00044" summary="Filled README.md">
       <option name="closed" value="true" />
@@ -850,7 +822,31 @@
       <option name="project" value="LOCAL" />
       <updated>1732334722191</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="Made some alterations so that tkinter doesn't have to be initiated. Also accessible for python 3.9">
+      <option name="closed" value="true" />
+      <created>1732507841804</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1732507841804</updated>
+    </task>
+    <task id="LOCAL-00091" summary="updated build files for new dependency">
+      <option name="closed" value="true" />
+      <created>1732507918522</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1732507918522</updated>
+    </task>
+    <task id="LOCAL-00092" summary="Properly changing out the match case for python3.9 compatibility">
+      <option name="closed" value="true" />
+      <created>1732508490108</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1732508490108</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -890,9 +886,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Demo added to README" />
-    <MESSAGE value="Change viewport name" />
-    <MESSAGE value="Introduced draw mode to UI" />
     <MESSAGE value="Continued work with draw functionality. Brush menu has proper callback functions attributed and working. Approaching functional" />
     <MESSAGE value="Nodes can be placed and edit menu added" />
     <MESSAGE value="Added hovering path brush and hover indicator added for brush, along with 'path_draw_mode'" />
@@ -915,14 +908,17 @@
     <MESSAGE value="Remove avg calc error. Remove &quot;start_sim_button&quot;." />
     <MESSAGE value="Updated TODO list" />
     <MESSAGE value="Completion warning added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Completion warning added" />
+    <MESSAGE value="Made some alterations so that tkinter doesn't have to be initiated. Also accessible for python 3.9" />
+    <MESSAGE value="updated build files for new dependency" />
+    <MESSAGE value="Properly changing out the match case for python3.9 compatibility" />
+    <option name="LAST_COMMIT_MESSAGE" value="Properly changing out the match case for python3.9 compatibility" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/tasepC/circuitGUI/drawCallbacks.py</url>
-          <line>165</line>
+          <line>164</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -935,7 +931,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/tasepC$run__1_.coverage" NAME="run (1) Coverage Results" MODIFIED="1731880895410" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tasepC" />
     <SUITE FILE_PATH="coverage/tasepC$run.coverage" NAME="run Coverage Results" MODIFIED="1731880452466" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tasepC" />
-    <SUITE FILE_PATH="coverage/tasepC$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1732507553240" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tasepC" />
+    <SUITE FILE_PATH="coverage/tasepC$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1732508491336" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tasepC" />
     <SUITE FILE_PATH="coverage/particleCircuit$repositoryObj.coverage" NAME="repositoryObj Coverage Results" MODIFIED="1721698686405" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/tasepC$drawCallbacks.coverage" NAME="drawCallbacks Coverage Results" MODIFIED="1731880919018" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tasepC/circuitGUI" />
     <SUITE FILE_PATH="coverage/particleCircuit$main.coverage" NAME="main Coverage Results" MODIFIED="1721701372082" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

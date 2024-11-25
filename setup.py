@@ -11,5 +11,5 @@ setup(
         "numpy>=2.0.2",
         "screeninfo>=0.8"
     ],
-    python_requires=">=3.10",
+    python_requires=">=3.9.19",
 )
