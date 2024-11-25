@@ -141,50 +141,49 @@ def plot_click(sender, app_data):
                     break
         elif True:
             if pos[1] < 26:
-                match current_brush:
-                    case "entry":
-                        new_entry = circuitOperations.Node(pos, 1.00)
-                        # Add node delete command for node to undo stack
-                        undo_command = circuitOperations.DeleteNodeCommand(new_entry)
-                        caretaker.new_undo_push(undo_command)
-                        # Add new node to circuit
-                        c.add_node(new_entry)
-                        # Draw new node
-                        dpg.draw_rectangle(pmin=pos, pmax=pos, parent="main_grid",
-                                           color=(233, 240, 50), tag=f"node_{pos}")
-                        dpg.draw_text((pos[0] - 0.5, pos[1] + 0.5), "1.00", parent="main_grid",
-                                      tag=f"node_text_{pos}", size=0.35, color=(0, 0, 0))
-                        # Enter edit mode for node
-                        enter_edit(new_entry)
+                if current_brush == "entry":
+                    new_entry = circuitOperations.Node(pos, 1.00)
+                    # Add node delete command for node to undo stack
+                    undo_command = circuitOperations.DeleteNodeCommand(new_entry)
+                    caretaker.new_undo_push(undo_command)
+                    # Add new node to circuit
+                    c.add_node(new_entry)
+                    # Draw new node
+                    dpg.draw_rectangle(pmin=pos, pmax=pos, parent="main_grid",
+                                       color=(233, 240, 50), tag=f"node_{pos}")
+                    dpg.draw_text((pos[0] - 0.5, pos[1] + 0.5), "1.00", parent="main_grid",
+                                  tag=f"node_text_{pos}", size=0.35, color=(0, 0, 0))
+                    # Enter edit mode for node
+                    enter_edit(new_entry)
 
-                    case "exit":
-                        new_exit = circuitOperations.Node(pos, -1.00)
-                        # Add node delete command for node to undo stack
-                        undo_command = circuitOperations.DeleteNodeCommand(new_exit)
-                        caretaker.new_undo_push(undo_command)
-                        # Add new node to circuit
-                        c.add_node(new_exit)
-                        # Draw new node
-                        dpg.draw_rectangle(pmin=pos, pmax=pos, parent="main_grid",
-                                           color=(23, 240, 250), tag=f"node_{pos}")
-                        dpg.draw_text((pos[0] - 0.5, pos[1] + 0.5), "1.00", parent="main_grid",
-                                      tag=f"node_text_{pos}", size=0.35, color=(0, 1, 0))
-                        # Enter edit mode for node
-                        enter_edit(new_exit)
+                elif current_brush == "exit":
+                    new_exit = circuitOperations.Node(pos, -1.00)
+                    # Add node delete command for node to undo stack
+                    undo_command = circuitOperations.DeleteNodeCommand(new_exit)
+                    caretaker.new_undo_push(undo_command)
+                    # Add new node to circuit
+                    c.add_node(new_exit)
+                    # Draw new node
+                    dpg.draw_rectangle(pmin=pos, pmax=pos, parent="main_grid",
+                                       color=(23, 240, 250), tag=f"node_{pos}")
+                    dpg.draw_text((pos[0] - 0.5, pos[1] + 0.5), "1.00", parent="main_grid",
+                                  tag=f"node_text_{pos}", size=0.35, color=(0, 1, 0))
+                    # Enter edit mode for node
+                    enter_edit(new_exit)
 
-                    case "repo":
-                        new_repo = circuitOperations.Repository(pos, 100)
-                        # Add node delete command for node to undo stack
-                        undo_command = circuitOperations.DeleteNodeCommand(new_repo)
-                        caretaker.new_undo_push(undo_command)
-                        # Add new node to circuit
-                        c.add_repo(new_repo)
-                        # Draw new node
-                        dpg.draw_rectangle(pmin=pos, pmax=pos, parent="main_grid",
-                                           color=(233, 12, 50), tag=f"repo_{pos}")
-                        dpg.draw_text(pos, "0", parent="main_grid", tag=f"repo_text_{pos}", size=0.5, color=(0, 250, 250))
-                        # Enter edit mode for node
-                        enter_edit(new_repo)
+                elif current_brush == "repo":
+                    new_repo = circuitOperations.Repository(pos, 100)
+                    # Add node delete command for node to undo stack
+                    undo_command = circuitOperations.DeleteNodeCommand(new_repo)
+                    caretaker.new_undo_push(undo_command)
+                    # Add new node to circuit
+                    c.add_repo(new_repo)
+                    # Draw new node
+                    dpg.draw_rectangle(pmin=pos, pmax=pos, parent="main_grid",
+                                       color=(233, 12, 50), tag=f"repo_{pos}")
+                    dpg.draw_text(pos, "0", parent="main_grid", tag=f"repo_text_{pos}", size=0.5, color=(0, 250, 250))
+                    # Enter edit mode for node
+                    enter_edit(new_repo)
     else:
         pass
 
