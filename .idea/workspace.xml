@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="updated setup-py to reflect new changes and compatibility test on Oracle python3.19">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="e69c4079-361d-4825-8788-37392c2c04ff" name="Changes" comment="README update">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_18_11_2024_19_14_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -451,15 +452,8 @@
       <workItem from="1732368714362" duration="82000" />
       <workItem from="1732492042389" duration="4000" />
       <workItem from="1732494489562" duration="612000" />
-      <workItem from="1732507202164" duration="1645000" />
-    </task>
-    <task id="LOCAL-00045" summary="Filled README.md">
-      <option name="closed" value="true" />
-      <created>1723764971502</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1723764971502</updated>
+      <workItem from="1732507202164" duration="2555000" />
+      <workItem from="1732631728347" duration="599000" />
     </task>
     <task id="LOCAL-00046" summary="README edit... colour-blind">
       <option name="closed" value="true" />
@@ -845,7 +839,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732508720811</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="README update">
+      <option name="closed" value="true" />
+      <created>1732509344242</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1732509344242</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -885,7 +887,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Nodes can be placed and edit menu added" />
     <MESSAGE value="Added hovering path brush and hover indicator added for brush, along with 'path_draw_mode'" />
     <MESSAGE value="Brought the UI image of the circuit into a general object in 'interfaceObjects' file. Code changed to accommodate this. Path draw almost functioning." />
     <MESSAGE value="Reconfigured circuit object so that undercurrent_space is no longer a dictionary of dictionaries. Path drawing now working in terms of displaying" />
@@ -910,7 +911,8 @@
     <MESSAGE value="updated build files for new dependency" />
     <MESSAGE value="Properly changing out the match case for python3.9 compatibility" />
     <MESSAGE value="updated setup-py to reflect new changes and compatibility test on Oracle python3.19" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated setup-py to reflect new changes and compatibility test on Oracle python3.19" />
+    <MESSAGE value="README update" />
+    <option name="LAST_COMMIT_MESSAGE" value="README update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
