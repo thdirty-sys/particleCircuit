@@ -10,7 +10,7 @@ class Node:
         self.pos = start_pos
         self.rate = rate
         self.count = 0
-        self.check_in = [0]
+        self.check_in = []
         self.track = True
         for key in kwargs:
             self.__dict__[key] = kwargs[key]
@@ -39,7 +39,7 @@ class Repository:
         self.capacity = capacity
         self.pos = start_pos
         self.count = 0
-        self.check_in = [0]
+        self.check_in = []
         self.colour = colour
         self.track = True
         for key in kwargs:
@@ -704,7 +704,7 @@ class DataRecorder:
         self.currents_50 = {}
 
         for node in self.nodes:
-            self.currents_1[node.pos] = [0]
+            self.currents_1[node.pos] = []
             self.currents_10[node.pos] = []
             self.currents_50[node.pos] = []
 

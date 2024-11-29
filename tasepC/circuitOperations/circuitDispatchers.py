@@ -77,6 +77,7 @@ class TasepCircuitDispatcher():
                                 n.take(self.play_time)
                                 break
 
+
     def pos_empty(self, pos, ori):
         for p in self.circuit.particles:
             if p.pos == pos:

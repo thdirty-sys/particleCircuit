@@ -91,6 +91,9 @@ def draw_mode():
     dpg.add_button(label="Start process", width=200, height=30,
                    callback=initiate_process, tag="start_process_button",
                    parent="action_buttons", before="wipe_paths_button", show=False)
+    dpg.add_button(label="Start sim", width=200, height=30,
+                   callback=initiate_sim, tag="start_sim_button",
+                   parent="action_buttons", before="wipe_paths_button", show=False)
     dpg.add_text("Circuit is not complete.", tag="completion_warning",
                    parent="action_buttons", before="wipe_paths_button")
     dpg.add_spacer(height=5, parent="action_buttons")
@@ -225,6 +228,7 @@ def check_initiable():
         if not c.path_space[n.pos]:
             dpg.configure_item("start_process_button", show=False)
             dpg.configure_item("completion_warning", show=True)
+            dpg.configure_item("start_sim_button", show=False)
             break
     else:
         for pos in c.path_space:
@@ -232,46 +236,23 @@ def check_initiable():
                 if not c.path_space[a] and not c.in_exit_node(a):
                     dpg.configure_item("start_process_button", show=False)
                     dpg.configure_item("completion_warning", show=True)
+                    dpg.configure_item("start_sim_button", show=False)
                     break
                 else:
                     dpg.configure_item("start_process_button", show=True)
                     dpg.configure_item("completion_warning", show=False)
+                    dpg.configure_item("start_sim_button", show=True)
 
 def initiate_sim():
     dpg.configure_item("brushes_menu", show=False)
     dpg.configure_item("action_buttons", show=False)
 
-    tcd = circuitOperations.TasepCircuitDispatcher()
+    tcd = interfaceObjects.TasepCircuitSimulateGUI()
     # Storing hidden groups so that tcd knows what to return to
     tcd.hidden = ["brushes_menu", "action_buttons"]
     tcd.circuit = c
-    tcd.run_tasep()
+    tcd.start()
 
-    tracked = []
-    for n in c.entry_nodes + c.body:
-        if n.track:
-            tracked.append(n)
-    data = circuitOperations.DataRecorder(tracked)
-    for node in tracked:
-        count = floor(node.check_in[0])
-        top = floor(node.check_in[-1])
-        if top != count:
-            for i, t in enumerate(node.check_in):
-                f = floor(t)
-                while count != f:
-                    count += 1
-                    data.currents_1[node.pos].append(0)
-                else:
-                    if count != top:
-                        data.currents_1[node.pos][-1] += 1
-            print(sum(data.currents_1[node.pos])/len(data.currents_1[node.pos]))
-        node.check_in = []
-
-    data.calc_currents()
-    print("Done")
-    dpg.configure_item("main_grid", show=False)
-    graphs = interfaceObjects.StatisticalFrames(data)
-    graphs.setup_frames()
 
 
 def grid_hover(sender, app_data, user_data):
